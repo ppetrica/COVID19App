@@ -15,3 +15,5 @@ Documentatie folosind Doxygen.
 2) Afisat date cu numarul de infectati pe harta. (folosind LiveCharts C#)
 3) Afisat statistici (posibil folosind LiveCharts)
 4) Posibilitate de alegere tara apasand pe harta.
+
+Aceasta este o modificare

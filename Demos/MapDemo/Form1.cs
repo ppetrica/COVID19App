@@ -39,7 +39,7 @@ namespace TestMap
             //geoMap1.DefaultLandFill = Brushes.Black;
             // 5. Assign data and map file
             geoMap1.HeatMap = values;
-            geoMap1.Source = @"C:\Users\ppetrica\Desktop\World.xml";
+            geoMap1.Source = "World.xml";
 
 
             GradientStopCollection collection = new GradientStopCollection();

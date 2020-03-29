@@ -14,6 +14,8 @@ namespace TestMap
         [STAThread]
         static void Main()
         {
+            string startupPath = System.IO.Directory.GetCurrentDirectory();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

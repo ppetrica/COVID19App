@@ -3,7 +3,7 @@
 
 namespace core
 {
-    interface DataProvider<T>
+    public interface DataProvider<T>
     {
         IReadOnlyList<T> GetCountryData();
     }

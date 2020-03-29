@@ -5,7 +5,7 @@ using System;
 namespace test_core
 {
     [TestClass]
-    public class Test
+    public class TestDate
     {
         [TestMethod]
         public void TestDateRight()

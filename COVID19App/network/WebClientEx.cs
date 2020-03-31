@@ -4,6 +4,7 @@ using System.Net;
 
 namespace network
 {
+    [System.ComponentModel.DesignerCategory("")]
     /// <summary>
     /// This class is an extension on System.Net.WebClient that
     /// provides customizable timeout for web requests.

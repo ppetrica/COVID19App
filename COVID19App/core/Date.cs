@@ -36,6 +36,38 @@ namespace core
             return new Date(year, month, day);
         }
 
+        public static bool operator==(Date d1, Date d2)
+        {
+            return d1.Year == d2.Year && d1.Month == d2.Month && d1.Day == d2.Day;
+        }
+        
+        public static bool operator!=(Date d1, Date d2)
+        {
+            return !(d1 == d2);
+        }
+
+        public static bool operator<(Date d1, Date d2)
+        {
+            if (d1.Year != d2.Year)
+                return d1.Year < d2.Year;
+
+            if (d1.Month != d2.Month)
+                return d1.Month < d2.Month;
+
+            return d1.Day < d2.Day;
+        }
+        
+        public static bool operator>(Date d1, Date d2)
+        {
+            if (d1.Year != d2.Year)
+                return d1.Year > d2.Year;
+
+            if (d1.Month != d2.Month)
+                return d1.Month > d2.Month;
+
+            return d1.Day > d2.Day;
+        }
+
         public readonly int Year;
         public readonly int Month;
         public readonly int Day;

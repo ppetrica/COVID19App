@@ -12,6 +12,8 @@ namespace TestMap
         {
             InitializeComponent();
 
+            TableLayoutPanel mainLayout = (TableLayoutPanel)this.Controls.Find("mainLayout", false)[0];
+
             LiveCharts.WinForms.GeoMap geoMap1 = new LiveCharts.WinForms.GeoMap();
 
             geoMap1.LandClick += GeoMap1_LandClick;
@@ -41,7 +43,6 @@ namespace TestMap
             geoMap1.HeatMap = values;
             geoMap1.Source = "World.xml";
 
-
             GradientStopCollection collection = new GradientStopCollection();
             collection.Add(new GradientStop(Colors.Red, 0));
             collection.Add(new GradientStop(Colors.Yellow, 0.5));
@@ -50,9 +51,11 @@ namespace TestMap
 
             // 6. Important, you can only add the control to the form after defining the source of the map,
             // otherwise it will throw a File Not Found exception
-            this.Controls.Add(geoMap1);
+            //this.Controls.Add(geoMap1);
             // 7. Set the style of the control to fill it's container, in this example will fill the entire form
             geoMap1.Dock = DockStyle.Fill;
+
+            mainLayout.Controls.Add(geoMap1);
         }
 
         private void GeoMap1_LandClick(object arg1, LiveCharts.Maps.MapData arg2)

@@ -1,6 +1,4 @@
-﻿using core;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows.Forms;
 
 
@@ -16,7 +14,7 @@ namespace COVID19App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

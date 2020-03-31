@@ -3,32 +3,43 @@
 
 namespace core
 {
-    public struct ContryInfoEx
+    public struct CountryInfoEx
     {
-        public ContryInfoEx(CountryInfo info, string countryCode)
+        public CountryInfoEx(CountryInfo info, string countryCode)
         {
             _info = info;
             CountryCode = countryCode;
+
+            _mostRecent = Utils.MaxElement(info.DaysInfo, (DayInfo d1, DayInfo d2) => d1.Date > d2.Date);
         }
 
         public string Name
         {
-            get
-            {
-                return _info.Name;
-            }
+            get => _info.Name;
         }
 
         public IReadOnlyList<DayInfo> DaysInfo
         {
-            get
-            {
-                return _info.DaysInfo;
-            }
+            get => _info.DaysInfo;
+        }
+
+        public int Confirmed
+        {
+            get => _mostRecent.Confirmed;
+        }
+
+        public int Deaths
+        {
+            get => _mostRecent.Deaths;
+        }
+        
+        public int Recovered
+        {
+            get => _mostRecent.Recovered;
         }
 
         public readonly string CountryCode;
-        
         private CountryInfo _info;
+        private DayInfo _mostRecent;
     }
 }

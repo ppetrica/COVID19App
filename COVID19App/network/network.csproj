@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InternetConnection.cs" />
     <Compile Include="DateJsonConverter.cs" />
     <Compile Include="WebClientEx.cs" />
     <Compile Include="CovidDataProvider.cs" />

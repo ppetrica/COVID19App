@@ -15,12 +15,11 @@ namespace network
         private WebClientEx _webClient;
 
         public const string Url = "https://pomber.github.io/covid19/timeseries.json?fbclid=IwAR2FznKc4nXVzWdyZMKc7X58psda0y3DzTMet9u_FU8BtEfkB6n3H9uxhDA";
-        public const int DefaultTimeout = 5000;
 
         /// <param name="timeout">The period, in milliseconds, until the web request times out.
         /// Also the value Infinite (-1) can be used to indicate that the web request doesn't time out.</param>
         /// <exception cref="ArgumentException">Thrown when parameter value is lower than -1.</exception>
-        public CovidDataProvider(int timeout = DefaultTimeout)
+        public CovidDataProvider(int timeout = InternetConnection.DefaultTimeout)
         {
             if (timeout < -1)
                 throw new ArgumentException();

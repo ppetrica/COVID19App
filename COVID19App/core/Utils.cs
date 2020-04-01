@@ -11,7 +11,7 @@ namespace core
             IEnumerator<T> iter = coll.GetEnumerator();
             T max = iter.Current;
 
-            while(iter.MoveNext())
+            while (iter.MoveNext())
             {
                 T current = iter.Current;
 
@@ -22,6 +22,18 @@ namespace core
             }
 
             return max;
+        }
+
+        public static Nullable<T> Find<T>(IEnumerable<T> coll, Predicate<T> pred) where T : struct
+        {
+            IEnumerator<T> iter = coll.GetEnumerator();
+            do
+            {
+                if (pred(iter.Current))
+                    return iter.Current;
+            } while (iter.MoveNext());
+
+            return null;
         }
     }
 }

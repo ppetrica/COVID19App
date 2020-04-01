@@ -1,8 +1,10 @@
-﻿
+﻿using core;
+
+
 namespace view
 {
     public interface MapObserver
     {
-        void OnClick(string countryCode);
+        void OnClick(CountryInfoEx country);
     }
 }

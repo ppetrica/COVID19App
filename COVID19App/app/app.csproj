@@ -100,10 +100,6 @@
       <Project>{eb16e1b6-ebb3-46c2-a6d0-a246995912a7}</Project>
       <Name>database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\map_view\view.csproj">
-      <Project>{4c1ed592-adfd-4457-90ab-cebcc0f9f5ed}</Project>
-      <Name>view</Name>
-    </ProjectReference>
     <ProjectReference Include="..\network\network.csproj">
       <Project>{1c8a65a1-88c2-4a79-aa9e-9fa2d3174bff}</Project>
       <Name>network</Name>
@@ -111,6 +107,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)World.xml $(ProjectDir)$(OutDir)World.xml</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

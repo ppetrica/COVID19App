@@ -36,6 +36,11 @@ namespace core
             return new Date(year, month, day);
         }
 
+        public override bool Equals(object obj)
+        {
+            return this == (Date)obj;
+        }
+
         public static bool operator==(Date d1, Date d2)
         {
             return d1.Year == d2.Year && d1.Month == d2.Month && d1.Day == d2.Day;

@@ -7,8 +7,8 @@
     <ProjectGuid>{4C1ED592-ADFD-4457-90AB-CEBCC0F9F5ED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>map_view</RootNamespace>
-    <AssemblyName>map_view</AssemblyName>
+    <RootNamespace>view</RootNamespace>
+    <AssemblyName>view</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

@@ -11,16 +11,17 @@ namespace view
     {
         public MapView (IReadOnlyList<CountryInfoEx> info)
         {
-            map.Source = MAP_FILE;
+            _countries = info;
+
+            _map.Source = _MapFile;
+            _map.Dock = DockStyle.Fill;
 
             GradientStopCollection collection = new GradientStopCollection();
             collection.Add(new GradientStop(Colors.Green, 0.0));
             collection.Add(new GradientStop(Colors.Yellow, 0.5));
             collection.Add(new GradientStop(Colors.Red, 1.0));
 
-            map.GradientStopCollection = collection;
-
-            map.Dock = DockStyle.Fill;
+            _map.GradientStopCollection = collection;
 
             CountryInfoEx mostSevere = Utils.MaxElement(info,
                 (CountryInfoEx c1, CountryInfoEx c2) => c1.Confirmed > c2.Confirmed);
@@ -36,37 +37,42 @@ namespace view
                                                                        : (confirmed - half) / half * double.MaxValue;
             }
 
-            map.HeatMap = scaledValues;
+            _map.HeatMap = scaledValues;
 
-            map.LandClick += OnUserClick;
+            _map.LandClick += OnUserClick;
         }
 
         public void Subscribe(MapObserver observer)
         {
-            observers.Add(observer);
+            _observers.Add(observer);
         }
 
         public void Unsubscribe(MapObserver observer)
         {
-            observers.Remove(observer);
+            _observers.Remove(observer);
         }
 
-        public Control Get()
+        public Control GetControl()
         {
-            return map;
+            return _map;
         }
 
         private void OnUserClick(object obj, MapData data)
         {
-            foreach (MapObserver observer in observers)
+            CountryInfoEx? res = Utils.Find(_countries, (CountryInfoEx country) => country.CountryCode == data.Id);
+
+            if (res.HasValue)
             {
-                observer.OnClick(data.Id);
+                foreach (MapObserver observer in _observers)
+                {
+                    observer.OnClick(res.Value);
+                }
             }
         }
 
-        private const string MAP_FILE = "World.xml";
-        
-        private List<MapObserver> observers = new List<MapObserver>();
-        private GeoMap map = new GeoMap();
+        private const string _MapFile = "World.xml";
+        private IReadOnlyList<CountryInfoEx> _countries;
+        private List<MapObserver> _observers = new List<MapObserver>();
+        private GeoMap _map = new GeoMap();
     }
 }

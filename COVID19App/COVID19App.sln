@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "network", "network\network.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_core", "test_core\test_core.csproj", "{3EBC667E-D0AB-4469-8247-20C0DC9A32E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "view", "map_view\view.csproj", "{4C1ED592-ADFD-4457-90AB-CEBCC0F9F5ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_view", "test_view\test_view.csproj", "{8CDEB9C8-7289-49C5-86CA-4BB49DFBEA66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "view", "view\view.csproj", "{4C1ED592-ADFD-4457-90AB-CEBCC0F9F5ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{3EBC667E-D0AB-4469-8247-20C0DC9A32E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EBC667E-D0AB-4469-8247-20C0DC9A32E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EBC667E-D0AB-4469-8247-20C0DC9A32E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CDEB9C8-7289-49C5-86CA-4BB49DFBEA66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CDEB9C8-7289-49C5-86CA-4BB49DFBEA66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CDEB9C8-7289-49C5-86CA-4BB49DFBEA66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CDEB9C8-7289-49C5-86CA-4BB49DFBEA66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C1ED592-ADFD-4457-90AB-CEBCC0F9F5ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C1ED592-ADFD-4457-90AB-CEBCC0F9F5ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C1ED592-ADFD-4457-90AB-CEBCC0F9F5ED}.Release|Any CPU.ActiveCfg = Release|Any CPU

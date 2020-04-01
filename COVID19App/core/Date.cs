@@ -41,6 +41,11 @@ namespace core
             return this == (Date)obj;
         }
 
+        public override int GetHashCode()
+        {
+            return Year ^ Month ^ Day;
+        }
+
         public static bool operator==(Date d1, Date d2)
         {
             return d1.Year == d2.Year && d1.Month == d2.Month && d1.Day == d2.Day;

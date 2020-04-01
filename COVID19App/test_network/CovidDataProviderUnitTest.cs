@@ -10,22 +10,22 @@ namespace test_network
     public class CovidDataProviderUnitTest
     {
         [TestMethod]
-        [Ignore]
-        public void TestRequest()
-        {
-            IReadOnlyList<CountryInfo> list = (new CovidDataProvider()).GetCountryData();
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(System.Net.WebException))]
         public void TestTimeout()
         {
             CovidDataProvider dataProvider = new CovidDataProvider(-1);
 
-            dataProvider.SetTimeout(100);
-            Assert.AreEqual(100, dataProvider.GetTimeout());
+            dataProvider.Timeout = 100;
+            Assert.AreEqual(100, dataProvider.Timeout);
 
             IReadOnlyList<CountryInfo> list = dataProvider.GetCountryData();
+        }
+
+        [TestMethod]
+        public void TestRequest()
+        {
+            IReadOnlyList<CountryInfo> list = (new CovidDataProvider()).GetCountryData();
+            Assert.AreNotEqual(0, list.Count);
         }
 
         [TestMethod]
@@ -33,15 +33,13 @@ namespace test_network
         public void TestNegativeTimeout()
         {
             CovidDataProvider dataProvider = new CovidDataProvider();
-            dataProvider.SetTimeout(-100);
+            dataProvider.Timeout = -100;
         }
 
         [TestMethod]
         public void TestParsedCovidInfo()
         {
             IReadOnlyList<CountryInfo> countryInfoList = (new CovidDataProvider()).GetCountryData();
-
-            Assert.AreEqual(178, countryInfoList.Count);
 
             Assert.AreEqual<DayInfo>(new DayInfo(new Date(2020, 3, 30), 170, 4, 2), countryInfoList[0].DaysInfo[68]);
             Assert.AreEqual("Afghanistan", countryInfoList[0].Name);

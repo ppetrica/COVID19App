@@ -11,19 +11,6 @@ namespace network
     /// </summary>
     class WebClientEx : WebClient
     {
-        private int _timeout;
-
-        /// <summary>
-        /// The period, in milliseconds, until the web request times out.
-        /// Also the value Infinite (-1) can be used to indicate that the
-        /// web request doesn't time out.
-        /// </summary>
-        public int Timeout
-        {
-            get { return _timeout; }
-            set { _timeout = value; }
-        }
-
         public WebClientEx(int timeout)
         {
             _timeout = timeout;
@@ -38,5 +25,18 @@ namespace network
             webRequest.Timeout = _timeout;
             return webRequest;
         }
+
+        /// <summary>
+        /// The period, in milliseconds, until the web request times out.
+        /// Also the value Infinite (-1) can be used to indicate that the
+        /// web request doesn't time out.
+        /// </summary>
+        public int Timeout
+        {
+            get { return _timeout; }
+            set { _timeout = value; }
+        }
+
+        private int _timeout;
     }
 }

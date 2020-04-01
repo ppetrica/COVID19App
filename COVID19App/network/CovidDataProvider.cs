@@ -12,10 +12,6 @@ namespace network
     /// </summary>
     public class CovidDataProvider : DataProvider<CountryInfo>
     {
-        private WebClientEx _webClient;
-
-        public const string Url = "https://pomber.github.io/covid19/timeseries.json?fbclid=IwAR2FznKc4nXVzWdyZMKc7X58psda0y3DzTMet9u_FU8BtEfkB6n3H9uxhDA";
-
         /// <param name="timeout">The period, in milliseconds, until the web request times out.
         /// Also the value Infinite (-1) can be used to indicate that the web request doesn't time out.</param>
         /// <exception cref="ArgumentException">Thrown when parameter value is lower than -1.</exception>
@@ -25,26 +21,6 @@ namespace network
                 throw new ArgumentException();
 
             _webClient = new WebClientEx(timeout);
-        }
-
-        /// <summary>
-        /// This method change timeout value of web requests.
-        /// </summary>
-        /// <param name="timeout">The period, in milliseconds, until the web request times out.
-        /// Also the value Infinite (-1) can be used to indicate that the web request doesn't time out.</param>
-        /// <exception cref="ArgumentException">Thrown when parameter value is lower than -1.</exception>
-        public void SetTimeout(int timeout)
-        {
-            if (timeout < -1)
-                throw new ArgumentException();
-
-            _webClient.Timeout = timeout;
-        }
-
-        /// <returns>current timeout (in milliseconds).</returns>
-        public int GetTimeout()
-        {
-            return _webClient.Timeout;
         }
 
         /// <returns>Statistics about COVID-19 organized by country as a read only list of core.CountryInfo.</returns>
@@ -65,5 +41,29 @@ namespace network
 
             return countryData.AsReadOnly();
         }
+
+        /// <summary>
+        /// The period, in milliseconds, until the web request times out.
+        /// Also the value Infinite (-1) can be used to indicate that the web request doesn't time out.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown by setter when value is lower than -1.</exception>
+        public int Timeout
+        {
+            get
+            {
+                return _webClient.Timeout;
+            }
+            set
+            {
+                if (value < -1)
+                    throw new ArgumentException();
+
+                _webClient.Timeout = value;
+            }
+        }
+        
+        public const string Url = "https://pomber.github.io/covid19/timeseries.json?fbclid=IwAR2FznKc4nXVzWdyZMKc7X58psda0y3DzTMet9u_FU8BtEfkB6n3H9uxhDA";
+
+        private WebClientEx _webClient;
     }
 }

@@ -2,8 +2,6 @@
 {
     public class InternetConnection
     {
-        public const int DefaultTimeout = 5000;
-
         /// <summary>
         /// Check if an internet connection is available.
         /// </summary>
@@ -24,5 +22,7 @@
                 return false;
             }
         }
+
+        public const int DefaultTimeout = 5000;
     }
 }

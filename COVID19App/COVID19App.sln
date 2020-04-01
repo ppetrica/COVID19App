@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "network", "network\network.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_core", "test_core\test_core.csproj", "{3EBC667E-D0AB-4469-8247-20C0DC9A32E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_network", "test_network\test_network.csproj", "{B61BBACA-00F0-44E6-8198-D6F710B0A13F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3EBC667E-D0AB-4469-8247-20C0DC9A32E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EBC667E-D0AB-4469-8247-20C0DC9A32E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EBC667E-D0AB-4469-8247-20C0DC9A32E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B61BBACA-00F0-44E6-8198-D6F710B0A13F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B61BBACA-00F0-44E6-8198-D6F710B0A13F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B61BBACA-00F0-44E6-8198-D6F710B0A13F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B61BBACA-00F0-44E6-8198-D6F710B0A13F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

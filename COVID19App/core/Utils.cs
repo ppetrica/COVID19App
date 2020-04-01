@@ -1,6 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace core
 {
@@ -8,6 +9,9 @@ namespace core
     {
         public static T MaxElement<T>(IEnumerable<T> coll, Func<T, T, bool> compareFunc)
         {
+            if (!coll.Any())
+                throw new ArgumentException();
+
             IEnumerator<T> iter = coll.GetEnumerator();
             T max = iter.Current;
 
@@ -26,12 +30,16 @@ namespace core
 
         public static Nullable<T> Find<T>(IEnumerable<T> coll, Predicate<T> pred) where T : struct
         {
-            IEnumerator<T> iter = coll.GetEnumerator();
-            do
+            if (coll.Any())
             {
-                if (pred(iter.Current))
-                    return iter.Current;
-            } while (iter.MoveNext());
+                IEnumerator<T> iter = coll.GetEnumerator();
+
+                while (iter.MoveNext())
+                {
+                    if (pred(iter.Current))
+                        return iter.Current;
+                }
+            }
 
             return null;
         }

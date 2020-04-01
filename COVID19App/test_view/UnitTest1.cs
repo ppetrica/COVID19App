@@ -10,6 +10,7 @@ namespace test_view
     [TestClass]
     public class MapViewTest
     {
+        [Ignore]
         [TestMethod]
         public void Test()
         {

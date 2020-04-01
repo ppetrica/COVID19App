@@ -7,8 +7,19 @@ using System.Windows.Media;
 
 namespace view
 {
+    /// <summary>
+    /// Class responsible for creating the map from
+    /// the country info list and notifying the subscribers
+    /// about click events.
+    /// </summary>
     public class MapView
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="info">
+        /// The country information to represent on the map
+        /// </param>
         public MapView (IReadOnlyList<CountryInfoEx> info)
         {
             _countries = info;
@@ -42,16 +53,28 @@ namespace view
             _map.LandClick += OnUserClick;
         }
 
+        /// <summary>
+        /// Subscribe an observer to be notified on click events.
+        /// </summary>
+        /// <param name="observer">The observer to be notified.</param>
         public void Subscribe(MapObserver observer)
         {
             _observers.Add(observer);
         }
 
+        /// <summary>
+        /// Unsubscribe an observer from click events.
+        /// </summary>
+        /// <param name="observer">The observer to remove.</param>
         public void Unsubscribe(MapObserver observer)
         {
             _observers.Remove(observer);
         }
 
+        /// <summary>
+        /// Returns the generated map control to be added in a form
+        /// </summary>
+        /// <returns>Generated map</returns>
         public Control GetControl()
         {
             return _map;

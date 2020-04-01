@@ -10,6 +10,7 @@ namespace test_view
     [TestClass]
     public class MapViewTest
     {
+        // This test can be used to look at the generated map.
         [Ignore]
         [TestMethod]
         public void Test()

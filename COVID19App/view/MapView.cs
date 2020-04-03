@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Media;
 
+
 namespace view
 {
     /// <summary>
@@ -12,7 +13,7 @@ namespace view
     /// the country info list and notifying the subscribers
     /// about click events.
     /// </summary>
-    public class MapView
+    public class MapView : IView
     {
         /// <summary>
         /// Constructor

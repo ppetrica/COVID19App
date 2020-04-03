@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\core\bin\Debug\core.dll</HintPath>
+    </Reference>
     <Reference Include="database">
       <HintPath>..\database\bin\Debug\database.dll</HintPath>
     </Reference>
@@ -60,7 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SQLDbManager.cs" />
+    <Compile Include="SqlDataProviderTest.cs" />
+    <Compile Include="SqlDbManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -28,7 +29,6 @@ namespace database
 
         public void SetDatabaseConnection(string databasePath)
         {
-            //databasePath = @"..\..\..\resources\sql\covid.db";
             string connString = $"Data Source={databasePath}";
             _dbConnection = new SQLiteConnection(connString);
         }
@@ -37,9 +37,12 @@ namespace database
         {
             using (SQLiteCommand cmd = new SQLiteCommand(query, _dbConnection))
             {
+                if (_dbConnection.State == ConnectionState.Open)
+                {
+                    _dbConnection.Close();
+                }
                 _dbConnection.Open();
                 _dataReader = cmd.ExecuteReader();
-                _dbConnection.Close();
             }
         }
 
@@ -56,7 +59,7 @@ namespace database
 
         public bool InsertCountry(string name, ushort code, string alpha, byte regionId)
         {
-            String sql = $"INSERT INTO country (name, code, alpha, region_id) VALUES ('{name}', {code}, '{alpha}', {region_id});";
+            String sql = $"INSERT INTO country (name, code, alpha, region_id) VALUES ('{name}', {code}, '{alpha}', {regionId});";
             
             try
             {
@@ -94,6 +97,88 @@ namespace database
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        public string GetRegionNameById(int id)
+        {
+            String sql = $"SELECT region_name FROM region WHERE region_id={id};";
+            try
+            {
+                ExecuteQuery(sql);
+                if (_dataReader.Read())
+                {
+                    var temp =  _dataReader.GetString(0);
+                    _dbConnection.Close();
+                    return temp;
+                }
+                _dbConnection.Close();
+                return null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public Tuple<string, string, int> GetCountryInfoById(int countryId)
+        {
+            String sql = $"SELECT name, alpha, region_id FROM country WHERE code={countryId};";
+            try
+            {
+                ExecuteQuery(sql);
+                if (_dataReader.Read())
+                {
+                    var temp = new Tuple<string, string, int>(_dataReader.GetString(0), _dataReader.GetString(1), _dataReader.GetInt32(2));
+                    _dbConnection.Close();
+                    return temp;
+                }
+                _dbConnection.Close();
+                return null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<Tuple<string, int, int, int>> GetCovidInfoByCountryId(int countryId)
+        {
+            var dayListCovidInfo = new List<Tuple<string, int, int, int>>();
+            String sql = $"SELECT update_date, confirmed, deaths, recovered FROM dayinfo WHERE code={countryId};";
+            try
+            {
+                ExecuteQuery(sql);
+                while (_dataReader.Read())
+                {
+                    dayListCovidInfo.Add(Tuple.Create(_dataReader.GetString(0), _dataReader.GetInt32(1), _dataReader.GetInt32(2), _dataReader.GetInt32(3)));
+                }
+                _dbConnection.Close();
+                return dayListCovidInfo;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<int> GetCountriesId()
+        {
+            var dayListCovidInfo = new List<int>();
+            String sql = $"SELECT code FROM country;";
+            try
+            {
+                ExecuteQuery(sql);
+                while (_dataReader.Read())
+                {
+                    dayListCovidInfo.Add(_dataReader.GetInt32(0));
+                }
+                _dbConnection.Close();
+                return dayListCovidInfo;
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
     }

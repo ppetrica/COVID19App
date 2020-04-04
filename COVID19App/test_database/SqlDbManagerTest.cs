@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using database;
+using core;
 
 namespace test_database
 {
@@ -16,8 +17,9 @@ namespace test_database
             b.SetDatabaseConnection(@"..\..\resources\covid.db");
             //Assert.AreEqual(true, b.InsertCountry("TestABc", 995, "te", 4));
             //Assert.AreEqual(true, b.InsertRegion(8, "TestABc"));
-            //Assert.AreEqual(true, b.InsertDayInfo("2020-03-07", 100, 100, 100, 996));
-            //Assert.AreEqual(true, b.InsertDayInfo("2020-3-5", 100, 100, 100, 996));
+            Date d = new Date(2020, 3, 7);
+            Assert.AreEqual(true, b.InsertDayInfo(d.ToString(), 100, 100, 100, 996));
+            Assert.AreEqual(true, b.InsertDayInfo("2020-3-5", 100, 100, 100, 996));
 
             //Console.WriteLine(b.GetRegionNameById(6));
             //var temp = b.GetCountryInfoById(10);

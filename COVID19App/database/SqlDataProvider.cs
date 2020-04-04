@@ -27,23 +27,49 @@ namespace database
             List<CountryInfoEx> countryData = new List<CountryInfoEx>();
 
             List<int> countriesId = _dbManager.GetCountriesId();
-            foreach (var countryId in countriesId)
+            if (countriesId != null)
             {
-                (string name, string alphaCode, int regionId) = _dbManager.GetCountryInfoById(countryId);
-                List<DayInfo> daysInfo = new List<DayInfo>();
-                var countryInfoList = _dbManager.GetCovidInfoByCountryId(countryId);
-                if (countryInfoList != null)
+                foreach (var countryId in countriesId)
                 {
-                    foreach ((string date, int confirmedCases, int deaths, int recoveredCases) in countryInfoList)
+                    (string name, string alphaCode, int regionId) = _dbManager.GetCountryInfoById(countryId);
+                    List<DayInfo> daysInfo = new List<DayInfo>();
+                    var countryInfoList = _dbManager.GetCovidInfoByCountryId(countryId);
+                    if (countryInfoList != null)
                     {
-                        daysInfo.Add(new DayInfo(Date.Parse(date), confirmedCases, deaths, recoveredCases));
+                        foreach ((string date, int confirmedCases, int deaths, int recoveredCases) in countryInfoList)
+                        {
+                            daysInfo.Add(new DayInfo(Date.Parse(date), confirmedCases, deaths, recoveredCases));
+                        }
                     }
+
+                    var countryInfo = new CountryInfo(name, daysInfo);
+                    countryData.Add(new CountryInfoEx(countryInfo, alphaCode));
+                }
+            }
+
+            return countryData.AsReadOnly();
+        }
+
+        public bool InsertCountryData(List<CountryInfo> countryInfoList)
+        {
+            foreach (var countryInfo in countryInfoList)
+            {
+                var daysInfo = countryInfo.DaysInfo;
+                int country_code = _dbManager.GetCountryIdByName(countryInfo.Name);
+
+                foreach (var dayInfo in daysInfo)
+                {
+                    _dbManager.InsertDayInfo(dayInfo.Date.ToString(), dayInfo.Confirmed, dayInfo.Deaths,
+                        dayInfo.Recovered, country_code);
                 }
                 
-                var countryInfo = new CountryInfo(name, daysInfo);
-                countryData.Add(new CountryInfoEx(countryInfo, alphaCode));
             }
-            return countryData.AsReadOnly();
+            return true;
+        }
+
+        public bool ClearDayInfoData()
+        {
+            return _dbManager.ClearTable("dayinfo");
         }
     }
 }

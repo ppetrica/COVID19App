@@ -15,6 +15,12 @@ namespace database
         void SetDatabaseConnection(string databasePath);
 
         /// <summary>
+        /// Clear all data from specified table
+        /// </summary>
+        /// <param name="tableName"></param>
+        bool ClearTable(string tableName);
+
+        /// <summary>
         /// Insert a country on the local database
         /// </summary>
         /// <param name="name">Name of the country</param>
@@ -49,6 +55,13 @@ namespace database
         /// <param name="regionId"></param>
         /// <returns>Return Null if not found or region's name</returns>
         string GetRegionNameById(int regionId);
+
+        /// <summary>
+        /// Get the country Name by id
+        /// </summary>
+        /// <param name="countryName"></param>
+        /// <returns>The id of the country which has the specified name</returns>
+        int GetCountryIdByName(string countryName);
 
         /// <summary>
         /// Get country info by country's code

@@ -35,25 +35,45 @@ namespace database
 
         private void ExecuteQuery(String query)
         {
+            if (_dbConnection.State == ConnectionState.Open)
+            {
+                _dbConnection.Close();
+            }
+            _dbConnection.Open();
             using (SQLiteCommand cmd = new SQLiteCommand(query, _dbConnection))
             {
-                if (_dbConnection.State == ConnectionState.Open)
-                {
-                    _dbConnection.Close();
-                }
-                _dbConnection.Open();
                 _dataReader = cmd.ExecuteReader();
             }
         }
 
         private void ExecuteNonQuery(String query)
         {
+            if (_dbConnection.State == ConnectionState.Open)
+            {
+                _dbConnection.Close();
+            }
+            _dbConnection.Open();
+
             using (SQLiteCommand cmd = new SQLiteCommand(query, _dbConnection))
             {
-                _dbConnection.Open();
+                
                 cmd.ExecuteNonQuery();
-                _dataReader = null;
                 _dbConnection.Close();
+            }
+        }
+
+        public bool ClearTable(string tableName)
+        {
+            String sql = $"DELETE FROM {tableName};";
+
+            try
+            {
+                ExecuteNonQuery(sql);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
@@ -88,7 +108,7 @@ namespace database
 
         public bool InsertDayInfo(string updateDate, int confirmed, int deaths, int recovered, int code)
         {
-            String sql = $"INSERT INTO dayinfo (update_date, confirmed, deaths, recovered, code) VALUES (TO_DATE('{updateDate}', 'YYYY-MM-DD'), {confirmed}, {deaths}, {recovered}, {code});";
+            String sql = $"INSERT INTO dayinfo (update_date, confirmed, deaths, recovered, code) VALUES ('{updateDate}', {confirmed}, {deaths}, {recovered}, {code});";
             try
             {
                 ExecuteNonQuery(sql);
@@ -109,6 +129,7 @@ namespace database
                 if (_dataReader.Read())
                 {
                     var temp =  _dataReader.GetString(0);
+                    _dataReader.Close();    //the most import line of code
                     _dbConnection.Close();
                     return temp;
                 }
@@ -118,6 +139,28 @@ namespace database
             catch (Exception)
             {
                 return null;
+            }
+        }
+
+        public int GetCountryIdByName(string countryName)
+        {
+            String sql = $"SELECT code FROM country WHERE name='{countryName}'";
+            try
+            {
+                ExecuteQuery(sql);
+                if (_dataReader.Read())
+                {
+                    var temp = _dataReader.GetInt32(0);
+                    _dataReader.Close();    //the most import line of code
+                    _dbConnection.Close();
+                    return temp;
+                }
+                _dbConnection.Close();
+                return 0;
+            }
+            catch (Exception)
+            {
+                return 0;
             }
         }
 
@@ -153,6 +196,7 @@ namespace database
                 {
                     dayListCovidInfo.Add(Tuple.Create(_dataReader.GetString(0), _dataReader.GetInt32(1), _dataReader.GetInt32(2), _dataReader.GetInt32(3)));
                 }
+                _dataReader.Close();
                 _dbConnection.Close();
                 return dayListCovidInfo;
             }
@@ -165,7 +209,7 @@ namespace database
         public List<int> GetCountriesId()
         {
             var dayListCovidInfo = new List<int>();
-            String sql = $"SELECT code FROM country;";
+            String sql = $"SELECT DISTINCT code FROM dayinfo;";
             try
             {
                 ExecuteQuery(sql);
@@ -173,6 +217,7 @@ namespace database
                 {
                     dayListCovidInfo.Add(_dataReader.GetInt32(0));
                 }
+                _dataReader.Close();
                 _dbConnection.Close();
                 return dayListCovidInfo;
             }

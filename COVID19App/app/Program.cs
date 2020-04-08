@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using view;
-using test_view;
+using test_core;
 
 namespace COVID19App
 {
@@ -17,7 +17,9 @@ namespace COVID19App
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            IView view = new MapView(MapViewTest.CreateMockData());
+            MockDataProvider dataProvider = new MockDataProvider();
+
+            IView view = new MapView(dataProvider.GetCountryData());
 
             Application.Run(new MainForm(new List<IView> { view }));
         }

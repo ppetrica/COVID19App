@@ -11,6 +11,6 @@ namespace view
         /// TabControl
         /// </summary>
         /// <returns>The control to be inserted in the main tab control</returns>
-        Control GetControl();
+        TabPage GetPage();
     }
 }

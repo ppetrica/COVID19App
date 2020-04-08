@@ -52,6 +52,8 @@ namespace view
             _map.HeatMap = scaledValues;
 
             _map.LandClick += OnUserClick;
+
+            _page.Controls.Add(_map);
         }
 
         /// <summary>
@@ -76,9 +78,9 @@ namespace view
         /// Returns the generated map control to be added in a form
         /// </summary>
         /// <returns>Generated map</returns>
-        public Control GetControl()
+        public TabPage GetPage()
         {
-            return _map;
+            return _page;
         }
 
         private void OnUserClick(object obj, MapData data)
@@ -98,5 +100,6 @@ namespace view
         private IReadOnlyList<CountryInfoEx> _countries;
         private List<MapObserver> _observers = new List<MapObserver>();
         private GeoMap _map = new GeoMap();
+        private TabPage _page = new TabPage("World Map");
     }
 }

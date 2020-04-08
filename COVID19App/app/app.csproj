@@ -122,6 +122,10 @@
       <Project>{1c8a65a1-88c2-4a79-aa9e-9fa2d3174bff}</Project>
       <Name>network</Name>
     </ProjectReference>
+    <ProjectReference Include="..\test_view\test_view.csproj">
+      <Project>{8cdeb9c8-7289-49c5-86ca-4bb49dfbea66}</Project>
+      <Name>test_view</Name>
+    </ProjectReference>
     <ProjectReference Include="..\view\view.csproj">
       <Project>{4c1ed592-adfd-4457-90ab-cebcc0f9f5ed}</Project>
       <Name>view</Name>

@@ -238,7 +238,7 @@ namespace database
         /// </summary>
         /// <param name="countryId">The country id</param>
         /// <returns>List of tuples which hold the day in format string "YYYY-MM-DD", the number of confirmed cases,
-        /// the number of deaths and the number of recovered cases known in the respective day in the specified country</returns>
+        /// the number of deaths and the number of recovered cases known in the respective day in the specified country. Returns null if an exception occured.</returns>
         public List<Tuple<string, int, int, int>> GetCovidInfoByCountryId(int countryId)
         {
             var dayListCovidInfo = new List<Tuple<string, int, int, int>>();
@@ -260,7 +260,7 @@ namespace database
             }
         }
 
-        /// <returns>A list of countries id which holds data in the dayinfo table</returns>
+        /// <returns>A list of countries id which holds data in the dayinfo table. If an exception occured returns null</returns>
         public List<int> GetCountriesId()
         {
             var dayListCovidInfo = new List<int>();

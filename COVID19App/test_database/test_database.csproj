@@ -64,8 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SqlDataProviderTest.cs" />
-    <Compile Include="SqlDbManagerTest.cs" />
+    <Compile Include="SQLiteDataProviderTest.cs" />
+    <Compile Include="SQLiteDbManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,13 +18,9 @@ namespace database
         private readonly IDbManager _dbManager;
 
         /// <param name="databasePath">Path to the local database</param>
-        public SqlDataProvider(string databasePath)
+        public SqlDataProvider(string databasePath = DatabaseDefaultPath)
         {
-            if (databasePath == null)
-            {
-                databasePath = DatabaseDefaultPath;
-            }
-            _dbManager = new SqlDbManager();
+            _dbManager = new SQLiteDbManager();
             _dbManager.SetDatabaseConnection(databasePath);
         }
 

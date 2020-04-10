@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-
+using view;
+using test_core;
 
 namespace COVID19App
 {
@@ -14,7 +16,12 @@ namespace COVID19App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            MockDataProvider dataProvider = new MockDataProvider();
+
+            IView view = new MapView(dataProvider.GetCountryData());
+
+            Application.Run(new MainForm(new List<IView> { view }));
         }
     }
 }

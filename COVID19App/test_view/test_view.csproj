@@ -50,7 +50,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="TestMapView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +60,10 @@
     <ProjectReference Include="..\core\core.csproj">
       <Project>{9eb85b89-d1c5-4582-af95-8e5cca05db19}</Project>
       <Name>core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\test_core\test_core.csproj">
+      <Project>{3ebc667e-d0ab-4469-8247-20c0dc9a32e0}</Project>
+      <Name>test_core</Name>
     </ProjectReference>
     <ProjectReference Include="..\view\view.csproj">
       <Project>{4c1ed592-adfd-4457-90ab-cebcc0f9f5ed}</Project>

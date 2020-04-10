@@ -7,12 +7,12 @@ using core;
 namespace test_database
 {
     [TestClass]
-    public class SqlDbManager_Test
+    public class SQLiteDbManager_Test
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestSqLiteDbManager()
         {
-            IDbManager b = new SqlDbManager();
+            IDbManager b = new SQLiteDbManager();
             b.SetDatabaseConnection(@"..\..\resources\covid.db");
 
             //Test clear all tables

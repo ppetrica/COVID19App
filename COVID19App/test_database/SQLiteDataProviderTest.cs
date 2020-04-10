@@ -7,12 +7,12 @@ using System.Collections.Generic;
 namespace test_database
 {
     [TestClass]
-    public class SqlDataProviderTest
+    public class SQLiteDataProviderTest
     {
         [TestMethod]
         public void DataProviderTest()
         {
-            var provider = new SqlDataProvider(@"..\..\resources\covid.db");
+            var provider = new SQLiteDataProvider(@"..\..\resources\covid.db");
 
             provider.ClearDayInfoData();
             var list = CreateMockData();

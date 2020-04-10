@@ -12,13 +12,13 @@ namespace database
     /// This class implements DataProvider interface for getting the list of countryInfoEx from the database.
     /// It also implements insertion and deletion of dayInfo from the database.
     /// </summary>
-    public class SqlDataProvider : DataProvider<CountryInfoEx>
+    public class SQLiteDataProvider : DataProvider<CountryInfoEx>
     {
         private const string DatabaseDefaultPath = @"..\..\..\resources\sql\covid.db";
         private readonly IDbManager _dbManager;
 
         /// <param name="databasePath">Path to the local database</param>
-        public SqlDataProvider(string databasePath = DatabaseDefaultPath)
+        public SQLiteDataProvider(string databasePath = DatabaseDefaultPath)
         {
             _dbManager = new SQLiteDbManager();
             _dbManager.SetDatabaseConnection(databasePath);

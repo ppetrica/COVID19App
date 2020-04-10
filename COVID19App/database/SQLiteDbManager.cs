@@ -14,7 +14,7 @@ namespace database
     /// It has the CRUD functionality.
     /// In order to use it, first set the databaseConnection.
     /// </summary>
-    public class SqlDbManager : IDbManager
+    public class SQLiteDbManager : IDbManager
     {
         private SQLiteConnection _dbConnection;
         private SQLiteDataReader _dataReader;
@@ -22,7 +22,7 @@ namespace database
         /// _dbConnection is the SQLiteConnection parameter for the database specified
         /// _dataReader is the SQLiteDataReader parameter which holds the result of a query
         /// </summary>
-        public SqlDbManager()
+        public SQLiteDbManager()
         {
             _dbConnection = new SQLiteConnection();
         }
@@ -184,26 +184,27 @@ namespace database
         /// Getting the id of the country  from the country table in the database
         /// </summary>
         /// <param name="countryName">The country name</param>
-        /// <returns>The id of the country if it exists in the database else returns 0</returns>
+        /// <returns>The id of the country if it exists in the database else returns -1</returns>
         public int GetCountryIdByName(string countryName)
         {
             var sql = $"SELECT code FROM country WHERE name='{countryName}'";
             try
             {
+                var temp = -1;
                 ExecuteQuery(sql);
                 if (_dataReader.Read())
                 {
-                    var temp = _dataReader.GetInt32(0);
-                    _dataReader.Close();    //the most important line of code
-                    _dbConnection.Close();
-                    return temp;
+                    temp = _dataReader.GetInt32(0);
                 }
+                _dataReader.Close();    //the most important line of code
                 _dbConnection.Close();
-                return 0;
+                return temp;
             }
             catch (Exception)
             {
-                return 0;
+                _dataReader.Close();    
+                _dbConnection.Close();
+                return -1;
             }
         }
 
@@ -217,18 +218,19 @@ namespace database
             var sql = $"SELECT name, alpha, region_id FROM country WHERE code={countryId};";
             try
             {
+                Tuple<string, string, int> temp = null;
                 ExecuteQuery(sql);
-                if (_dataReader.Read())
-                {
-                    var temp = new Tuple<string, string, int>(_dataReader.GetString(0), _dataReader.GetString(1), _dataReader.GetInt32(2));
-                    _dbConnection.Close();
-                    return temp;
+                if (_dataReader.Read()) { 
+                    temp = new Tuple<string, string, int>(_dataReader.GetString(0), _dataReader.GetString(1), _dataReader.GetInt32(2));
                 }
+                _dataReader.Close();
                 _dbConnection.Close();
-                return null;
+                return temp;
             }
             catch (Exception)
             {
+                _dataReader.Close();
+                _dbConnection.Close();
                 return null;
             }
         }
@@ -256,6 +258,8 @@ namespace database
             }
             catch (Exception)
             {
+                _dataReader.Close();
+                _dbConnection.Close();
                 return null;
             }
         }
@@ -278,6 +282,8 @@ namespace database
             }
             catch (Exception)
             {
+                _dataReader.Close();
+                _dbConnection.Close();
                 return null;
             }
         }

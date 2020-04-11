@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,10 +34,15 @@ namespace database
         public IReadOnlyList<CountryInfoEx> GetCountryData()
         {
             List<CountryInfoEx> countryData = new List<CountryInfoEx>();
-            List<int> countriesId = _dbManager.GetCountriesId();
+            List<int> countriesId = _dbManager.GetCountryCodes();
             if (countriesId == null) return countryData.AsReadOnly();
             foreach (var countryId in countriesId)
             {
+                if (countryId == -1)
+                {
+                    Console.WriteLine("Country : "  );
+                    continue;
+                }
                 (string name, string alphaCode, int regionId) = _dbManager.GetCountryInfoById(countryId);
                 List<DayInfo> daysInfo = new List<DayInfo>();
                 var countryInfoList = _dbManager.GetCovidInfoByCountryId(countryId);
@@ -56,17 +63,45 @@ namespace database
         /// Insert the list of countryInfo to the database, transferring raw data to IDbManager
         /// </summary>
         /// <param name="countryInfoList">List of Country Info to be inserted in the database</param>
-        public void InsertCountryData(List<CountryInfo> countryInfoList)
+        public void InsertCountryData(IReadOnlyList<CountryInfo> countryInfoList)
         {
+            var counter = 0;
             foreach (var countryInfo in countryInfoList)
             {
                 var daysInfo = countryInfo.DaysInfo;
-                var countryCode = _dbManager.GetCountryIdByName(countryInfo.Name);
+                int countryCode;
+                try
+                {
+                    countryCode = _dbManager.GetCountryIdByName(countryInfo.Name);
+                }
+                catch (ObjectNotFoundException e)
+                {
+                    Console.WriteLine(e.Message + " -> " + countryInfo.Name);
+                    continue;
+                }
+
+                var rawDaysInfoList = new List<Tuple<string, int, int, int, int>>();
                 foreach (var dayInfo in daysInfo)
                 {
-                    _dbManager.InsertDayInfo(dayInfo.Date.ToString(), dayInfo.Confirmed, dayInfo.Deaths,
-                        dayInfo.Recovered, countryCode);
+                    rawDaysInfoList.Add(Tuple.Create(dayInfo.Date.ToString(), dayInfo.Confirmed, dayInfo.Deaths, dayInfo.Recovered, countryCode));
                 }
+
+                _dbManager.InsertDayInfos(rawDaysInfoList);
+                counter += rawDaysInfoList.Count;
+                //foreach (var dayInfo in daysInfo)
+                //{
+                //    try
+                //    {
+                //        _dbManager.InsertDayInfo(dayInfo.Date.ToString(), dayInfo.Confirmed, dayInfo.Deaths,
+                //            dayInfo.Recovered, countryCode);
+                //        counter++;
+                //    }
+                //    catch (SQLiteException)
+                //    {
+                //        Console.WriteLine("Duplicate information for info day table. Country : " + countryCode + ", Date : " + dayInfo.Date);
+                //    }
+                //}
+                Console.WriteLine("Inserted into country " + countryInfo.Name + ", Days : "+ rawDaysInfoList.Count+  " Total: " + counter);
             }
         }
 

@@ -72,6 +72,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(SolutionDir)resources\World.xml $(ProjectDir)$(OutDir)World.xml</PostBuildEvent>
+    <PostBuildEvent>copy "$(SolutionDir)resources\World.xml" "$(ProjectDir)$(OutDir)World.xml"</PostBuildEvent>
   </PropertyGroup>
 </Project>

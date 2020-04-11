@@ -18,7 +18,7 @@ namespace database
         /// Clear all data from specified table
         /// </summary>
         /// <param name="tableName">Table name to be cleared</param>
-        bool ClearTable(string tableName);
+        void ClearTable(string tableName);
 
         /// <summary>
         /// Insert a country on the local database
@@ -28,7 +28,7 @@ namespace database
         /// <param name="alpha">2 letter alphanumeric code of the country</param>
         /// <param name="regionId">Id of the continent</param>
         /// <returns>Return true in case of success insertion or false otherwise</returns>
-        bool InsertCountry(string name, ushort code, string alpha, byte regionId);
+        void InsertCountry(string name, ushort code, string alpha, byte regionId);
 
         /// <summary>
         /// Insert a region on the local database
@@ -36,7 +36,7 @@ namespace database
         /// <param name="regionId">Id of the continent</param>
         /// <param name="regionName">Name of the continent</param>
         /// <returns>Return true in case of success insertion or false otherwise</returns>
-        bool InsertRegion(byte regionId, string regionName);
+        void InsertRegion(byte regionId, string regionName);
 
         /// <summary>
         /// Inserting a country item in the country Table.
@@ -47,7 +47,9 @@ namespace database
         /// <param name="recovered">Number of recovered cases</param>
         /// <param name="code"></param>
         /// <returns>Return true in case of success insertion or false otherwise</returns>
-        bool InsertDayInfo(string updateDate, int confirmed, int deaths, int recovered, int code);
+        void InsertDayInfo(string updateDate, int confirmed, int deaths, int recovered, int code);
+
+        void InsertDayInfos(List<Tuple<string, int, int, int, int>> dayInfoList);
 
         /// <summary>
         /// Get Region Name by his id.
@@ -78,7 +80,7 @@ namespace database
         List<Tuple<string, int, int, int>> GetCovidInfoByCountryId(int countryId);
 
         /// <returns>A list of countries id which holds data in the dayinfo table</returns>
-        List<int> GetCountriesId();
+        List<int> GetCountryCodes();
 
     }
 }

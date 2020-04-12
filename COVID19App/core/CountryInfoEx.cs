@@ -13,33 +13,18 @@ namespace core
             _mostRecent = Utils.MaxElement(info.DaysInfo, (DayInfo d1, DayInfo d2) => d1.Date > d2.Date);
         }
 
-        public string Name
-        {
-            get => _info.Name;
-        }
+        public string Name => _info.Name;
 
-        public IReadOnlyList<DayInfo> DaysInfo
-        {
-            get => _info.DaysInfo;
-        }
+        public IReadOnlyList<DayInfo> DaysInfo => _info.DaysInfo;
 
-        public int Confirmed
-        {
-            get => _mostRecent.Confirmed;
-        }
+        public int Confirmed => _mostRecent.Confirmed;
 
-        public int Deaths
-        {
-            get => _mostRecent.Deaths;
-        }
-        
-        public int Recovered
-        {
-            get => _mostRecent.Recovered;
-        }
+        public int Deaths => _mostRecent.Deaths;
+
+        public int Recovered => _mostRecent.Recovered;
 
         public readonly string CountryCode;
-        private CountryInfo _info;
-        private DayInfo _mostRecent;
+        private readonly CountryInfo _info;
+        private readonly DayInfo _mostRecent;
     }
 }

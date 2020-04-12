@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+
 namespace core
 {
     /// <summary>
@@ -8,7 +9,7 @@ namespace core
     /// </summary>
     public struct CountryInfo
     {
-        public CountryInfo(string name, List<DayInfo> daysInfo)
+        public CountryInfo(string name, IReadOnlyList<DayInfo> daysInfo)
         {
             Name = name;
             DaysInfo = daysInfo;

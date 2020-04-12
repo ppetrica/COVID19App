@@ -51,8 +51,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ConnectionUnitTest.cs" />
-    <Compile Include="CovidDataProviderUnitTest.cs" />
+    <Compile Include="TestConnection.cs" />
+    <Compile Include="TestCovidDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

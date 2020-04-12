@@ -47,17 +47,15 @@ namespace core
         /// A function which should return true if the element satisfies the search criteria.
         /// </param>
         /// <returns>The element searched or null if it was not found.</returns>
-        public static Nullable<T> Find<T>(IEnumerable<T> coll, Predicate<T> pred) where T : struct
+        public static T? Find<T>(IEnumerable<T> coll, Predicate<T> pred) where T : struct
         {
-            if (coll.Any())
-            {
-                IEnumerator<T> iter = coll.GetEnumerator();
+            if (!coll.Any()) return null;
+            IEnumerator<T> iter = coll.GetEnumerator();
 
-                while (iter.MoveNext())
-                {
-                    if (pred(iter.Current))
-                        return iter.Current;
-                }
+            while (iter.MoveNext())
+            {
+                if (pred(iter.Current))
+                    return iter.Current;
             }
 
             return null;

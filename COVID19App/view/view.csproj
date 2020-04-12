@@ -59,7 +59,7 @@
     <Compile Include="IView.cs" />
     <Compile Include="MapView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MapObserver.cs" />
+    <Compile Include="IMapObserver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -72,6 +72,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(SolutionDir)resources\World.xml $(ProjectDir)$(OutDir)World.xml</PostBuildEvent>
+    <PostBuildEvent>copy "$(SolutionDir)resources\World.xml" "$(ProjectDir)$(OutDir)World.xml"</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -9,25 +9,26 @@ using test_core;
 namespace test_view
 {
     [TestClass]
-    public class MapViewTest
+    public class TestMapView
     {
         // This test can be used to look at the generated map.
+        [Ignore]
         [TestMethod]
         public void Test()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            DataProvider<CountryInfoEx> dataProvider = new MockDataProvider();
+            IDataProvider<CountryInfoEx> dataProvider = new MockDataProvider();
             IReadOnlyList<CountryInfoEx> mock = dataProvider.GetCountryData();
 
-            MapView view = new MapView(mock);
+            var view = new MapView(mock);
 
-            TestForm form = new TestForm();
+            var form = new TestForm();
 
             view.Subscribe(form);
 
-            TabControl tabControl = new TabControl();
+            var tabControl = new TabControl();
             tabControl.Controls.Add(view.GetPage());
 
             form.Controls.Add(tabControl);
@@ -36,7 +37,7 @@ namespace test_view
             Application.Run(form);
         }
 
-        class TestForm : Form, MapObserver
+        class TestForm : Form, IMapObserver
         {
             public TestForm()
             {

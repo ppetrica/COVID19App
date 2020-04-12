@@ -1,9 +1,10 @@
 ﻿using core;
 using System.Collections.Generic;
 
+
 namespace test_core
 {
-    public class MockDataProvider : DataProvider<CountryInfoEx>
+    public class MockDataProvider : IDataProvider<CountryInfoEx>
     {
         public IReadOnlyList<CountryInfoEx> GetCountryData()
         {

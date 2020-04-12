@@ -2,6 +2,7 @@
 using core;
 using System;
 
+
 namespace test_core
 {
     [TestClass]
@@ -10,7 +11,7 @@ namespace test_core
         [TestMethod]
         public void TestDateRight()
         {
-            Date date = Date.Parse("1999-12-17");
+            var date = Date.Parse("1999-12-17");
 
             Assert.AreEqual(date.Year, 1999);
             Assert.AreEqual(date.Month, 12);

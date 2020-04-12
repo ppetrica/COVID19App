@@ -21,7 +21,7 @@ namespace network
         /// </summary>
         protected override WebRequest GetWebRequest(Uri address)
         {
-            WebRequest webRequest = base.GetWebRequest(address);
+            var webRequest = base.GetWebRequest(address);
             webRequest.Timeout = _timeout;
             return webRequest;
         }
@@ -33,8 +33,8 @@ namespace network
         /// </summary>
         public int Timeout
         {
-            get { return _timeout; }
-            set { _timeout = value; }
+            get => _timeout;
+            set => _timeout = value;
         }
 
         private int _timeout;

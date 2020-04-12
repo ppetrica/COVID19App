@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using view;
 using test_core;
+using database;
+using network;
 
 namespace COVID19App
 {
@@ -17,9 +19,12 @@ namespace COVID19App
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            MockDataProvider dataProvider = new MockDataProvider();
+            var net_provider = new CovidDataProvider();
+            var provider = new SQLiteDataProvider();
 
-            IView view = new MapView(dataProvider.GetCountryData());
+            provider.InsertCountryData(net_provider.GetCountryData());
+
+            IView view = new MapView(provider.GetCountryData());
 
             Application.Run(new MainForm(new List<IView> { view }));
         }

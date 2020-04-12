@@ -5,7 +5,7 @@ using network;
 namespace test_network
 {
     [TestClass]
-    public class ConnectionUnitTest
+    public class TestConnection
     {
         [TestMethod]
         public void TestOnline()

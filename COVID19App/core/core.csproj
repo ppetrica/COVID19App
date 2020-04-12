@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="CountryInfoEx.cs" />
     <Compile Include="CountryInfo.cs" />
-    <Compile Include="DataProvider.cs" />
+    <Compile Include="IDataProvider.cs" />
     <Compile Include="DayInfo.cs" />
     <Compile Include="Date.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

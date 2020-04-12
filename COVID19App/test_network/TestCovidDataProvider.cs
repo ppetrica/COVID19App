@@ -7,15 +7,14 @@ using System.Collections.Generic;
 namespace test_network
 {
     [TestClass]
-    public class CovidDataProviderUnitTest
+    public class TestCovidDataProvider
     {
         [TestMethod]
         [ExpectedException(typeof(System.Net.WebException))]
         public void TestTimeout()
         {
-            CovidDataProvider dataProvider = new CovidDataProvider(-1);
+            var dataProvider = new CovidDataProvider(-1) {Timeout = 100};
 
-            dataProvider.Timeout = 100;
             Assert.AreEqual(100, dataProvider.Timeout);
 
             IReadOnlyList<CountryInfo> list = dataProvider.GetCountryData();
@@ -32,7 +31,7 @@ namespace test_network
         [ExpectedException(typeof(System.ArgumentException))]
         public void TestNegativeTimeout()
         {
-            CovidDataProvider dataProvider = new CovidDataProvider();
+            var dataProvider = new CovidDataProvider();
             dataProvider.Timeout = -100;
         }
 

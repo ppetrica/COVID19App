@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using view;
-using test_core;
 using database;
 using network;
+
 
 namespace COVID19App
 {
@@ -19,10 +19,10 @@ namespace COVID19App
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var net_provider = new CovidDataProvider();
+            var netProvider = new CovidDataProvider();
             var provider = new SQLiteDataProvider();
 
-            provider.InsertCountryData(net_provider.GetCountryData());
+            provider.InsertCountryData(netProvider.GetCountryData());
 
             IView view = new MapView(provider.GetCountryData());
 

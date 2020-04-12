@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using core;
 using System;
 
+
 namespace test_core
 {
     [TestClass]
@@ -11,7 +12,7 @@ namespace test_core
         [TestMethod]
         public void TestFind()
         {
-            List<int> l = new List<int>();
+            var l = new List<int>();
 
             Assert.AreEqual(null, Utils.Find(l, (int x) => true));
 
@@ -31,7 +32,7 @@ namespace test_core
         [TestMethod]
         public void TestMax()
         {
-            List<int> l = new List<int>();
+            var l = new List<int>();
 
             Assert.ThrowsException<ArgumentException>(() => Utils.MaxElement(l, (int a, int b) => true));
 

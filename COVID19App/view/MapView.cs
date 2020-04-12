@@ -60,7 +60,7 @@ namespace view
         /// Subscribe an observer to be notified on click events.
         /// </summary>
         /// <param name="observer">The observer to be notified.</param>
-        public void Subscribe(MapObserver observer)
+        public void Subscribe(IMapObserver observer)
         {
             _observers.Add(observer);
         }
@@ -69,7 +69,7 @@ namespace view
         /// Unsubscribe an observer from click events.
         /// </summary>
         /// <param name="observer">The observer to remove.</param>
-        public void Unsubscribe(MapObserver observer)
+        public void Unsubscribe(IMapObserver observer)
         {
             _observers.Remove(observer);
         }
@@ -89,7 +89,7 @@ namespace view
 
             if (res.HasValue)
             {
-                foreach (MapObserver observer in _observers)
+                foreach (IMapObserver observer in _observers)
                 {
                     observer.OnClick(res.Value);
                 }
@@ -98,7 +98,7 @@ namespace view
 
         private const string _MapFile = "World.xml";
         private IReadOnlyList<CountryInfoEx> _countries;
-        private List<MapObserver> _observers = new List<MapObserver>();
+        private List<IMapObserver> _observers = new List<IMapObserver>();
         private GeoMap _map = new GeoMap();
         private TabPage _page = new TabPage("World Map");
     }

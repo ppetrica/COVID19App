@@ -7,7 +7,7 @@ namespace view
     /// Interface implemented by those who want to receive
     /// click events from the map.
     /// </summary>
-    public interface MapObserver
+    public interface IMapObserver
     {
         /// <summary>
         /// This method is called when the user clicks on a specific

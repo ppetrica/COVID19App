@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace core
 {
     public struct Date
@@ -21,14 +20,14 @@ namespace core
         /// <returns>The corresponding date structure.</returns>
         public static Date Parse(string format)
         {
-            string[] parts = format.Split('-');
+            var parts = format.Split('-');
 
             if (parts.Length != 3)
                 throw new FormatException();
 
-            int year = Int32.Parse(parts[0]);
-            int month = Int32.Parse(parts[1]);
-            int day = Int32.Parse(parts[2]);
+            var year = int.Parse(parts[0]);
+            var month = int.Parse(parts[1]);
+            var day = int.Parse(parts[2]);
 
             if (year < 0 || month < 1 || month > 12 || day < 1 || day > 31)
                 throw new FormatException();
@@ -38,7 +37,7 @@ namespace core
 
         public override bool Equals(object obj)
         {
-            return this == (Date)obj;
+            return obj != null && this == (Date)obj;
         }
 
         public override int GetHashCode()
@@ -80,7 +79,7 @@ namespace core
 
         public override string ToString()
         {
-            return Year.ToString() + "-" + Month.ToString() + "-" + Day.ToString();
+            return Year + "-" + Month + "-" + Day;
         }
 
         public readonly int Year;

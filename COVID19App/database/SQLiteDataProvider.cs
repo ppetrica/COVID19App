@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using core;
+
 
 namespace database
 {
@@ -14,7 +10,7 @@ namespace database
     /// This class implements DataProvider interface for getting the list of countryInfoEx from the database.
     /// It also implements insertion and deletion of dayInfo from the database.
     /// </summary>
-    public class SQLiteDataProvider : DataProvider<CountryInfoEx>
+    public class SQLiteDataProvider : IDataProvider<CountryInfoEx>
     {
         private const string DatabaseDefaultPath = @"..\..\..\resources\sql\covid.db";
         private readonly IDbManager _dbManager;
@@ -33,7 +29,7 @@ namespace database
         /// <returns>A list of CountryInfoEx</returns>
         public IReadOnlyList<CountryInfoEx> GetCountryData()
         {
-            List<CountryInfoEx> countryData = new List<CountryInfoEx>();
+            var countryData = new List<CountryInfoEx>();
             List<int> countriesId = _dbManager.GetCountryCodes();
             if (countriesId == null) return countryData.AsReadOnly();
             foreach (var countryId in countriesId)
@@ -44,7 +40,7 @@ namespace database
                     continue;
                 }
                 (string name, string alphaCode, int regionId) = _dbManager.GetCountryInfoById(countryId);
-                List<DayInfo> daysInfo = new List<DayInfo>();
+                var daysInfo = new List<DayInfo>();
                 var countryInfoList = _dbManager.GetCovidInfoByCountryId(countryId);
                 if (countryInfoList != null)
                 {

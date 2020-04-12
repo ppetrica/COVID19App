@@ -11,7 +11,7 @@
         public static bool isConnectionAvailable(int timeout = DefaultTimeout, 
                                                  string testUrl = "http://google.com/generate_204")
         {
-            WebClientEx webClient = new WebClientEx(timeout);
+            var webClient = new WebClientEx(timeout);
             try
             {
                 webClient.OpenRead(testUrl);

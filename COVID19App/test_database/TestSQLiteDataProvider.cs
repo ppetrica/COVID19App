@@ -4,10 +4,11 @@ using database;
 using core;
 using System.Collections.Generic;
 
+
 namespace test_database
 {
     [TestClass]
-    public class SQLiteDataProviderTest
+    public class TestSQLiteDataProvider
     {
         [TestMethod]
         public void DataProviderTest()

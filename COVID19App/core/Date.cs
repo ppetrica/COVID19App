@@ -78,6 +78,11 @@ namespace core
             return d1.Day > d2.Day;
         }
 
+        public override string ToString()
+        {
+            return Year.ToString() + "-" + Month.ToString() + "-" + Day.ToString();
+        }
+
         public readonly int Year;
         public readonly int Month;
         public readonly int Day;

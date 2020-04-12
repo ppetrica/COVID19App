@@ -13,8 +13,15 @@ namespace test_database
         public void DataProviderTest()
         {
             var provider = new SQLiteDataProvider(@"..\..\resources\covid.db");
+            try
+            {
+                provider.ClearDayInfoData();
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
 
-            provider.ClearDayInfoData();
             var list = CreateMockData();
 
             provider.InsertCountryData(list);
@@ -40,7 +47,6 @@ namespace test_database
             }
         }
 
-        [TestMethod]
         private List<CountryInfo> CreateMockData()
         {
             var mock = new List<CountryInfo>();

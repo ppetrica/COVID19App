@@ -4,7 +4,7 @@ using LiveCharts.WinForms;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Media;
-
+using System;
 
 namespace view
 {

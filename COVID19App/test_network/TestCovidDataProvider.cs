@@ -10,8 +10,16 @@ namespace test_network
     public class TestCovidDataProvider
     {
         [TestMethod]
-        [ExpectedException(typeof(System.Net.WebException))]
-        public void TestTimeout()
+        public void TestDataProvider()
+        {
+            Assert.ThrowsException<System.Net.WebException>(TestTimeout);
+            Assert.ThrowsException<System.ArgumentException>(TestNegativeTimeout);
+         
+            TestRequest();
+            TestParsedCovidInfo();
+        }
+
+        private void TestTimeout()
         {
             var dataProvider = new CovidDataProvider(-1) {Timeout = 100};
 
@@ -20,23 +28,19 @@ namespace test_network
             IReadOnlyList<CountryInfo> list = dataProvider.GetCountryData();
         }
 
-        [TestMethod]
-        public void TestRequest()
+        private void TestRequest()
         {
             IReadOnlyList<CountryInfo> list = (new CovidDataProvider()).GetCountryData();
             Assert.AreNotEqual(0, list.Count);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(System.ArgumentException))]
-        public void TestNegativeTimeout()
+        private void TestNegativeTimeout()
         {
             var dataProvider = new CovidDataProvider();
             dataProvider.Timeout = -100;
         }
 
-        [TestMethod]
-        public void TestParsedCovidInfo()
+        private void TestParsedCovidInfo()
         {
             IReadOnlyList<CountryInfo> countryInfoList = (new CovidDataProvider()).GetCountryData();
 

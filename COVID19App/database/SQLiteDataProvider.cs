@@ -66,6 +66,9 @@ namespace database
         public void InsertCountryData(IReadOnlyList<CountryInfo> countryInfoList)
         {
             var counter = 0;
+            
+            var rawDaysInfoList = new List<Tuple<string, int, int, int, int>>();
+            
             foreach (var countryInfo in countryInfoList)
             {
                 var daysInfo = countryInfo.DaysInfo;
@@ -80,29 +83,17 @@ namespace database
                     continue;
                 }
 
-                var rawDaysInfoList = new List<Tuple<string, int, int, int, int>>();
                 foreach (var dayInfo in daysInfo)
                 {
                     rawDaysInfoList.Add(Tuple.Create(dayInfo.Date.ToString(), dayInfo.Confirmed, dayInfo.Deaths, dayInfo.Recovered, countryCode));
                 }
 
-                _dbManager.InsertDayInfos(rawDaysInfoList);
                 counter += rawDaysInfoList.Count;
-                //foreach (var dayInfo in daysInfo)
-                //{
-                //    try
-                //    {
-                //        _dbManager.InsertDayInfo(dayInfo.Date.ToString(), dayInfo.Confirmed, dayInfo.Deaths,
-                //            dayInfo.Recovered, countryCode);
-                //        counter++;
-                //    }
-                //    catch (SQLiteException)
-                //    {
-                //        Console.WriteLine("Duplicate information for info day table. Country : " + countryCode + ", Date : " + dayInfo.Date);
-                //    }
-                //}
+
                 Console.WriteLine("Inserted into country " + countryInfo.Name + ", Days : "+ rawDaysInfoList.Count+  " Total: " + counter);
             }
+            
+            _dbManager.InsertDayInfos(rawDaysInfoList);
         }
 
         /// <summary>

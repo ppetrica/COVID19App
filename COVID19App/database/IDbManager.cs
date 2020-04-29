@@ -25,8 +25,9 @@ namespace database
         /// <param name="code">Unique Code Id assigned to this country</param>
         /// <param name="alpha">2 letter alphanumeric code of the country</param>
         /// <param name="regionId">Id of the continent</param>
+        /// <param name="population">Population of the country</param>
         /// <returns>Return true in case of success insertion or false otherwise</returns>
-        void InsertCountry(string name, ushort code, string alpha, byte regionId);
+        void InsertCountry(string name, ushort code, string alpha, byte regionId, long population);
 
         /// <summary>
         /// Insert a region on the local database
@@ -67,8 +68,8 @@ namespace database
         /// Get country info by country's code
         /// </summary>
         /// <param name="countryId">Id of the Country</param>
-        /// <returns>Return a tuple containing country name, country alphabetic code and region id </returns>
-        Tuple<string, string, int> GetCountryInfoById(int countryId);
+        /// <returns>Return a tuple containing country name, country alphabetic code, region id and population</returns>
+        Tuple<string, string, int, long> GetCountryInfoById(int countryId);
 
         /// <summary>
         /// Getting the information of COVID-19
@@ -80,5 +81,10 @@ namespace database
         /// <returns>A list of countries id which holds data in the dayinfo table</returns>
         List<int> GetCountryCodes();
 
+        /// <summary>
+        /// Getting the name of the continent the country is located
+        /// </summary>
+        /// <returns>The name of region/continent</returns>
+        string GetRegionNameByCountryId(int countryId);
     }
 }

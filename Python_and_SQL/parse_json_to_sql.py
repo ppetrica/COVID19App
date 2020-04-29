@@ -19,10 +19,10 @@ class Country:
         self.region = region_dict.get(region)
 
 
+country_list = []
 def main():
     with open("country.json", "r") as json_file:
         data = json.load(json_file)
-        country_list = []
         for country in data:
             name = country["name"]
             alpha = country["alpha-2"]
@@ -32,6 +32,7 @@ def main():
                 region = "Other"  # Antarctica does not have a region
             country_list.append(Country(name, code, alpha, region))
 
+    with open("population.json", "r") as json_file:
         with open("insert_countries_and_regions.sql", "w") as sql_file:
             sql_file.write("DELETE FROM country;" + "\n")
             sql_file.write("DELETE FROM region;" + "\n\n")
@@ -42,7 +43,18 @@ def main():
 
             for country in country_list:
                 # print(country.region)
-                sql_file.write(f'INSERT INTO country VALUES ("{country.name}", {country.code}, "{country.alpha}", {country.region});\n')
+                sql_file.write(
+                    f'INSERT INTO country VALUES ("{country.name}", {country.code}, "{country.alpha}", {country.region}, NULL);\n')
+
+            data = json.load(json_file)
+
+            sql_file.write("\n\n")
+            for country in data:
+                name = country["country"]
+                population = country["population"]
+                if population:
+                    sql_file.write(
+                        f'UPDATE country SET population = {population} WHERE name = "{name}";\n')
 
 
 if __name__ == "__main__":

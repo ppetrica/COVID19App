@@ -9,6 +9,7 @@ name       VARCHAR2(30) NOT NULL,
 code       NUMBER(3) NOT NULL,
 alpha      CHAR(2) NOT NULL,
 region_id  NUMBER(1) NOT NULL,
+population NUMBER(10),
 CONSTRAINT country_pk PRIMARY KEY (code),
 FOREIGN KEY (region_id) REFERENCES region (region_id) ON DELETE NO ACTION ON UPDATE NO ACTION);
 

@@ -55,8 +55,6 @@ def main():
                 if population:
                     sql_file.write(
                         f'UPDATE country SET population = {population} WHERE name = "{name}";\n')
-            sql_file.write(
-                f'UPDATE country SET population = 1000 WHERE population is NULL;\n')
 
 
 if __name__ == "__main__":

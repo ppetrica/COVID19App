@@ -985,10 +985,7 @@
         "country": "Serbia",
         "population": "7100245"
     },
-	{
-        "country": "Åland Islands",
-        "population": "28007"
-    },
+
 		{
         "country": "Antarctica",
         "population": "3433"
@@ -999,7 +996,7 @@
     },
 		{
         "country": "Bouvet Island",
-        "population": "1"
+        "population": "0"
     },
 		{
         "country": "British Indian Ocean Territory",
@@ -1010,7 +1007,7 @@
         "population": "25070000"
     },
 		{
-        "country": "Curaçao",
+        "country": "Cura\u00e7ao",
         "population": "159849"
     },
 		{
@@ -1027,7 +1024,7 @@
     },
 		{
         "country": "Heard Island and McDonald Islands",
-        "population": "1"
+        "population": "0"
     },
 	{
         "country": "Isle of Man",
@@ -1046,17 +1043,14 @@
         "population": "53710000"
     },
 		{
-        "country": "Réunion",
+        "country": "R\u00e9union",
         "population": "859959"
     },
 		{
-        "country": "Saint Barthélemy",
+        "country": "Saint Barth\u00e9lemy",
         "population": "9131"
     },
-		{
-        "country": "37,264",
-        "population": "37264"
-    },
+
 		{
         "country": "Sint Maarten (Dutch part)",
         "population": "40654"
@@ -1087,13 +1081,9 @@
         "country": "Saint Martin (French part)",
         "population": "37264"
     },
-			{
-        "country": "",
-        "population": ""
-    },
-			{
-        "country": "",
-        "population": ""
+		{
+        "country": "\u00c5land Islands",
+        "population": "28007"
     }
 	
 	

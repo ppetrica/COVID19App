@@ -12,6 +12,7 @@ namespace COVID19App
             InitializeComponent();
 
             _mainTabControl = (TabControl)Controls.Find("mainTabControl", false)[0];
+            _mainTabControl.Dock = DockStyle.Fill;
 
             foreach (IView view in views)
             {

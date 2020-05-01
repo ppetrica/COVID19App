@@ -82,6 +82,11 @@ namespace core
             return Year + "-" + Month + "-" + Day;
         }
 
+        public DateTime ToDateTime()
+        {
+            return new DateTime(Year, Month, Day);
+        }
+
         public readonly int Year;
         public readonly int Month;
         public readonly int Day;

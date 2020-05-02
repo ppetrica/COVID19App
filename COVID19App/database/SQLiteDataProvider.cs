@@ -36,10 +36,10 @@ namespace database
             {
                 if (countryId == -1)
                 {
-                    Console.WriteLine("Country : "  );
+                    Console.WriteLine("Country : ");
                     continue;
                 }
-                (string name, string alphaCode, int regionId) = _dbManager.GetCountryInfoById(countryId);
+                (string name, string alphaCode, int regionId, long population) = _dbManager.GetCountryInfoById(countryId);
                 var daysInfo = new List<DayInfo>();
                 var countryInfoList = _dbManager.GetCovidInfoByCountryId(countryId);
                 if (countryInfoList != null)
@@ -49,8 +49,10 @@ namespace database
                         daysInfo.Add(new DayInfo(Date.Parse(date), confirmedCases, deaths, recoveredCases));
                     }
                 }
+
+                var continent = _dbManager.GetRegionNameByCountryId(countryId);
                 var countryInfo = new CountryInfo(name, daysInfo);
-                countryData.Add(new CountryInfoEx(countryInfo, alphaCode));
+                countryData.Add(new CountryInfoEx(countryInfo, alphaCode, continent, population));
             }
             return countryData.AsReadOnly();
         }

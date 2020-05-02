@@ -30,19 +30,22 @@ namespace test_database
             var countryInfoExList = provider.GetCountryData();
             foreach (var countryInfo in countryInfoExList)
             {
+                var tuple = (countryInfo.Confirmed, countryInfo.Deaths, countryInfo.Recovered, countryInfo.Continent,
+                    countryInfo.Population);
+                Console.WriteLine(tuple);
                 switch (countryInfo.Name)
                 {
                     case "Italy":
-                        Assert.AreEqual((countryInfo.Confirmed, countryInfo.Deaths, countryInfo.Recovered), (2, 0, 1));
+                        Assert.AreEqual(tuple, (2, 0, 1, "Europe", 50_000_000));
                         break;
                     case "USA":
-                        Assert.AreEqual((countryInfo.Confirmed, countryInfo.Deaths, countryInfo.Recovered), (18, 4, 0));
+                        Assert.AreEqual(tuple, (18, 4, 0, "America", 300_000_000));
                         break;
                     case "Romania":
-                        Assert.AreEqual((countryInfo.Confirmed, countryInfo.Deaths, countryInfo.Recovered), (25, 3, 1));
+                        Assert.AreEqual(tuple, (25, 3, 1, "Europe", 19_000_000));
                         break;
                     case "China":
-                        Assert.AreEqual((countryInfo.Confirmed, countryInfo.Deaths, countryInfo.Recovered), (80, 10, 5));
+                        Assert.AreEqual(tuple, (80, 10, 5, "Asia", 1_000_000_000));
                         break;
                 }
             }

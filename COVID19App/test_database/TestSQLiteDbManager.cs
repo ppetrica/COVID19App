@@ -29,10 +29,10 @@ namespace test_database
             b.InsertRegion(3, "Europe");
 
             //Test Insert country
-            b.InsertCountry("Italy", 1, "IT", 3);
-            b.InsertCountry("Romania", 2, "RO", 3);
-            b.InsertCountry("USA", 3, "US", 1);
-            b.InsertCountry("China", 4, "CH", 2);
+            b.InsertCountry("Italy", 1, "IT", 3, 50_000_000);
+            b.InsertCountry("Romania", 2, "RO", 3, 19_000_000);
+            b.InsertCountry("USA", 3, "US", 1, 300_000_000);
+            b.InsertCountry("China", 4, "CH", 2, 1_000_000_000);
 
             //Test Insert dayinfo
             var d = new Date(2020, 3, 7);
@@ -64,7 +64,11 @@ namespace test_database
 
             //Test get country name and id
             Assert.AreEqual(1, b.GetCountryIdByName("Italy"));
-            Assert.AreEqual(Tuple.Create("Romania", "RO", 3), b.GetCountryInfoById(2));
+            Assert.AreEqual(Tuple.Create("Romania", "RO", 3, (long)19_000_000), b.GetCountryInfoById(2));
+
+            //Test get region name by country id
+            Assert.AreEqual("Europe", b.GetRegionNameByCountryId(1));
+            Assert.AreEqual("Asia", b.GetRegionNameByCountryId(4));
         }
 
         public static Tuple<T1, T2, T3, T4> SubTuple5To4<T1, T2, T3, T4, T5>(Tuple<T1, T2, T3, T4, T5> tuple) => Tuple.Create(tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4);

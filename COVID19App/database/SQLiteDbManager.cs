@@ -58,16 +58,17 @@ namespace database
         /// <param name="alpha">The alphanumeric code of the country</param>
         /// <param name="regionId">The region id of the continent where this country is located</param>
         /// <returns>True if the insertion wa successful else return False</returns>
-        public void InsertCountry(string name, ushort code, string alpha, byte regionId)
+        public void InsertCountry(string name, ushort code, string alpha, byte regionId, long population)
         {
             _dbConnection.Open();
             try
             {
-                var sql = new SQLiteCommand("INSERT INTO country (name, code, alpha, region_id) VALUES (@name, @code, @alpha, @regionId);", _dbConnection);
+                var sql = new SQLiteCommand("INSERT INTO country (name, code, alpha, region_id, population) VALUES (@name, @code, @alpha, @regionId, @population);", _dbConnection);
                 sql.Parameters.AddWithValue("@name", name);
                 sql.Parameters.AddWithValue("@code", code);
                 sql.Parameters.AddWithValue("@alpha", alpha);
                 sql.Parameters.AddWithValue("@regionId", regionId);
+                sql.Parameters.AddWithValue("@population", population);
                 sql.ExecuteNonQuery();
             }
             finally
@@ -249,18 +250,18 @@ namespace database
         /// Getting the country info from the country table in the database
         /// </summary>
         /// <param name="countryId">The country Id</param>
-        /// <returns>A tuple which hold the name, the alphanumeric code of the country and the id of the continent where this country is located</returns>
-        public Tuple<string, string, int> GetCountryInfoById(int countryId)
+        /// <returns>A tuple which hold the name, the alphanumeric code of the country the id of the continent where this country is located and the population</returns>
+        public Tuple<string, string, int, long> GetCountryInfoById(int countryId)
         {
             _dbConnection.Open();
             try
             {
-                var sql = new SQLiteCommand("SELECT name, alpha, region_id FROM country WHERE code=@countryId;", _dbConnection);
+                var sql = new SQLiteCommand("SELECT name, alpha, region_id, population FROM country WHERE code=@countryId;", _dbConnection);
                 sql.Parameters.AddWithValue("@countryId", countryId);
                 _dataReader = sql.ExecuteReader();
                 if (_dataReader.Read())
                 {
-                    return new Tuple<string, string, int>(_dataReader.GetString(0), _dataReader.GetString(1), _dataReader.GetInt32(2));
+                    return new Tuple<string, string, int, long>(_dataReader.GetString(0), _dataReader.GetString(1), _dataReader.GetInt32(2), _dataReader.GetInt64(3));
                 }
                 else
                 {
@@ -332,6 +333,31 @@ namespace database
                 else
                 {
                     throw new ObjectNotFoundException("Not a single country was found.");
+                }
+            }
+            finally
+            {
+                _dataReader.Close(); //the most important line of code
+                _dbConnection.Close();
+            }
+        }
+
+        public string GetRegionNameByCountryId(int countryId)
+        {
+            _dbConnection.Open();
+            try
+            {
+                var sql = new SQLiteCommand("SELECT region_name FROM region WHERE region_id = " +
+                                            "(SELECT region_id FROM country WHERE code = @countryId)", _dbConnection);
+                sql.Parameters.AddWithValue("@countryId", countryId);
+                _dataReader = sql.ExecuteReader();
+                if (_dataReader.Read())
+                {
+                    return _dataReader.GetString(0);
+                }
+                else
+                {
+                    throw new ObjectNotFoundException("Country not found in the database");
                 }
             }
             finally

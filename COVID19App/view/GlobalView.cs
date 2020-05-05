@@ -106,7 +106,7 @@ namespace view
             }
 
             // build the chart with numbers of infected people on every region
-            _chartRegions.Series = new SeriesCollection 
+            _chartRegions.Series = new SeriesCollection
             {
                 new StackedAreaSeries
                 {
@@ -140,9 +140,10 @@ namespace view
                 },
                 new StackedAreaSeries
                 {
-                    Title = "Others",
+                    Title = "Antarctica",
                     Values = GetRegionChartValues(confirmedOthers, startDate),
-                    LineSmoothness = 0
+                    LineSmoothness = 0,
+                    Fill = new SolidColorBrush(Colors.Green)
                 },
             };
 

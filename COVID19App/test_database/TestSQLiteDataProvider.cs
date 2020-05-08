@@ -23,10 +23,12 @@ namespace test_database
                 // ignored
             }
 
+            
+            //Test insertion of CountryInfo list
             var list = CreateMockData();
-
             provider.InsertCountryData(list);
 
+            //Extract list of countryInfoEx
             var countryInfoExList = provider.GetCountryData();
             foreach (var countryInfo in countryInfoExList)
             {
@@ -49,6 +51,9 @@ namespace test_database
                         break;
                 }
             }
+
+            //Test extraction the most recent date
+            Assert.AreEqual(new Date(1983, 11, 30), provider.GetTheMostRecentDateOfData());
         }
 
         private List<CountryInfo> CreateMockData()

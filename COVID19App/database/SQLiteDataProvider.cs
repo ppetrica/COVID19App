@@ -101,5 +101,10 @@ namespace database
         {
             _dbManager.ClearTable("dayinfo");
         }
+
+        public Date GetTheMostRecentDateOfData()
+        {
+            return Date.Parse(_dbManager.GetTheMostRecentDate());
+        }
     }
 }

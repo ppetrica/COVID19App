@@ -1,6 +1,7 @@
 ﻿using core;
 using LiveCharts.Maps;
 using LiveCharts.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Media;
@@ -36,14 +37,16 @@ namespace view
             _map.GradientStopCollection = collection;
 
             CountryInfoEx mostSevere = Utils.MaxElement(info,
-                (CountryInfoEx c1, CountryInfoEx c2) => c1.Confirmed > c2.Confirmed);
+                (CountryInfoEx c1, CountryInfoEx c2) => 
+                    (c1.Confirmed - c1.Recovered - c1.Deaths) > (c2.Confirmed - c2.Recovered - c2.Deaths));
 
-            double half = mostSevere.Confirmed / 2.0;
+            double half = Math.Log((mostSevere.Confirmed - mostSevere.Recovered - mostSevere.Deaths) / 2.0);
 
             Dictionary<string, double> scaledValues = new Dictionary<string, double>();
             foreach (CountryInfoEx country in info)
             {
-                int confirmed = country.Confirmed;
+                int active = country.Confirmed - country.Deaths - country.Recovered;
+                double confirmed = (active > 0) ? Math.Log(active) : 0;
 
                 scaledValues[country.CountryCode] = (confirmed < half) ? (half - confirmed) / half * double.MinValue
                                                                        : (confirmed - half) / half * double.MaxValue;

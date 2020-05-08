@@ -36,17 +36,17 @@
             this.mainTabControl.Location = new System.Drawing.Point(1, -2);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(798, 450);
+            this.mainTabControl.Size = new System.Drawing.Size(1100, 681);
             this.mainTabControl.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1103, 681);
             this.Controls.Add(this.mainTabControl);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "COVID-19 App";
             this.ResumeLayout(false);
 
         }

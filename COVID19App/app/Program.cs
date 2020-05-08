@@ -24,9 +24,12 @@ namespace COVID19App
 
             provider.InsertCountryData(netProvider.GetCountryData());
 
-            IView view = new MapView(provider.GetCountryData());
+            var data = provider.GetCountryData();
 
-            Application.Run(new MainForm(new List<IView> { view }));
+            IView mapView = new MapView(data);
+            IView globalView = new GlobalView(data);
+
+            Application.Run(new MainForm(new List<IView> { mapView, globalView }));
         }
     }
 }

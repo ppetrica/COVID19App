@@ -10,6 +10,7 @@ namespace database
     /// <summary>
     /// This class implements DataProvider interface for getting the list of countryInfoEx from the database.
     /// It also implements insertion and deletion of dayInfo from the database.
+    /// If tables dayinfo, country and region not in the database System.Data.SQLite.SQLiteException is thrown.
     /// </summary>
     public class SQLiteDataProvider : AbstractDbObserver, IDataProvider<CountryInfoEx>
     {

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using view;
 using database;
 using database.DbCache;
-using network;
 
 
 namespace COVID19App
@@ -21,19 +19,10 @@ namespace COVID19App
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var netProvider = new CovidDataProvider();
             var provider = new SQLiteDataProvider();
             var cacheSystem = new DatabaseCache();
             cacheSystem.Attach(provider);
-
-            try
-            {
-                cacheSystem.CountryInfoList = netProvider.GetCountryData().ToList();
-            }
-            catch (ArgumentException)
-            {
-                //Console.WriteLine("Internet Connection Problem");
-            }
+            cacheSystem.checkData();    //check if the data is fresh (yesterday is present in the db)
 
             var data = provider.GetCountryData();
 

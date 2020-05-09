@@ -58,6 +58,10 @@
       <Project>{9eb85b89-d1c5-4582-af95-8e5cca05db19}</Project>
       <Name>core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\network\network.csproj">
+      <Project>{1C8A65A1-88C2-4A79-AA9E-9FA2D3174BFF}</Project>
+      <Name>network</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

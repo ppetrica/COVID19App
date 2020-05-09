@@ -10,6 +10,7 @@ namespace database
     /// SqlDataBaseManager has the role of ensuring the connection to the local .db database.
     /// It has the CRUD functionality.
     /// In order to use it, first set the databaseConnection.
+    /// If tables dayinfo, country and region not in the database System.Data.SQLite.SQLiteException is thrown.
     /// </summary>
     public class SQLiteDbManager : IDbManager
     {
@@ -63,7 +64,7 @@ namespace database
             _dbConnection.Open();
             try
             {
-                var sql = new SQLiteCommand("INSERT INTO country (name, code, alpha, region_id, population) VALUES (@name, @code, @alpha, @regionId, @population);", _dbConnection);
+                var sql = new SQLiteCommand("INSERT OR REPLACE INTO country (name, code, alpha, region_id, population) VALUES (@name, @code, @alpha, @regionId, @population);", _dbConnection);
                 sql.Parameters.AddWithValue("@name", name);
                 sql.Parameters.AddWithValue("@code", code);
                 sql.Parameters.AddWithValue("@alpha", alpha);
@@ -88,7 +89,7 @@ namespace database
             _dbConnection.Open();
             try
             {
-                var sql = new SQLiteCommand("INSERT INTO region (region_id, region_name) VALUES (@regionId, @regionName);", _dbConnection);
+                var sql = new SQLiteCommand("INSERT OR REPLACE INTO region (region_id, region_name) VALUES (@regionId, @regionName);", _dbConnection);
                 sql.Parameters.AddWithValue("@regionId", regionId);
                 sql.Parameters.AddWithValue("@regionName", regionName);
                 sql.ExecuteNonQuery();

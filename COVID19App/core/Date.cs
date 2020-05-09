@@ -79,7 +79,7 @@ namespace core
 
         public override string ToString()
         {
-            return Year + "-" + Month + "-" + Day;
+            return Year + "-" + Month.ToString().PadLeft(2, '0') + "-" + Day.ToString().PadLeft(2, '0');
         }
 
         public DateTime ToDateTime()

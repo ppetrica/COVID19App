@@ -287,7 +287,7 @@ namespace database
             _dbConnection.Open();
             try
             {
-                var sql = new SQLiteCommand("SELECT update_date, confirmed, deaths, recovered FROM dayinfo WHERE code=@countryId;", _dbConnection);
+                var sql = new SQLiteCommand("SELECT update_date, confirmed, deaths, recovered FROM dayinfo WHERE code=@countryId ORDER BY update_date ASC;", _dbConnection);
                 sql.Parameters.AddWithValue("@countryId", countryId);
                 _dataReader = sql.ExecuteReader();
                 var dayListCovidInfo = new List<Tuple<string, int, int, int>>();

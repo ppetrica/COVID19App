@@ -13,14 +13,8 @@ namespace test_database
         public void DatabaseCacheTest()
         {
             var provider = new SQLiteDataProvider(@"..\..\resources\covid.db");
-            try
-            {
-                provider.ClearDayInfoData();
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
+            provider.ClearDayInfoData();
+            // ignored
             provider.ClearDayInfoData();
 
             var cacheSystem = new DatabaseCache();
@@ -76,6 +70,21 @@ namespace test_database
                         break;
                 }
             }
+        }
+
+        [TestMethod]
+        public void DatabaseCacheTest_2()
+        {
+            DatabaseCacheTest();
+
+            var provider = new SQLiteDataProvider(@"..\..\resources\covid.db");
+            var cacheSystem = new DatabaseCache();
+            cacheSystem.Attach(provider);
+            cacheSystem.CheckUpdate();    //check if the data is fresh (yesterday is present in the db) and update the db if not
+            
+            cacheSystem.CheckUpdate();    //check if the data is fresh (yesterday is present in the db) and update the db if not
+
+            
         }
     }
 }

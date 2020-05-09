@@ -26,8 +26,14 @@ namespace COVID19App
             var cacheSystem = new DatabaseCache();
             cacheSystem.Attach(provider);
 
-
-            cacheSystem.CountryInfoList = netProvider.GetCountryData().ToList();
+            try
+            {
+                cacheSystem.CountryInfoList = netProvider.GetCountryData().ToList();
+            }
+            catch (ArgumentException)
+            {
+                //Console.WriteLine("Internet Connection Problem");
+            }
 
             var data = provider.GetCountryData();
 

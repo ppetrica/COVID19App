@@ -29,6 +29,11 @@ namespace view
             _map.Source = _MapFile;
             _map.Dock = DockStyle.Fill;
 
+            _map.DefaultLandFill = Brushes.Gray;
+
+            _map.EnableZoomingAndPanning = true;
+            _map.Hoverable = true;
+
             GradientStopCollection collection = new GradientStopCollection();
             collection.Add(new GradientStop(Colors.Green, 0.0));
             collection.Add(new GradientStop(Colors.Yellow, 0.5));
@@ -36,20 +41,13 @@ namespace view
 
             _map.GradientStopCollection = collection;
 
-            CountryInfoEx mostSevere = Utils.MaxElement(info,
-                (CountryInfoEx c1, CountryInfoEx c2) => 
-                    (c1.Confirmed - c1.Recovered - c1.Deaths) > (c2.Confirmed - c2.Recovered - c2.Deaths));
-
-            double half = Math.Log((mostSevere.Confirmed - mostSevere.Recovered - mostSevere.Deaths) / 2.0);
-
             Dictionary<string, double> scaledValues = new Dictionary<string, double>();
             foreach (CountryInfoEx country in info)
             {
                 int active = country.Confirmed - country.Deaths - country.Recovered;
                 double confirmed = (active > 0) ? Math.Log(active) : 0;
 
-                scaledValues[country.CountryCode] = (confirmed < half) ? (half - confirmed) / half * double.MinValue
-                                                                       : (confirmed - half) / half * double.MaxValue;
+                scaledValues[country.CountryCode] = confirmed;
             }
 
             _map.HeatMap = scaledValues;

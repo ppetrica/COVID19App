@@ -25,7 +25,8 @@ namespace test_database
 
             
             //Test insertion of CountryInfo list
-            var list = CreateMockData();
+            var mockDataProvider = new MockDataProvider();
+            var list = mockDataProvider.GetCountryData();
             provider.InsertCountryData(list);
 
             //Extract list of countryInfoEx
@@ -34,7 +35,6 @@ namespace test_database
             {
                 var tuple = (countryInfo.Confirmed, countryInfo.Deaths, countryInfo.Recovered, countryInfo.Continent,
                     countryInfo.Population);
-                Console.WriteLine(tuple);
                 switch (countryInfo.Name)
                 {
                     case "Italy":
@@ -51,47 +51,9 @@ namespace test_database
                         break;
                 }
             }
-
             //Test extraction the most recent date
             Assert.AreEqual(new Date(1983, 11, 30), provider.GetTheMostRecentDateOfData());
         }
-
-        private List<CountryInfo> CreateMockData()
-        {
-            var mock = new List<CountryInfo>();
-
-            var list = new List<DayInfo>
-            {
-                new DayInfo(new Date(1980, 10, 12), 0, 0, 0),
-                new DayInfo(new Date(1980, 10, 13), 5, 1, 0),
-                new DayInfo(new Date(1980, 10, 14), 25, 3, 1)
-            };
-            mock.Add(new CountryInfo("Romania", list));
-
-            list = new List<DayInfo>
-            {
-                new DayInfo(new Date(1981, 11, 14), 1, 0, 1),
-                new DayInfo(new Date(1981, 11, 15), 7, 2, 1),
-                new DayInfo(new Date(1981, 11, 18), 18, 4, 0)
-            };
-            mock.Add(new CountryInfo("USA", list));
-
-            list = new List<DayInfo>
-            {
-                new DayInfo(new Date(1982, 11, 14), 0, 0, 0),
-                new DayInfo(new Date(1982, 11, 15), 1, 0, 0),
-                new DayInfo(new Date(1982, 11, 18), 2, 0, 1)
-            };
-            mock.Add(new CountryInfo("Italy", list));
-
-            list = new List<DayInfo>
-            {
-                new DayInfo(new Date(1983, 11, 14), 0, 0, 0),
-                new DayInfo(new Date(1983, 11, 15), 20, 1, 2),
-                new DayInfo(new Date(1983, 11, 30), 80, 10, 5)
-            };
-            mock.Add(new CountryInfo("China", list));
-            return mock;
-        }
+        
     }
 }

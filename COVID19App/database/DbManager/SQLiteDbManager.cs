@@ -380,7 +380,9 @@ namespace database
 
                 var sql = new SQLiteCommand("SELECT MAX(update_date) FROM dayinfo", _dbConnection);
                 _dataReader = sql.ExecuteReader();
-                if (_dataReader.Read())
+                //isDbNull check if the specified column is not null
+                //this query returns null if there is no data in the db
+                if (_dataReader.Read() && !_dataReader.IsDBNull(0)) 
                 {
                     return _dataReader.GetString(0);
                 }

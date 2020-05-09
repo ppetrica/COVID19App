@@ -45,11 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseCache.cs" />
-    <Compile Include="IDbManager.cs" />
+    <Compile Include="DbCache\AbstractDbCacheSubject.cs" />
+    <Compile Include="DbCache\DatabaseCache.cs" />
+    <Compile Include="DbManager\IDbManager.cs" />
+    <Compile Include="DbProvider\AbstractDbObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLiteDataProvider.cs" />
-    <Compile Include="SQLiteDbManager.cs" />
+    <Compile Include="DbProvider\SQLiteDataProvider.cs" />
+    <Compile Include="DbManager\SQLiteDbManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\core\core.csproj">
@@ -60,5 +62,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

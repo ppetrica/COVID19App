@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using view;
 using database;
+using database.DbCache;
 using network;
 
 
@@ -21,8 +23,11 @@ namespace COVID19App
 
             var netProvider = new CovidDataProvider();
             var provider = new SQLiteDataProvider();
+            var cacheSystem = new DatabaseCache();
+            cacheSystem.Attach(provider);
 
-            provider.InsertCountryData(netProvider.GetCountryData());
+
+            cacheSystem.CountryInfoList = netProvider.GetCountryData().ToList();
 
             var data = provider.GetCountryData();
 

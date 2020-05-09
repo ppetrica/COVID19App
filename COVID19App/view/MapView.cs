@@ -35,9 +35,9 @@ namespace view
             _map.Hoverable = true;
 
             GradientStopCollection collection = new GradientStopCollection();
-            collection.Add(new GradientStop(Colors.Green, 0.0));
-            collection.Add(new GradientStop(Colors.Yellow, 0.5));
-            collection.Add(new GradientStop(Colors.Red, 1.0));
+            collection.Add(new GradientStop(Colors.MediumSeaGreen, 0.0));
+            collection.Add(new GradientStop(Colors.Gold, 0.5));
+            collection.Add(new GradientStop(Colors.Crimson, 1.0));
 
             _map.GradientStopCollection = collection;
 

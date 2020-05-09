@@ -41,8 +41,8 @@ namespace test_view
         {
             public TestForm()
             {
-                Width = 640;
-                Height = 480;
+                Width = 1024;
+                Height = 720;
             }
 
             public void OnClick(CountryInfoEx country)

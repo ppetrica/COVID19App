@@ -80,9 +80,9 @@ namespace test_database
             var provider = new SQLiteDataProvider(@"..\..\resources\covid.db");
             var cacheSystem = new DatabaseCache();
             cacheSystem.Attach(provider);
-            cacheSystem.checkData();    //check if the data is fresh (yesterday is present in the db) and update the db if not
+            cacheSystem.CheckUpdate();    //check if the data is fresh (yesterday is present in the db) and update the db if not
             
-            cacheSystem.checkData();    //check if the data is fresh (yesterday is present in the db) and update the db if not
+            cacheSystem.CheckUpdate();    //check if the data is fresh (yesterday is present in the db) and update the db if not
 
             
         }

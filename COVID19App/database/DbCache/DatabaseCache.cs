@@ -40,7 +40,7 @@ namespace database.DbCache
         /// <summary>
         /// Check if the most recent data in the database is added recently in the current day
         /// </summary>
-        public void checkData()
+        public void CheckUpdate()
         {
             try
             {

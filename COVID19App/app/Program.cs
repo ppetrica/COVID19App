@@ -22,7 +22,7 @@ namespace COVID19App
             var provider = new SQLiteDataProvider();
             var cacheSystem = new DatabaseCache();
             cacheSystem.Attach(provider);
-            cacheSystem.checkData();    //check if the data is fresh (yesterday is present in the db)
+            cacheSystem.CheckUpdate();    //check if the data is fresh (yesterday is present in the db)
 
             var data = provider.GetCountryData();
 

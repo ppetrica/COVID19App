@@ -67,9 +67,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MockDataProvider.cs" />
     <Compile Include="TestSQLiteDataProvider.cs" />
     <Compile Include="TestSQLiteDbManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDatabaseCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

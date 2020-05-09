@@ -366,5 +366,36 @@ namespace database
                 _dbConnection.Close();
             }
         }
+
+        /// <summary>
+        /// Getting the most current date of the data from the database
+        /// Throws ObjectNotFoundException if there is no data in the database
+        /// </summary>
+        /// <returns>A tuple of 3 integer: year, month and day</returns>
+        public string GetTheMostRecentDate()
+        {
+            _dbConnection.Open();
+            try
+            {
+
+                var sql = new SQLiteCommand("SELECT MAX(update_date) FROM dayinfo", _dbConnection);
+                _dataReader = sql.ExecuteReader();
+                //isDbNull check if the specified column is not null
+                //this query returns null if there is no data in the db
+                if (_dataReader.Read() && !_dataReader.IsDBNull(0)) 
+                {
+                    return _dataReader.GetString(0);
+                }
+                else
+                {
+                    throw new ObjectNotFoundException("Data not found in the database");
+                }
+            }
+            finally
+            {
+                _dataReader.Close(); //the most important line of code
+                _dbConnection.Close();
+            }
+        }
     }
 }

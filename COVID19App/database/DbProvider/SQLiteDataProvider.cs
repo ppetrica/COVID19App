@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using core;
+using database.DbProvider;
 
 
 namespace database
@@ -10,7 +11,7 @@ namespace database
     /// This class implements DataProvider interface for getting the list of countryInfoEx from the database.
     /// It also implements insertion and deletion of dayInfo from the database.
     /// </summary>
-    public class SQLiteDataProvider : IDataProvider<CountryInfoEx>
+    public class SQLiteDataProvider : AbstractDbObserver, IDataProvider<CountryInfoEx>
     {
         private const string DatabaseDefaultPath = @"..\..\..\resources\sql\covid.db";
         private readonly IDbManager _dbManager;
@@ -61,7 +62,7 @@ namespace database
         /// Insert the list of countryInfo to the database, transferring raw data to IDbManager
         /// </summary>
         /// <param name="countryInfoList">List of Country Info to be inserted in the database</param>
-        public void InsertCountryData(IReadOnlyList<CountryInfo> countryInfoList)
+        public override void InsertCountryData(IReadOnlyList<CountryInfo> countryInfoList)
         {
             var counter = 0;
             
@@ -90,8 +91,11 @@ namespace database
 
                 Console.WriteLine("Inserted into country " + countryInfo.Name + ", Days : "+ rawDaysInfoList.Count+  " Total: " + counter);
             }
-            
-            _dbManager.InsertDayInfos(rawDaysInfoList);
+
+            if (rawDaysInfoList.Count > 0)
+            {
+                _dbManager.InsertDayInfos(rawDaysInfoList);
+            }
         }
 
         /// <summary>
@@ -100,6 +104,12 @@ namespace database
         public void ClearDayInfoData()
         {
             _dbManager.ClearTable("dayinfo");
+        }
+
+        /// <returns>The most recent Date of the data from the database</returns>
+        public override Date GetTheMostRecentDateOfData()
+        {
+            return Date.Parse(_dbManager.GetTheMostRecentDate());
         }
     }
 }

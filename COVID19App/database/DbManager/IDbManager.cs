@@ -86,5 +86,11 @@ namespace database
         /// </summary>
         /// <returns>The name of region/continent</returns>
         string GetRegionNameByCountryId(int countryId);
+
+        /// <summary>
+        /// Getting the most current date of the data from the database
+        /// </summary>
+        /// <returns>The day in format string "YYYY-MM-DD"</returns>
+        string GetTheMostRecentDate();
     }
 }

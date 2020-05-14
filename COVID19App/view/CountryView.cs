@@ -11,13 +11,13 @@ using System.Drawing;
 
 
 namespace view
-{
+{ 
     /// <summary>
     /// Class responsible for creating a view with 
     /// statistics about COVID-19 effects on country level, 
     /// using the country info list.
     /// </summary>
-    public class CountryView : IView
+    public class CountryView : IView, IMapObserver
     {
         /// <summary>
         /// Constructor
@@ -25,111 +25,55 @@ namespace view
         /// <param name="info">The information about COVID19 for each country.</param>
         public CountryView(IReadOnlyList<CountryInfoEx> info)
         {
-            _countries = info;
-
-            // country for wich stats are shown
-            string countryCodeSearched = "ES";
-            string countryNameSearched = string.Empty;
-
-            // calculate the sum of active people per day on every region and other statistics
-            int numberOfDays = 90; // infection rate evolution is followed on last {numberOfDays} days
-            DateTime startDate = (new DateTime(2020, 1, 22)).AddDays(_countries[0].DaysInfo.Count - numberOfDays); // first day of provided info is 22.01.2020 
-            long[] active = new long[numberOfDays];
-            long[] deaths = new long[numberOfDays];
-            long[] recovered = new long[numberOfDays];
-
-            long totalConfirmed = 0;
-            long totalDeaths = 0;
-            long totalRecovered = 0;
+            const long animationSpeedGraph = 0;
+            const long animationSpeedGauge = 5000000;
+            IReadOnlyList<CountryInfoEx> countries = info;
 
             // information used for normalize 
-            long mostConfirmed = -1;
-            string mostConfirmedCountry = string.Empty;
+            CountryInfoEx _mostConfirmed;
+            CountryInfoEx _mostDeaths;
+            CountryInfoEx _mostRecovered;
+           
+            _startDate = (new DateTime(2020, 1, 22)).AddDays(countries[0].DaysInfo.Count - NumberOfDays); // first day of provided info is 22.01.2020 
 
-            long mostDeaths = -1;
-            string mostDeathsCountry = string.Empty;
-
-            long mostRecovered = -1;
-            string mostRecoveredCountry = string.Empty;
-
-
-            foreach (CountryInfoEx country in _countries)
-            {
-                if (country.CountryCode == countryCodeSearched)
-                {
-                    totalConfirmed = country.Confirmed;
-                    totalDeaths = country.Deaths;
-                    totalRecovered = country.Recovered;
-                    countryNameSearched = country.Name;
-
-                    foreach (DayInfo day in country.DaysInfo)
-                    {
-                        int index = (day.Date.ToDateTime() - startDate).Days;
-                        if (index < 0)
-                        { // skip info from days that are before the chosen start date 
-                            continue;
-                        }
-                        active[index] = day.Confirmed - day.Deaths - day.Recovered;
-                        deaths[index] = day.Deaths;
-                        recovered[index] = day.Recovered;
-                    }
-                }
-
-
-                // for normalize
-                if (country.Confirmed > mostConfirmed)
-                {
-                    mostConfirmedCountry = country.Name;
-                    mostConfirmed = country.Confirmed;
-                }
-
-                if (country.Deaths > mostDeaths)
-                {
-                    mostDeathsCountry = country.Name;
-                    mostDeaths = country.Deaths;
-                }
-
-                if (country.Recovered > mostRecovered)
-                {
-                    mostRecoveredCountry = country.Name;
-                    mostRecovered = country.Recovered;
-
-                }
-            }
-
+            _mostConfirmed = Utils.MaxElement(countries, (CountryInfoEx a, CountryInfoEx b) => a.Confirmed > b.Confirmed);
+            _mostDeaths = Utils.MaxElement(countries, (CountryInfoEx a, CountryInfoEx b) => a.Deaths > b.Deaths);
+            _mostRecovered = Utils.MaxElement(countries, (CountryInfoEx a, CountryInfoEx b) => a.Recovered > b.Recovered);
 
             // build the chart with numbers of infected people 
-            StackedAreaSeries recoveredStackedArea = new StackedAreaSeries
+            _recoveredStackedArea = new StackedAreaSeries
             {
                 Title = "Recovered",
-                Values = GetRegionChartValues(recovered, startDate),
+                Values = GetRegionChartValues(new long[1], _startDate),
                 LineSmoothness = 0
             };
-            StackedAreaSeries deathsStackedArea = new StackedAreaSeries
+            _deathsStackedArea = new StackedAreaSeries
             {
                 Title = "Deaths",
-                Values = GetRegionChartValues(deaths, startDate),
+                Values = GetRegionChartValues(new long[1], _startDate),
                 LineSmoothness = 0
             };
-
-            StackedAreaSeries activeStackedArea = new StackedAreaSeries
+            _confirmedStackedArea = new StackedAreaSeries
             {
                 Title = "Active",
-                Values = GetRegionChartValues(active, startDate),
+                Values = GetRegionChartValues(new long[1], _startDate),
                 LineSmoothness = 0
             };
 
-            recoveredStackedArea.Fill = System.Windows.Media.Brushes.MediumSeaGreen;
-            deathsStackedArea.Fill = System.Windows.Media.Brushes.Crimson;
-            activeStackedArea.Fill = System.Windows.Media.Brushes.Gold;
-
+            _recoveredStackedArea.Fill = System.Windows.Media.Brushes.MediumSeaGreen;
+            _deathsStackedArea.Fill = System.Windows.Media.Brushes.Crimson;
+            _confirmedStackedArea.Fill = System.Windows.Media.Brushes.Gold;
             _chartRegions.Series = new SeriesCollection
             {
-               deathsStackedArea,
-               activeStackedArea,
-               recoveredStackedArea,
+               _deathsStackedArea,
+               _confirmedStackedArea,
+               _recoveredStackedArea,
             };
 
+            _chartRegions.AnimationsSpeed = new TimeSpan(animationSpeedGraph);
+            _gaugeDeathRate.AnimationsSpeed = new TimeSpan(animationSpeedGauge);
+            _gaugeInfectionRate.AnimationsSpeed = new TimeSpan(animationSpeedGauge);
+            _gaugeRecoveryRate.AnimationsSpeed = new TimeSpan(animationSpeedGauge);
 
             _chartRegions.AxisX.Add(new Axis
             {
@@ -142,22 +86,12 @@ namespace view
             });
             _chartRegions.LegendLocation = LegendLocation.Right;
 
-            // build the solid gauge for active infected people rate
+            // build the solid gauge for confirmed infected people rate
             _gaugeInfectionRate.From = 0;
-            _gaugeInfectionRate.To = Math.Log(mostConfirmed);
-            _gaugeInfectionRate.Value = Math.Log(totalConfirmed);
+            _gaugeInfectionRate.To = Math.Log(_mostConfirmed.Confirmed);
+            _gaugeInfectionRate.Value = 0;
             _gaugeInfectionRate.Base.LabelsVisibility = Visibility.Hidden;
-            _gaugeInfectionRate.LabelFormatter = value =>
-            {
-                value = Math.Exp(value);
-                if (value > 1000000)
-                    return $"  {Math.Round(value / 1000000.0, 2)}M \n infected";
-                else
-                    if (value > 1000)
-                    return $"  {Math.Round(value / 1000.0, 2)}K \n infected";
-                else
-                    return $"    {value}\n infected";
-            };
+            _gaugeInfectionRate.LabelFormatter = value => value.ToString();
             _gaugeInfectionRate.Base.GaugeActiveFill = new LinearGradientBrush
             {
                 GradientStops = new GradientStopCollection
@@ -170,20 +104,10 @@ namespace view
 
             // build the solid gauge for death rate
             _gaugeDeathRate.From = 0;
-            _gaugeDeathRate.To = Math.Log(mostDeaths);
-            _gaugeDeathRate.Value = Math.Log(totalDeaths);
+            _gaugeDeathRate.To = Math.Log(_mostDeaths.Deaths);
+            _gaugeDeathRate.Value = 0;
             _gaugeDeathRate.Base.LabelsVisibility = Visibility.Hidden;
-            _gaugeDeathRate.LabelFormatter = value =>
-            {
-                value = Math.Exp(value);
-                if (value > 1000000)
-                    return $"  {Math.Round(value / 1000000.0, 2)}M \n deaths";
-                else
-                    if (value > 1000)
-                    return $"  {Math.Round(value / 1000.0, 2)}K \n deaths";
-                else
-                    return $"     {value}\n deaths";
-            };
+            _gaugeDeathRate.LabelFormatter = value => value.ToString();
             _gaugeDeathRate.Base.GaugeActiveFill = new LinearGradientBrush
             {
                 GradientStops = new GradientStopCollection
@@ -196,20 +120,10 @@ namespace view
 
             // build the solid gauge for recovery rate
             _gaugeRecoveryRate.From = 0;
-            _gaugeRecoveryRate.To = Math.Log(mostRecovered);
-            _gaugeRecoveryRate.Value = Math.Log(totalRecovered);
+            _gaugeRecoveryRate.To = Math.Log(_mostRecovered.Recovered);
+            _gaugeRecoveryRate.Value = 0;
             _gaugeRecoveryRate.Base.LabelsVisibility = Visibility.Hidden;
-            _gaugeRecoveryRate.LabelFormatter = value =>
-            {
-                value = Math.Exp(value);
-                if (value > 1000000)
-                    return $"  {Math.Round(value / 1000000.0, 2)}M \nrecovred";
-                else
-                    if (value > 1000)
-                    return $"  {Math.Round(value / 1000.0, 2)}K \nrecovered";
-                else
-                    return $"     {value}\nrecovered";
-            };
+            _gaugeRecoveryRate.LabelFormatter = value => value.ToString();
             _gaugeRecoveryRate.Base.GaugeActiveFill = new LinearGradientBrush
             {
                 GradientStops = new GradientStopCollection
@@ -234,17 +148,16 @@ namespace view
 
             // row 0
             Font fontTitle = new Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
-            _layoutPanel.Controls.Add(new Label
+            _labelTitle = new Label
             {
-                Text = countryNameSearched,
+                Text = "",
                 AutoSize = true,
                 Font = fontTitle,
                 Anchor = AnchorStyles.None
-            }, 1, 0);
-
+            };
+            _layoutPanel.Controls.Add(_labelTitle, 1, 0);
 
             // row 1
-
             _layoutPanel.Controls.Add(_chartRegions, 0, 1);
             _layoutPanel.SetColumnSpan(_chartRegions, 3);
             _chartRegions.Dock = DockStyle.Fill;
@@ -263,8 +176,8 @@ namespace view
             Font font = new Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             _layoutPanel.Controls.Add(new Label
             {
-                Text = (mostConfirmed > 1000000 ? $"Reference value: {Math.Round(mostConfirmed / 1000000.0, 2)}M ({mostConfirmedCountry})" :
-                                                  $"Reference value: {Math.Round(mostConfirmed / 1000.0, 2)}K ({mostConfirmedCountry})"),
+                Text = (_mostConfirmed.Confirmed > 1000000 ? $"Reference value: {Math.Round(_mostConfirmed.Confirmed / 1000000.0, 2)}M ({_mostConfirmed.Name})" :
+                                                  $"Reference value: {Math.Round(_mostConfirmed.Confirmed / 1000.0, 2)}K ({_mostConfirmed.Name})"),
                 AutoSize = true,
                 Font = font,
                 Anchor = AnchorStyles.None
@@ -272,8 +185,8 @@ namespace view
 
             _layoutPanel.Controls.Add(new Label
             {
-                Text = (mostDeaths > 1000000 ? $"Reference value: {Math.Round(mostDeaths / 1000000.0, 2)}M ({mostDeathsCountry})" :
-                                           $"Reference value: {Math.Round(mostDeaths / 1000.0, 2)}K ({mostDeathsCountry})"),
+                Text = (_mostDeaths.Deaths > 1000000 ? $"Reference value: {Math.Round(_mostDeaths.Deaths / 1000000.0, 2)}M ({_mostDeaths.Name})" :
+                                           $"Reference value: {Math.Round(_mostDeaths.Deaths / 1000.0, 2)}K ({_mostDeaths.Name})"),
                 AutoSize = true,
                 Font = font,
                 Anchor = AnchorStyles.None
@@ -281,8 +194,8 @@ namespace view
 
             _layoutPanel.Controls.Add(new Label
             {
-                Text = (mostRecovered > 1000000 ? $"Reference value: {Math.Round(mostRecovered / 1000000.0, 2)}M ({mostRecoveredCountry})" :
-                                                  $"Reference value: {Math.Round(mostRecovered / 1000.0, 2)}K ({mostRecoveredCountry})"),
+                Text = (_mostRecovered.Recovered > 1000000 ? $"Reference value: {Math.Round(_mostRecovered.Recovered / 1000000.0, 2)}M ({_mostRecovered.Name})" :
+                                                  $"Reference value: {Math.Round(_mostRecovered.Recovered / 1000.0, 2)}K ({_mostRecovered.Name})"),
                 AutoSize = true,
                 Font = font,
                 Anchor = AnchorStyles.None
@@ -290,6 +203,8 @@ namespace view
 
             _page.Padding = new Padding(30);
             _page.Controls.Add(_layoutPanel);
+
+            UpdateChart(_mostConfirmed);
         }
 
         /// <summary>
@@ -301,22 +216,107 @@ namespace view
             return _page;
         }
 
-        private ChartValues<DateTimePoint> GetRegionChartValues(long[] region, DateTime startDate)
+        /// <summary>
+        /// Changes the active tab and statistics to match selected country
+        /// </summary>
+        /// <returns>Generated tab page</returns>
+        public void OnClick(CountryInfoEx country)
+        {
+            UpdateChart(country);
+
+            TabControl parent = _page.Parent as TabControl;
+            parent.SelectedIndex = 2;
+        }
+
+
+        private ChartValues<DateTimePoint> GetRegionChartValues(long[] region, DateTime _startDate)
         {
             ChartValues<DateTimePoint> values = new ChartValues<DateTimePoint>();
 
             for (int i = 0; i < region.Length; ++i)
-                values.Add(new DateTimePoint(startDate.AddDays(i), region[i]));
+                values.Add(new DateTimePoint(_startDate.AddDays(i), region[i]));
 
             return values;
         }
 
-        private IReadOnlyList<CountryInfoEx> _countries;
+
+        private void UpdateChart(CountryInfoEx country)
+        {
+            long[] confirmed = new long[NumberOfDays];
+            long[] deaths = new long[NumberOfDays];
+            long[] recovered = new long[NumberOfDays];
+
+            foreach (DayInfo day in country.DaysInfo)
+            {
+                int index = (day.Date.ToDateTime() - _startDate).Days;
+                if (index < 0)
+                { // skip info from days that are before the chosen start date 
+                    continue;
+                }
+                confirmed[index] = day.Confirmed - day.Deaths - day.Recovered;
+                deaths[index] = day.Deaths;
+                recovered[index] = day.Recovered;
+            }
+
+            _deathsStackedArea.Values = GetRegionChartValues(deaths, _startDate);
+            _recoveredStackedArea.Values = GetRegionChartValues(recovered, _startDate);
+            _confirmedStackedArea.Values = GetRegionChartValues(confirmed, _startDate);
+
+            _gaugeInfectionRate.Value = Math.Log(country.Confirmed);
+            _gaugeDeathRate.Value = Math.Log(country.Deaths);
+            _gaugeRecoveryRate.Value = Math.Log(country.Recovered);
+
+            _gaugeInfectionRate.LabelFormatter = value =>
+            {
+                value = Math.Exp(value);
+                if (value > 1000000)
+                    return $"  {Math.Round(value / 1000000.0, 2)}M \n infected";
+                else
+                    if (value > 1000)
+                    return $"  {Math.Round(value / 1000.0, 2)}K \n infected";
+                else
+                    return $"    {value}\n infected";
+            };
+            _gaugeRecoveryRate.LabelFormatter = value =>
+            {
+                value = Math.Exp(value);
+                if (value > 1000000)
+                    return $"  {Math.Round(value / 1000000.0, 2)}M \nrecovred";
+                else
+                    if (value > 1000)
+                    return $"  {Math.Round(value / 1000.0, 2)}K \nrecovered";
+                else
+                    return $"     {value}\nrecovered";
+            };
+            _gaugeDeathRate.LabelFormatter = value =>
+            {
+                value = Math.Exp(value);
+                if (value > 1000000)
+                    return $"  {Math.Round(value / 1000000.0, 2)}M \n deaths";
+                else
+                    if (value > 1000)
+                    return $"  {Math.Round(value / 1000.0, 2)}K \n deaths";
+                else
+                    return $"     {value}\n deaths";
+            };
+
+            _labelTitle.Text = country.Name;
+        }
+
+       
+        private const int NumberOfDays = 120; // infection rate evolution is followed on last {NUMBER_OF_DAYS} days
+        private DateTime _startDate;
+
+        private TableLayoutPanel _layoutPanel = new TableLayoutPanel();
+        private TabPage _page = new TabPage("Country statistics");
+        private Label _labelTitle;
+     
         private LiveCharts.WinForms.CartesianChart _chartRegions = new LiveCharts.WinForms.CartesianChart();
         private LiveCharts.WinForms.SolidGauge _gaugeInfectionRate = new LiveCharts.WinForms.SolidGauge();
         private LiveCharts.WinForms.SolidGauge _gaugeDeathRate = new LiveCharts.WinForms.SolidGauge();
         private LiveCharts.WinForms.SolidGauge _gaugeRecoveryRate = new LiveCharts.WinForms.SolidGauge();
-        private TableLayoutPanel _layoutPanel = new TableLayoutPanel();
-        private TabPage _page = new TabPage("Country statistics");
+        private StackedAreaSeries _recoveredStackedArea;
+        private StackedAreaSeries _deathsStackedArea;
+        private StackedAreaSeries _confirmedStackedArea;
     }
 }

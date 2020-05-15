@@ -33,8 +33,9 @@ namespace view
             CountryInfoEx _mostConfirmed;
             CountryInfoEx _mostDeaths;
             CountryInfoEx _mostRecovered;
-           
-            _startDate = (new DateTime(2020, 1, 22)).AddDays(countries[0].DaysInfo.Count - NumberOfDays); // first day of provided info is 22.01.2020 
+
+            _startDate = countries[0].DaysInfo[0].Date.ToDateTime();
+            NumberOfDays = countries[0].DaysInfo.Count;
 
             _mostConfirmed = Utils.MaxElement(countries, (CountryInfoEx a, CountryInfoEx b) => a.Confirmed > b.Confirmed);
             _mostDeaths = Utils.MaxElement(countries, (CountryInfoEx a, CountryInfoEx b) => a.Deaths > b.Deaths);
@@ -304,8 +305,9 @@ namespace view
         }
 
        
-        private const int NumberOfDays = 120; // infection rate evolution is followed on last {NUMBER_OF_DAYS} days
+        private readonly int NumberOfDays; // infection rate evolution is followed on last {NUMBER_OF_DAYS} days
         private DateTime _startDate;
+        private DateTime _todayDate;
 
         private TableLayoutPanel _layoutPanel = new TableLayoutPanel();
         private TabPage _page = new TabPage("Country statistics");

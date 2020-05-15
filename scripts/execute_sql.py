@@ -1,4 +1,4 @@
-# run this like
+# run like this
 # py execute_sql script_filename.sql database_name.db
 
 import sqlite3
@@ -47,7 +47,6 @@ def main():
 
         except Exception as e:
             print(type(e))
-            # print(e.args)
             print(e)
 
         finally:

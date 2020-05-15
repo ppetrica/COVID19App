@@ -13,6 +13,7 @@ namespace test_view
     public class TestCountryView
     {
         // This test is used to look at page with statistics at global level.
+        [Ignore]
         [TestMethod]
         public void Test()
         {

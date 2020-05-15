@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using network;
-
+using test_core;
 
 namespace test_view
 {
@@ -13,17 +13,14 @@ namespace test_view
     public class TestGlobalView
     {
         // This test is used to look at page with statistics at global level.
-        [Ignore]
+        
         [TestMethod]
         public void Test()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            var netProvider = new CovidDataProvider();
-            var provider = new SQLiteDataProvider();
-
-            provider.InsertCountryData(netProvider.GetCountryData());
+ 
+            var provider = new MockDataProvider();
 
             IReadOnlyList<CountryInfoEx> data = provider.GetCountryData();
 

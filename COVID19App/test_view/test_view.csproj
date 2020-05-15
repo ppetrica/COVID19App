@@ -53,6 +53,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestCountryView.cs" />
     <Compile Include="TestGlobalView.cs" />
     <Compile Include="TestMapView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

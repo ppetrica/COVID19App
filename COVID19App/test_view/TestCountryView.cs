@@ -1,5 +1,5 @@
 ﻿using core;
-using database;
+
 using view;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using test_core;
 namespace test_view
 {
     [TestClass]
-    public class TestGlobalView
+    public class TestCountryView
     {
         // This test is used to look at page with statistics at global level.
         [Ignore]
@@ -19,7 +19,7 @@ namespace test_view
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
- 
+
             var provider = new MockDataProvider();
 
             IReadOnlyList<CountryInfoEx> data = provider.GetCountryData();
@@ -28,7 +28,7 @@ namespace test_view
             form.Width = 800;
             form.Height = 600;
 
-            IView view = new GlobalView(data);
+            IView view = new CountryView(data);
 
             TabControl tabControl = new TabControl();
             tabControl.Controls.Add(view.GetPage());

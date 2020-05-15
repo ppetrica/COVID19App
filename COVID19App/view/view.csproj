@@ -57,6 +57,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CountryView.cs" />
     <Compile Include="GlobalView.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="MapView.cs" />

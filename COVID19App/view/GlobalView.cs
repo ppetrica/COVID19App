@@ -26,16 +26,15 @@ namespace view
         public GlobalView(IReadOnlyList<CountryInfoEx> info)
         {
             _countries = info;
-
-            // calculate the sum of confirmed people per day on every region and other statistics
-            int numberOfDays = 90; // infection rate evolution is followed on last {numberOfDays} days
-            DateTime startDate = (new DateTime(2020, 1, 22)).AddDays(_countries[0].DaysInfo.Count - numberOfDays); // first day of provided info is 22.01.2020 
-            long[] confirmedEurope = new long[numberOfDays];
-            long[] confirmedAmerica = new long[numberOfDays];
-            long[] confirmedAfrica = new long[numberOfDays];
-            long[] confirmedAsia = new long[numberOfDays];
-            long[] confirmedOceania = new long[numberOfDays];
-            long[] confirmedOthers = new long[numberOfDays];
+    
+            DateTime startDate = _countries[0].DaysInfo[0].Date.ToDateTime();
+            NumberOfDays = _countries[0].DaysInfo.Count;
+            long[] confirmedEurope = new long[NumberOfDays];
+            long[] confirmedAmerica = new long[NumberOfDays];
+            long[] confirmedAfrica = new long[NumberOfDays];
+            long[] confirmedAsia = new long[NumberOfDays];
+            long[] confirmedOceania = new long[NumberOfDays];
+            long[] confirmedOthers = new long[NumberOfDays];
 
             long globalConfirmed = 0;
             long globalDeaths = 0;
@@ -208,8 +207,9 @@ namespace view
 
             // buid the page layout as a table layout
             _layoutPanel.Dock = DockStyle.Fill;
-            _layoutPanel.RowCount = 2;
+            _layoutPanel.RowCount = 3;
             _layoutPanel.ColumnCount = 3;
+            _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 60));
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 30));
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
@@ -217,19 +217,22 @@ namespace view
             _layoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
             _layoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
 
+
+            // row 0 is empty, it exits for alignment
+
             // row 1
-            _layoutPanel.Controls.Add(_chartRegions, 0, 0);
+            _layoutPanel.Controls.Add(_chartRegions, 0, 1);
             _layoutPanel.SetColumnSpan(_chartRegions, 3);
             _chartRegions.Dock = DockStyle.Fill;
 
             // row 2 
-            _layoutPanel.Controls.Add(_gaugeInfectionRate, 0, 1);
+            _layoutPanel.Controls.Add(_gaugeInfectionRate, 0, 2);
             _gaugeInfectionRate.Anchor = AnchorStyles.None;
             
-            _layoutPanel.Controls.Add(_gaugeDeathRate, 1, 1);
+            _layoutPanel.Controls.Add(_gaugeDeathRate, 1, 2);
             _gaugeDeathRate.Anchor = AnchorStyles.None;
 
-            _layoutPanel.Controls.Add(_gaugeRecoveryRate, 2, 1);
+            _layoutPanel.Controls.Add(_gaugeRecoveryRate, 2, 2);
             _gaugeRecoveryRate.Anchor = AnchorStyles.None;
 
             // row 3
@@ -240,7 +243,7 @@ namespace view
                 AutoSize = true,
                 Font = font,
                 Anchor = AnchorStyles.None
-            }, 0, 2);
+            }, 0, 3);
 
             _layoutPanel.Controls.Add(new Label
             {
@@ -248,7 +251,7 @@ namespace view
                 AutoSize = true,
                 Font = font,
                 Anchor = AnchorStyles.None
-            }, 1, 2);
+            }, 1, 3);
 
             _layoutPanel.Controls.Add(new Label
             {
@@ -256,7 +259,7 @@ namespace view
                 AutoSize = true,
                 Font = font,
                 Anchor = AnchorStyles.None
-            }, 2, 2);
+            }, 2, 3);
 
             _page.Padding = new Padding(30);
             _page.Controls.Add(_layoutPanel);
@@ -280,6 +283,9 @@ namespace view
             
             return values;
         }
+
+
+        readonly int NumberOfDays; // infection rate evolution is followed on last {numberOfDays} days
 
         private IReadOnlyList<CountryInfoEx> _countries;
         private LiveCharts.WinForms.CartesianChart _chartRegions = new LiveCharts.WinForms.CartesianChart();

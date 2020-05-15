@@ -10,7 +10,7 @@ namespace COVID19App
 {
     static class Program
     {
-        /// <summary>
+        /// <summary> 
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
@@ -26,10 +26,13 @@ namespace COVID19App
 
             var data = provider.GetCountryData();
 
-            IView mapView = new MapView(data);
+            MapView mapView = new MapView(data);
             IView globalView = new GlobalView(data);
+            CountryView countryView = new CountryView(data);
 
-            Application.Run(new MainForm(new List<IView> { mapView, globalView }));
+            mapView.Subscribe(countryView);
+
+            Application.Run(new MainForm(new List<IView> { mapView, globalView , countryView }));
         }
     }
 }

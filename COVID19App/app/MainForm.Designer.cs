@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.mainTabControl = new System.Windows.Forms.TabControl();
+            this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -39,13 +40,19 @@
             this.mainTabControl.Size = new System.Drawing.Size(1100, 681);
             this.mainTabControl.TabIndex = 0;
             // 
+            // helpProvider
+            // 
+            this.helpProvider.HelpNamespace = "help/Covid19App.chm";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1103, 681);
             this.Controls.Add(this.mainTabControl);
+            this.helpProvider.SetHelpKeyword(this, "F1");
             this.Name = "MainForm";
+            this.helpProvider.SetShowHelp(this, true);
             this.Text = "COVID-19 App";
             this.ResumeLayout(false);
 
@@ -54,6 +61,7 @@
         #endregion
 
         private System.Windows.Forms.TabControl mainTabControl;
+        private System.Windows.Forms.HelpProvider helpProvider;
     }
 }
 

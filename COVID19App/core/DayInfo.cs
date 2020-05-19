@@ -6,6 +6,13 @@
     /// </summary>
     public struct DayInfo
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="date">User defined date object</param>
+        /// <param name="confirmed">Number of confirmed cases</param>
+        /// <param name="deaths">Number of deaths</param>
+        /// <param name="recovered">Numver of recovered people</param>
         public DayInfo(Date date, int confirmed, int deaths, int recovered)
         {
             Date = date;

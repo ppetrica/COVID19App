@@ -240,7 +240,10 @@ namespace view
             return values;
         }
 
-
+        /// <summary>
+        /// This method will be called every time a new country is choosed from global view
+        /// </summary>
+        /// <param name="country"></param>
         private void UpdateChart(CountryInfoEx country)
         {
             long[] confirmed = new long[NumberOfDays];

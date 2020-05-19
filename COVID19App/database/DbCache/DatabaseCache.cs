@@ -8,6 +8,9 @@ using network;
 
 namespace database.DbCache
 {
+    /// <summary>
+    /// The DatabaseCache class will take a look if there are any new data to insert in the database
+    /// </summary>
     public class DatabaseCache : AbstractDatabaseCache
     {
         private Date _mostRecent;

@@ -4,8 +4,20 @@ using System.Collections.Generic;
 
 namespace core
 {
+    /// <summary>
+    /// This structure will hold information about the status of
+    /// COVID-19 in a particular period of time.
+    /// It extends CountryInfo
+    /// </summary>
     public struct CountryInfoEx
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="info">The CountryInfo structure that will be extended</param>
+        /// <param name="countryCode"></param>
+        /// <param name="continent"></param>
+        /// <param name="population"></param>
         public CountryInfoEx(CountryInfo info, string countryCode, string continent, long population)
         {
             _info = info;

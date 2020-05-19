@@ -9,7 +9,9 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Drawing;
 
-
+/// <summary>
+/// This module manages map, charts, gauges display on the screen.
+/// </summary>
 namespace view
 { 
     /// <summary>

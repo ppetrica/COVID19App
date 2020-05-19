@@ -5,8 +5,8 @@ using System.Collections.Generic;
 namespace test_core
 {
     /// <summary>
-    /// MockDataProvider is a class used only for tets. 
-    /// It provides some simple data to test the views: CountryView, GlobalView, MapView
+    /// This class is used only for test. 
+    /// It provides some simple data to test the views: MapView, CountryView, GlobalView.
     /// </summary>
     public class MockDataProvider : IDataProvider<CountryInfoEx>
     {

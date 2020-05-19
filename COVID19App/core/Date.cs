@@ -3,7 +3,7 @@
 namespace core
 {
     /// <summary>
-    /// User defined date class
+    /// User defined lightweight date class.
     /// </summary>
     public struct Date
     {

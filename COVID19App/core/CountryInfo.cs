@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-
+/// <summary>
+/// This is the core module. It defines structures, snippets and others basic functionality.
+/// </summary>
 namespace core
 {
     /// <summary>

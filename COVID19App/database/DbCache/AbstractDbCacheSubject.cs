@@ -8,10 +8,14 @@ using System.Threading.Tasks;
 using core;
 using database.DbProvider;
 
+/// <summary>
+/// This module manages relational database.
+/// </summary>
+
 namespace database
 {
     /// <summary>
-    /// The DatabaseCache class will take a look if there are any new data to insert in the database
+    /// The DatabaseCache class will take a look if there are any new data to insert in the database.
     /// </summary>
     public abstract class AbstractDatabaseCache
     {

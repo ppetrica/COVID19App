@@ -7,7 +7,7 @@ namespace core
     /// <summary>
     /// This structure will hold information about the status of
     /// COVID-19 in a particular period of time.
-    /// It extends CountryInfo
+    /// It extends CountryInfo.
     /// </summary>
     public struct CountryInfoEx
     {

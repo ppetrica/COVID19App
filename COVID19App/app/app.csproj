@@ -152,7 +152,7 @@
   <PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)resources\World.xml" "$(ProjectDir)$(OutDir)World.xml"
 mkdir "$(ProjectDir)$(OutDir)help"
-copy "$(SolutionDir)help\Covid19App.chm" "$(ProjectDir)$(OutDir)help"</PostBuildEvent>
+copy "$(SolutionDir)help\COVID19AppHelp.chm" "$(ProjectDir)$(OutDir)help"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.1\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.1\build\net40\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

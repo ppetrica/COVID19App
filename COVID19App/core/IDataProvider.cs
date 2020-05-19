@@ -4,7 +4,7 @@
 namespace core
 {
     /// <summary>
-    /// Interface implemented by any data provider in program
+    /// Interface implemented by any data provider in program.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IDataProvider<out T>

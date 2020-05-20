@@ -1,8 +1,16 @@
 ﻿using System.Collections.Generic;
 using core;
 
+
+/// <summary>
+/// This module is a middleware (proxy) beetween database and highlevel module view.
+/// </summary>
 namespace database.DbProvider
 {
+    /// <summary>
+    /// Database observer.
+    /// This class is used for observer design pattern.
+    /// </summary>
     public abstract class AbstractDbObserver
     {
         /// <summary>

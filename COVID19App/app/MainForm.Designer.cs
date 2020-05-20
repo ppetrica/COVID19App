@@ -35,22 +35,24 @@
             // mainTabControl
             // 
             this.mainTabControl.Location = new System.Drawing.Point(1, -2);
+            this.mainTabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1100, 681);
+            this.mainTabControl.Size = new System.Drawing.Size(1467, 838);
             this.mainTabControl.TabIndex = 0;
             // 
             // helpProvider
             // 
-            this.helpProvider.HelpNamespace = "help/Covid19App.chm";
+            this.helpProvider.HelpNamespace = "help/COVID19AppHelp.chm";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1103, 681);
+            this.ClientSize = new System.Drawing.Size(1471, 838);
             this.Controls.Add(this.mainTabControl);
             this.helpProvider.SetHelpKeyword(this, "F1");
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.helpProvider.SetShowHelp(this, true);
             this.Text = "COVID-19 App";

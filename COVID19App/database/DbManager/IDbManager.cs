@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace database
 {
+    /// <summary>
+    /// Interface with sql methods specific for our database.
+    /// </summary>
     public interface IDbManager
     {
         /// <summary>

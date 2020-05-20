@@ -2,8 +2,17 @@
 
 namespace core
 {
+    /// <summary>
+    /// User defined lightweight date class.
+    /// </summary>
     public struct Date
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
         public Date(int year, int month, int day)
         {
             Year = year;

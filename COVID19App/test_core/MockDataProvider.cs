@@ -4,8 +4,13 @@ using System.Collections.Generic;
 
 namespace test_core
 {
+    /// <summary>
+    /// This class is used only for test. 
+    /// It provides some simple data to test the views: MapView, CountryView, GlobalView.
+    /// </summary>
     public class MockDataProvider : IDataProvider<CountryInfoEx>
     {
+        /// <returns>Fake statistics about COVID-19 organized by country as a read only list of core.CountryInfo.</returns>
         public IReadOnlyList<CountryInfoEx> GetCountryData()
         {
             return new List<CountryInfoEx> {

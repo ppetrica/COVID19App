@@ -5,6 +5,9 @@ using view;
 
 namespace COVID19App
 {
+    /// <summary>
+    /// This is the main form class needed in any C# GUI. 
+    /// </summary>
     public partial class MainForm : Form
     {
         public MainForm(List<IView> views)

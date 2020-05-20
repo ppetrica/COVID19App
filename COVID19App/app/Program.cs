@@ -5,7 +5,9 @@ using view;
 using database;
 using database.DbCache;
 
-
+/// <summary>
+/// This module provides C# GUI.
+/// </summary>
 namespace COVID19App
 {
     static class Program

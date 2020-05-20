@@ -1,33 +1,28 @@
-﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using core;
-using database.DbProvider;
+using database;
 
 /// <summary>
 /// This module manages relational database.
 /// </summary>
 
-namespace database
+namespace cache
 {
     /// <summary>
     /// The DatabaseCache class will take a look if there are any new data to insert in the database.
     /// </summary>
     public abstract class AbstractDatabaseCache
     {
-        private List<AbstractDbObserver> _providers = new List<AbstractDbObserver>();
+        private List<IDatabase> _providers = new List<IDatabase>();
         protected List<CountryInfo> _countryInfoList = new List<CountryInfo>();
 
-        public void Attach(AbstractDbObserver provider)
+        public void Attach(IDatabase provider)
         {
             _providers.Add(provider);
         }
 
-        public void Detach(AbstractDbObserver provider)
+        public void Detach(IDatabase provider)
         {
             _providers.Remove(provider);
         }

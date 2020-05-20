@@ -19,7 +19,7 @@ namespace test_view
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            IDataProvider<CountryInfoEx> dataProvider = new MockDataProvider();
+            IDataProvider<CountryInfoEx> dataProvider = new MockDataProviderEx();
             IReadOnlyList<CountryInfoEx> mock = dataProvider.GetCountryData();
 
             var view = new MapView(mock);

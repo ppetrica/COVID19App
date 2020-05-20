@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using database;
 using core;
-
+using test_core;
 
 namespace test_database
 {
@@ -24,7 +24,7 @@ namespace test_database
 
             
             //Test insertion of CountryInfo list
-            var mockDataProvider = new MockDataProvider();
+            IDataProvider<CountryInfo> mockDataProvider = new MockDataProvider();
             var list = mockDataProvider.GetCountryData();
             provider.InsertCountryData(list);
 

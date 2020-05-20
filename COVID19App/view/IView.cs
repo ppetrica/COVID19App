@@ -3,6 +3,9 @@
 
 namespace view
 {
+    /// <summary>
+    /// Interface for uniform access to MapView, GlobalView, CountryView.
+    /// </summary>
     public interface IView
     {
         /// <summary>

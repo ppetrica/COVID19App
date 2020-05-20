@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-
+/// <summary>
+/// This is the core module. It defines structures, snippets and others basic functionality.
+/// </summary>
 namespace core
 {
     /// <summary>
@@ -10,6 +12,11 @@ namespace core
     /// </summary>
     public struct CountryInfo
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name">Name of the country</param>
+        /// <param name="daysInfo">List of information corresponding to country</param>
         public CountryInfo(string name, IReadOnlyList<DayInfo> daysInfo)
         {
             Name = name;

@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractDbCache.cs" />
+    <Compile Include="AbstractDatabaseCache.cs" />
     <Compile Include="DatabaseCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

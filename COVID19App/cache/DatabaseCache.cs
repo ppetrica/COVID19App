@@ -4,10 +4,18 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using core;
+using database;
 using network;
 
+
+/// <summary>
+/// This module manages cache system. If there are not new information online, we will use only local database, reducing internet traffic. 
+/// </summary>
 namespace cache
 {
+    /// <summary>
+    /// This class will take a look if there are any new data to insert in the database.
+    /// </summary>
     public class DatabaseCache : AbstractDatabaseCache
     {
         private Date _mostRecent;

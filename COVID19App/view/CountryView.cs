@@ -9,7 +9,9 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Drawing;
 
-
+/// <summary>
+/// This module manages map, charts, gauges display on the screen.
+/// </summary>
 namespace view
 { 
     /// <summary>
@@ -240,7 +242,10 @@ namespace view
             return values;
         }
 
-
+        /// <summary>
+        /// This method will be called every time a new country is choosed from global view
+        /// </summary>
+        /// <param name="country"></param>
         private void UpdateChart(CountryInfoEx country)
         {
             long[] confirmed = new long[NumberOfDays];

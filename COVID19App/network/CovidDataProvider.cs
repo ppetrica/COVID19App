@@ -3,7 +3,9 @@ using core;
 using System;
 using Newtonsoft.Json;
 
-
+/// <summary>
+/// This module manage network connections. This is necessary for update database with new infromation about COVID 19. 
+/// </summary>
 namespace network
 {
     /// <summary>

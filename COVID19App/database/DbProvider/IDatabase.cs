@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using core;
 
+/// <summary>
+/// This module is a middleware (proxy) beetween database and highlevel module view.
+/// </summary>
 namespace database
 {
     public interface IDatabase

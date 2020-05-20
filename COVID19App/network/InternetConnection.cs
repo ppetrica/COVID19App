@@ -1,5 +1,8 @@
 ﻿namespace network
 {
+    /// <summary>
+    /// This class check in there is Internet connection.
+    /// </summary>
     public class InternetConnection
     {
         /// <summary>

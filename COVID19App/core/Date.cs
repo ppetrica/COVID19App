@@ -2,18 +2,17 @@
 
 namespace core
 {
-
-    static class DaysPerMonth
-    {
-    }
-
+    /// <summary>
+    /// User defined lightweight date class.
+    /// </summary>
     public struct Date
     {
-        
-
         /// <summary>
-        /// Throw ArgumentException Error if the year, month, day are not valid
+        /// Constructor
         /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
         public Date(int year, int month, int day)
         {
             if (!Utils.IsValid(year, month, day))

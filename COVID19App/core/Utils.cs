@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace core
 {
+    /// <summary>
+    /// This classs provides public static functions needed in more modules (snippets).
+    /// </summary>
     public class Utils
     {
         /// <summary>

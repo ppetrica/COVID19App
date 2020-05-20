@@ -50,5 +50,27 @@ namespace test_core
             l.Add(-2);
             Assert.AreEqual(-2, Utils.MaxElement(l, (int a, int b) => a < b));
         }
+
+        [TestMethod]
+        public void TestDateValidate()
+        {
+            Assert.AreEqual(true, Utils.IsValid(2000, 2, 29));
+            Assert.AreEqual(true, Utils.IsValid(2004, 2, 29));
+            Assert.AreEqual(true, Utils.IsValid(2004, 5, 31));
+            Assert.AreEqual(true, Utils.IsValid(20016, 2, 29));
+            Assert.AreEqual(true, Utils.IsValid(2004, 5, 31));
+            Assert.AreEqual(true, Utils.IsValid(2004, 7, 31));
+            Assert.AreEqual(true, Utils.IsValid(2004, 8, 31));
+
+
+            Assert.AreEqual(false, Utils.IsValid(0, 1, 29));
+            Assert.AreEqual(false, Utils.IsValid(2100, 2, 29));
+            Assert.AreEqual(false, Utils.IsValid(2000, 0, 29));
+            Assert.AreEqual(false, Utils.IsValid(0, 1, 29));
+            Assert.AreEqual(false, Utils.IsValid(0, 1, 29));
+            Assert.AreEqual(false, Utils.IsValid(2004, 4, 31));
+            Assert.AreEqual(false, Utils.IsValid(2004, 6, 31));
+
+        }
     }
 }

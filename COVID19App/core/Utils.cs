@@ -8,6 +8,12 @@ namespace core
     public class Utils
     {
         /// <summary>
+        /// Array that contains the days per month for a non-leap year
+        /// </summary>
+        private static readonly int[] _daysPerMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+
+        /// <summary>
         /// Finds the maximum element in an enumerable / collection.
         /// </summary>
         /// <typeparam name="T">Type of element inside enumerable.</typeparam>
@@ -59,6 +65,43 @@ namespace core
             }
 
             return null;
+        }
+
+
+        /// </summary>
+        /// <param name="year">Year</param>
+        /// <param name="month">Month</param>
+        /// <param name="day">Day</param>
+        /// <returns>Return True if the date is valid and false otherwise.</returns>
+        public static bool IsValid(int year, int month, int day)
+        {
+            if (year <= 0)
+            {
+                return false;
+            }
+
+            if (month < 1 || month > 12)
+            {
+                return false;
+            }
+            var monthDays = (month == 2 && isLeapYear(year)) ? 29 : _daysPerMonth[month - 1];
+
+            if (day < 1 || day > monthDays)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        /// <summary>
+        /// Check if the year is leap
+        /// </summary>
+        /// <param name="year">Year to check</param>
+        /// <returns>Return True if the year is leap and false otherwise.</returns>
+        private static bool isLeapYear(int year)
+        {
+            return (year % 400 == 0 || year % 4 == 0 && year % 100 != 0);
         }
     }
 }

@@ -2,10 +2,22 @@
 
 namespace core
 {
+
+    static class DaysPerMonth
+    {
+    }
+
     public struct Date
     {
+        
+
+        /// <summary>
+        /// Throw ArgumentException Error if the year, month, day are not valid
+        /// </summary>
         public Date(int year, int month, int day)
         {
+            if (!Utils.IsValid(year, month, day))
+                throw new ArgumentException();
             Year = year;
             Month = month;
             Day = day;
@@ -15,6 +27,8 @@ namespace core
         /// Parses a date from a string of format yyyy-mm-dd,
         /// where y is used to denote the year, m for the month
         /// and d for day.
+        /// Throw FormatException if the input string to parse is not valid
+        /// Throw ArgumentException Error if the year, month, day are not valid
         /// </summary>
         /// <param name="format">String to parse.</param>
         /// <returns>The corresponding date structure.</returns>
@@ -29,8 +43,8 @@ namespace core
             var month = int.Parse(parts[1]);
             var day = int.Parse(parts[2]);
 
-            if (year < 0 || month < 1 || month > 12 || day < 1 || day > 31)
-                throw new FormatException();
+            if (!Utils.IsValid(year, month, day))
+                throw new ArgumentException();
 
             return new Date(year, month, day);
         }

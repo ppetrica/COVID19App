@@ -13,10 +13,7 @@ namespace test_cache
         [TestMethod]
         public void DatabaseCacheTest()
         {
-            var provider = new SQLiteDataProvider(@"..\..\..\test_database\resources\covid.db");
-            provider.ClearDayInfoData();
-            // ignored
-            provider.ClearDayInfoData();
+            var provider = new MockDatabaseProvider();
 
             var cacheSystem = new DatabaseCache();
             cacheSystem.Attach(provider);
@@ -28,25 +25,23 @@ namespace test_cache
             var countryInfoExList = provider.GetCountryData();
             foreach (var countryInfo in countryInfoExList)
             {
-                var tuple = (countryInfo.Confirmed, countryInfo.Deaths, countryInfo.Recovered, countryInfo.Continent,
-                    countryInfo.Population);
+                var tuple = (countryInfo.Confirmed, countryInfo.Deaths, countryInfo.Recovered);
                 switch (countryInfo.Name)
                 {
                     case "Italy":
-                        Assert.AreEqual(tuple, (2, 0, 1, "Europe", 50_000_000));
+                        Assert.AreEqual(tuple, (2, 0, 1));
                         break;
                     case "USA":
-                        Assert.AreEqual(tuple, (18, 4, 0, "America", 300_000_000));
+                        Assert.AreEqual(tuple, (18, 4, 0));
                         break;
                     case "Romania":
-                        Assert.AreEqual(tuple, (25, 3, 1, "Europe", 19_000_000));
+                        Assert.AreEqual(tuple, (25, 3, 1));
                         break;
                     case "China":
-                        Assert.AreEqual(tuple, (80, 10, 5, "Asia", 1_000_000_000));
+                        Assert.AreEqual(tuple, (80, 10, 5));
                         break;
                 }
             }
-
         }
 
         [TestMethod]
@@ -58,9 +53,6 @@ namespace test_cache
             var cacheSystem = new DatabaseCache();
             cacheSystem.Attach(provider);
             cacheSystem.CheckUpdate();    //check if the data is fresh (yesterday is present in the db) and update the db if not
-
-            cacheSystem.CheckUpdate();    //check if the data is fresh (yesterday is present in the db) and update the db if not
-
         }
     }
 }

@@ -70,7 +70,6 @@ namespace test_core
             Assert.AreEqual(false, Utils.IsValid(0, 1, 29));
             Assert.AreEqual(false, Utils.IsValid(2004, 4, 31));
             Assert.AreEqual(false, Utils.IsValid(2004, 6, 31));
-
         }
     }
 }

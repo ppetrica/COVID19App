@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using core;
-using database.DbProvider;
 
 
 namespace database
@@ -12,7 +11,7 @@ namespace database
     /// It also implements insertion and deletion of dayInfo from the database.
     /// If tables dayinfo, country and region not in the database System.Data.SQLite.SQLiteException is thrown.
     /// </summary>
-    public class SQLiteDataProvider : AbstractDbObserver, IDataProvider<CountryInfoEx>
+    public class SQLiteDataProvider : IDatabase, IDataProvider<CountryInfoEx>
     {
         private const string DatabaseDefaultPath = @"..\..\..\resources\sql\covid.db";
         private readonly IDbManager _dbManager;
@@ -63,7 +62,7 @@ namespace database
         /// Insert the list of countryInfo to the database, transferring raw data to IDbManager
         /// </summary>
         /// <param name="countryInfoList">List of Country Info to be inserted in the database</param>
-        public override void InsertCountryData(IReadOnlyList<CountryInfo> countryInfoList)
+        public void InsertCountryData(IReadOnlyList<CountryInfo> countryInfoList)
         {
             var counter = 0;
             
@@ -108,7 +107,7 @@ namespace database
         }
 
         /// <returns>The most recent Date of the data from the database</returns>
-        public override Date GetTheMostRecentDateOfData()
+        public Date GetTheMostRecentDateOfData()
         {
             return Date.Parse(_dbManager.GetTheMostRecentDate());
         }

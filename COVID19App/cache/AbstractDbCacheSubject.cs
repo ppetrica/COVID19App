@@ -1,14 +1,9 @@
-﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using core;
 using database.DbProvider;
 
-namespace database
+namespace cache
 {
     /// <summary>
     /// The DatabaseCache class will take a look if there are any new data to insert in the database

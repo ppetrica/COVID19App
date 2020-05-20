@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using view;
+using cache;
 using database;
-using database.DbCache;
-
 
 namespace COVID19App
 {

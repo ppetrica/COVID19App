@@ -1,10 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using cache;
+using core;
 using database;
-using database.DbCache;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using test_core;
 
-namespace test_database
+namespace test_cache
 {
     [TestClass]
     public class TestDatabaseCache
@@ -12,7 +13,7 @@ namespace test_database
         [TestMethod]
         public void DatabaseCacheTest()
         {
-            var provider = new SQLiteDataProvider(@"..\..\resources\covid.db");
+            var provider = new SQLiteDataProvider(@"..\..\..\test_database\resources\covid.db");
             provider.ClearDayInfoData();
             // ignored
             provider.ClearDayInfoData();
@@ -20,7 +21,7 @@ namespace test_database
             var cacheSystem = new DatabaseCache();
             cacheSystem.Attach(provider);
 
-            var mockDataProvider = new MockDataProvider();
+            IDataProvider<CountryInfo> mockDataProvider = new MockDataProvider();
             cacheSystem.CountryInfoList = mockDataProvider.GetCountryData().ToList();
 
             //Extract list of countryInfoEx
@@ -46,30 +47,6 @@ namespace test_database
                 }
             }
 
-            //the most recent day will be 30-11-1983, only the dayinfo with date > this date will change
-            cacheSystem.CountryInfoList = mockDataProvider.GetCountryData2().ToList();
-            //Extract list of countryInfoEx AGAIN
-            countryInfoExList = provider.GetCountryData();
-            foreach (var countryInfo in countryInfoExList)
-            {
-                var tuple = (countryInfo.Confirmed, countryInfo.Deaths, countryInfo.Recovered, countryInfo.Continent,
-                    countryInfo.Population);
-                switch (countryInfo.Name)
-                {
-                    case "Italy":   //will change
-                        Assert.AreEqual(tuple, (150, 0, 1, "Europe", 50_000_000));
-                        break;
-                    case "USA": //will not change
-                        Assert.AreEqual(tuple, (18, 4, 0, "America", 300_000_000));
-                        break;
-                    case "Romania": //will not change
-                        Assert.AreEqual(tuple, (25, 3, 1, "Europe", 19_000_000));
-                        break;
-                    case "China":  //will change
-                        Assert.AreEqual(tuple, (100, 10, 5, "Asia", 1_000_000_000));
-                        break;
-                }
-            }
         }
 
         [TestMethod]
@@ -77,14 +54,13 @@ namespace test_database
         {
             DatabaseCacheTest();
 
-            var provider = new SQLiteDataProvider(@"..\..\resources\covid.db");
+            var provider = new SQLiteDataProvider(@"..\..\..\test_database\resources\covid.db");
             var cacheSystem = new DatabaseCache();
             cacheSystem.Attach(provider);
             cacheSystem.CheckUpdate();    //check if the data is fresh (yesterday is present in the db) and update the db if not
-            
+
             cacheSystem.CheckUpdate();    //check if the data is fresh (yesterday is present in the db) and update the db if not
 
-            
         }
     }
 }

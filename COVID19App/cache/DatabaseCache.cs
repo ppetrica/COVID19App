@@ -6,7 +6,7 @@ using System.Net;
 using core;
 using network;
 
-namespace database.DbCache
+namespace cache
 {
     public class DatabaseCache : AbstractDatabaseCache
     {

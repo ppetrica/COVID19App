@@ -20,7 +20,7 @@ namespace test_view
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var provider = new MockDataProvider();
+            IDataProvider<CountryInfoEx> provider = new MockDataProviderEx();
 
             IReadOnlyList<CountryInfoEx> data = provider.GetCountryData();
 

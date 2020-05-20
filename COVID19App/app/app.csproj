@@ -115,6 +115,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\cache\cache.csproj">
+      <Project>{f43b67d6-e16e-491b-8b4a-3ebcfe4f15c1}</Project>
+      <Name>cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\core\core.csproj">
       <Project>{9eb85b89-d1c5-4582-af95-8e5cca05db19}</Project>
       <Name>core</Name>

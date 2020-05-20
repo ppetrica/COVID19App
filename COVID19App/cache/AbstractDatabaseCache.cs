@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using core;
+using database;
 
 /// <summary>
 /// This module manages relational database.
 /// </summary>
 
-namespace database
+namespace cache
 {
     /// <summary>
     /// The DatabaseCache class will take a look if there are any new data to insert in the database.

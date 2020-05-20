@@ -14,7 +14,7 @@ namespace test_cache
         {
             if (rawDaysInfoList.Count == 0)
             {
-                throw new ObjectNotFoundException("Object not found");
+                throw new ObjectNotFoundException();
             }
 
             var date = new Date(1, 1, 1);

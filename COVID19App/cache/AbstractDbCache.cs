@@ -8,7 +8,7 @@ namespace cache
     /// <summary>
     /// The DatabaseCache class will take a look if there are any new data to insert in the database
     /// </summary>
-    public abstract class AbstractDatabaseCache
+    public abstract class AbstractDbCache
     {
         private List<IDatabase> _providers = new List<IDatabase>();
         protected List<CountryInfo> _countryInfoList = new List<CountryInfo>();

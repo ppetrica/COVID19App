@@ -8,7 +8,7 @@ using network;
 
 namespace cache
 {
-    public class DatabaseCache : AbstractDatabaseCache
+    public class DatabaseCache : AbstractDbCache
     {
         private Date _mostRecent;
 

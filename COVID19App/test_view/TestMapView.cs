@@ -1,4 +1,20 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        TestMapView.cs                                           *
+ *  Copyright:   (c) 2020, Petrica Petru                                  *
+ *  E-mail:      petru.petrica@student.tuiasi.ro                          *
+ *  Description: This class can be used to test the map view.             * 
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using core;

@@ -1,4 +1,20 @@
-﻿using System;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        TestSQLiteDataProvider.cs                                *
+ *  Copyright:   (c) 2020, Enachi Vasile                                  *
+ *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
+ *  Description: This class is used to test the sqlite provider module    *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using database;
 using core;

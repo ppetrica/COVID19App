@@ -3,7 +3,7 @@
  *  File:        AbstractDatabaseCache.cs                                 *
  *  Copyright:   (c) 2020, Enachi Vasile                                  *
  *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
- *  Description: An abstract representation of a database cache.          *
+ *  Description: An abstract representation of a Database Cache.          *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
  *  it under the terms of the GNU General Public License as published by  *
@@ -16,17 +16,16 @@
 
 using System.Collections.Generic;
 using System.Data;
-using core;
-using database;
+using Core;
+using Database;
 
 /// <summary>
-/// This module manages relational database.
+/// This module manages relational Database.
 /// </summary>
-
-namespace cache
+namespace Cache
 {
     /// <summary>
-    /// The DatabaseCache class will take a look if there are any new data to insert in the database.
+    /// The DatabaseCache class will take a look if there are any new data to insert in the Database.
     /// </summary>
     public abstract class AbstractDatabaseCache
     {

@@ -3,8 +3,8 @@
  *  File:        DatabaseCache.cs                                         *
  *  Copyright:   (c) 2020, Enachi Vasile                                  *
  *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
- *  Description: The cache manager responsable for keeping the data in    *
- *  the database up to date.                                              *
+ *  Description: The Cache manager responsable for keeping the data in    *
+ *  the Database up to date.                                              *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
  *  it under the terms of the GNU General Public License as published by  *
@@ -21,17 +21,17 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net;
-using core;
-using network;
+using Core;
+using Network;
 
 
 /// <summary>
-/// This module manages cache system. If there are not new information online, we will use only local database, reducing internet traffic. 
+/// This module manages Cache system. If there are not new information online, we will use only local Database, reducing internet traffic. 
 /// </summary>
-namespace cache
+namespace Cache
 {
     /// <summary>
-    /// This class will take a look if there are any new data to insert in the database.
+    /// This class will take a look if there are any new data to insert in the Database.
     /// </summary>
     public class DatabaseCache : AbstractDatabaseCache
     {
@@ -63,7 +63,7 @@ namespace cache
         }
 
         /// <summary>
-        /// Check if the most recent data in the database is added recently in the current day
+        /// Check if the most recent data in the Database is added recently in the current day
         /// </summary>
         public void CheckUpdate()
         {
@@ -78,7 +78,7 @@ namespace cache
                     UpdateData();
                 }
             }
-            //if no data in the database
+            //if no data in the Database
             catch (ObjectNotFoundException)
             {
                 UpdateData();
@@ -86,8 +86,8 @@ namespace cache
         }
 
         /// <summary>
-        /// Get Data from the Internet and updating the database.
-        /// If Internet Connection problem, nothing is inserted in the database.
+        /// Get Data from the Internet and updating the Database.
+        /// If Internet Connection problem, nothing is inserted in the Database.
         /// </summary>
         private void UpdateData()
         {

@@ -14,11 +14,11 @@
  *                                                                        *
  **************************************************************************/
 
-using core;
+using Core;
 using System.Collections.Generic;
 
 
-namespace test_core
+namespace TestCore
 {
     public class MockDataProviderEx : IDataProvider<CountryInfoEx>
     {

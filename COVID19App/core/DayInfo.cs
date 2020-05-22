@@ -15,7 +15,7 @@
  *                                                                        *
  **************************************************************************/
 
-namespace core
+namespace Core
 {
     /// <summary>
     /// This structure will be used to hold information about the status

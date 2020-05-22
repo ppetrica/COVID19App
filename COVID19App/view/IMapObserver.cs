@@ -15,10 +15,10 @@
  *                                                                        *
  **************************************************************************/
 
-using core;
+using Core;
 
 
-namespace view
+namespace View
 {
     /// <summary>
     /// Interface implemented by those who want to receive

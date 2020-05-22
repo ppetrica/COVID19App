@@ -15,7 +15,7 @@
  *                                                                        *
  **************************************************************************/
 
-namespace network
+namespace Network
 {
     /// <summary>
     /// This class check in there is Internet connection.

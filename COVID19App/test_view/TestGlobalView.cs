@@ -3,7 +3,7 @@
  *  File:        TestGlobalView.cs                                        *
  *  Copyright:   (c) 2020, Moisii Marin                                   *
  *  E-mail:      marin.moisii@student.tuiasi.ro                           *
- *  Description: This class can be used to test the global view           *
+ *  Description: This class can be used to test the global View           *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
  *  it under the terms of the GNU General Public License as published by  *
@@ -14,15 +14,15 @@
  *                                                                        *
  **************************************************************************/
 
-using core;
-using view;
+using Core;
+using View;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using test_core;
+using TestCore;
 
 
-namespace test_view
+namespace TestVuew
 {
     [TestClass]
     public class TestGlobalView

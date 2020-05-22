@@ -115,29 +115,29 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\cache\cache.csproj">
+    <ProjectReference Include="..\cache\Cache.csproj">
       <Project>{f43b67d6-e16e-491b-8b4a-3ebcfe4f15c1}</Project>
-      <Name>cache</Name>
+      <Name>Cache</Name>
     </ProjectReference>
-    <ProjectReference Include="..\core\core.csproj">
+    <ProjectReference Include="..\core\Core.csproj">
       <Project>{9eb85b89-d1c5-4582-af95-8e5cca05db19}</Project>
-      <Name>core</Name>
+      <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\database\database.csproj">
+    <ProjectReference Include="..\database\Database.csproj">
       <Project>{eb16e1b6-ebb3-46c2-a6d0-a246995912a7}</Project>
-      <Name>database</Name>
+      <Name>Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\network\network.csproj">
+    <ProjectReference Include="..\network\Network.csproj">
       <Project>{1c8a65a1-88c2-4a79-aa9e-9fa2d3174bff}</Project>
-      <Name>network</Name>
+      <Name>Network</Name>
     </ProjectReference>
-    <ProjectReference Include="..\test_core\test_core.csproj">
+    <ProjectReference Include="..\test_core\TestCore.csproj">
       <Project>{3ebc667e-d0ab-4469-8247-20c0dc9a32e0}</Project>
-      <Name>test_core</Name>
+      <Name>TestCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\view\view.csproj">
+    <ProjectReference Include="..\view\View.csproj">
       <Project>{4c1ed592-adfd-4457-90ab-cebcc0f9f5ed}</Project>
-      <Name>view</Name>
+      <Name>View</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

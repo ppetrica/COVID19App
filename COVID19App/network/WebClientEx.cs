@@ -19,7 +19,7 @@ using System;
 using System.Net;
 
 
-namespace network
+namespace Network
 {
     [System.ComponentModel.DesignerCategory("")]
     /// <summary>

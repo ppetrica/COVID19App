@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace core
+namespace Core
 {
     /// <summary>
     /// This classs provides public static functions needed in more modules (snippets).

@@ -3,7 +3,7 @@
  *  File:        MapView.cs                                               *
  *  Copyright:   (c) 2020, Petrica Petru                                  *
  *  E-mail:      petru.petrica@student.tuiasi.ro                          *
- *  Description: This represents the map view from the application        * 
+ *  Description: This represents the map View from the application        * 
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
  *  it under the terms of the GNU General Public License as published by  *
@@ -14,7 +14,7 @@
  *                                                                        *
  **************************************************************************/
 
-using core;
+using Core;
 using LiveCharts.Maps;
 using LiveCharts.WinForms;
 using System;
@@ -23,7 +23,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 
 
-namespace view
+namespace View
 {
     /// <summary>
     /// Class responsible for creating the map from

@@ -19,9 +19,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// This is the core module. It defines structures, snippets and others basic functionality.
+/// This is the Core module. It defines structures, snippets and others basic functionality.
 /// </summary>
-namespace core
+namespace Core
 {
     /// <summary>
     /// This structure will hold information about the status of

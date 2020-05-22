@@ -16,7 +16,7 @@
 
 using System;
 
-namespace core
+namespace Core
 {
     /// <summary>
     /// User defined lightweight date class.

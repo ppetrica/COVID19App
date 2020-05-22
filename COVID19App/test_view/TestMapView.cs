@@ -3,7 +3,7 @@
  *  File:        TestMapView.cs                                           *
  *  Copyright:   (c) 2020, Petrica Petru                                  *
  *  E-mail:      petru.petrica@student.tuiasi.ro                          *
- *  Description: This class can be used to test the map view.             * 
+ *  Description: This class can be used to test the map View.             * 
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
  *  it under the terms of the GNU General Public License as published by  *
@@ -17,12 +17,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using core;
-using view;
-using test_core;
+using Core;
+using View;
+using TestCore;
 
 
-namespace test_view
+namespace TestVuew
 {
     [TestClass]
     public class TestMapView

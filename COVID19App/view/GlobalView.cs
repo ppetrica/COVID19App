@@ -3,7 +3,7 @@
  *  File:        GlobalView.cs                                            *
  *  Copyright:   (c) 2020, Moisii Marin                                   *
  *  E-mail:      marin.moisii@student.tuiasi.ro                           *
- *  Description: This class represents the global data view from the      *
+ *  Description: This class represents the global data View from the      *
  *  application                                                           *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
@@ -15,7 +15,7 @@
  *                                                                        *
  **************************************************************************/
 
-using core;
+using Core;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
@@ -27,10 +27,10 @@ using System.Windows.Media;
 using System.Drawing;
 
 
-namespace view
+namespace View
 {
     /// <summary>
-    /// Class responsible for creating a view with 
+    /// Class responsible for creating a View with 
     /// statistics about COVID-19 effects on global level, 
     /// using the country info list.
     /// </summary>

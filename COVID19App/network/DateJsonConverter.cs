@@ -15,15 +15,15 @@
  *                                                                        *
  **************************************************************************/
 
-using core;
+using Core;
 using Newtonsoft.Json;
 using System;
 
 
-namespace network
+namespace Network
 {
     /// <summary>
-    /// This class is used to deserialize date value from json to core.Date structure.
+    /// This class is used to deserialize date value from json to Core.Date structure.
     /// </summary>
     class DateJsonConverter : JsonConverter<Date>
     {

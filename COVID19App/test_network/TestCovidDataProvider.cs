@@ -15,13 +15,13 @@
  *                                                                        *
  **************************************************************************/
 
-using network;
-using core;
+using Network;
+using Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 
-namespace test_network
+namespace TestNetwork
 {
     [TestClass]
     public class TestCovidDataProvider

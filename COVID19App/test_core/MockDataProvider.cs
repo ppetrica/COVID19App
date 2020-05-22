@@ -16,9 +16,9 @@
  **************************************************************************/
 
 using System.Collections.Generic;
-using core;
+using Core;
 
-namespace test_core
+namespace TestCore
 {
     public class MockDataProvider : IDataProvider<CountryInfo>
     {

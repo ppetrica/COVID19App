@@ -3,7 +3,7 @@
  *  File:        TestSQLiteDbManager.cs                                   *
  *  Copyright:   (c) 2020, Enachi Vasile                                  *
  *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
- *  Description: This class is used to test the sqlite database manager.  *
+ *  Description: This class is used to test the sqlite Database manager.  *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
  *  it under the terms of the GNU General Public License as published by  *
@@ -17,11 +17,11 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using database;
-using core;
+using Database;
+using Core;
 
 
-namespace test_database
+namespace TestDatabase
 {
     [TestClass]
     public class TestSQLiteDbManager

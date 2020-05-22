@@ -18,9 +18,9 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using view;
-using cache;
-using database;
+using View;
+using Cache;
+using Database;
 
 /// <summary>
 /// This module provides C# GUI.

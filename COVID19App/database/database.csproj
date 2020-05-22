@@ -52,9 +52,9 @@
     <Compile Include="DbManager\SQLiteDbManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\core\core.csproj">
+    <ProjectReference Include="..\core\Core.csproj">
       <Project>{9eb85b89-d1c5-4582-af95-8e5cca05db19}</Project>
-      <Name>core</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

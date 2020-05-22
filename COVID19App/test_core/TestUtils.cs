@@ -16,11 +16,11 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using core;
+using Core;
 using System;
 
 
-namespace test_core
+namespace TestCore
 {
     [TestClass]
     public class TestUtils

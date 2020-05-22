@@ -16,11 +16,11 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using database;
-using core;
-using test_core;
+using Database;
+using Core;
+using TestCore;
 
-namespace test_database
+namespace TestDatabase
 {
     [TestClass]
     public class TestSQLiteDataProvider

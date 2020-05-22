@@ -14,16 +14,15 @@
  *                                                                        *
  **************************************************************************/
 
-using core;
-using view;
+using Core;
+using View;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using network;
-using test_core;
+using TestCore;
 
 
-namespace test_view
+namespace TestVuew
 {
     [TestClass]
     public class TestCountryView

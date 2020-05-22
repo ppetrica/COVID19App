@@ -3,7 +3,7 @@
  *  File:        MockDatabaseProvider.cs                                  *
  *  Copyright:   (c) 2020, Enachi Vasile                                  *
  *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
- *  Description: This class is used to mock a database for the cache      *
+ *  Description: This class is used to mock a Database for the Cache      *
  *  module                                                                *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
@@ -15,8 +15,8 @@
  *                                                                        *
  **************************************************************************/
 
-using core;
-using database;
+using Core;
+using Database;
 using System.Collections.Generic;
 using System.Data;
 

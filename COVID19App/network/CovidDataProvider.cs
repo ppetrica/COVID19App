@@ -4,7 +4,7 @@
  *  Copyright:   (c) 2020, Moisii Marin                                   *
  *  E-mail:      marin.moisii@student.tuiasi.ro                           *
  *  Description: This class is responsible for providing the application  *
- *  with data from the network API.                                       *
+ *  with data from the Network API.                                       *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
  *  it under the terms of the GNU General Public License as published by  *
@@ -16,14 +16,14 @@
  **************************************************************************/
 
 using System.Collections.Generic;
-using core;
+using Core;
 using System;
 using Newtonsoft.Json;
 
 /// <summary>
-/// This module manage network connections. This is necessary for update database with new infromation about COVID 19. 
+/// This module manage Network connections. This is necessary for update database with new infromation about COVID 19. 
 /// </summary>
-namespace network
+namespace Network
 {
     /// <summary>
     /// This class is used to get information of each country about
@@ -42,7 +42,7 @@ namespace network
             _webClient = new WebClientEx(timeout);
         }
 
-        /// <returns>Statistics about COVID-19 organized by country as a read only list of core.CountryInfo.</returns>
+        /// <returns>Statistics about COVID-19 organized by country as a read only list of Core.CountryInfo.</returns>
         /// <exception cref="System.Net.WebException">Thrown when api request time out or fails.</exception>
         public IReadOnlyList<CountryInfo> GetCountryData()
         {

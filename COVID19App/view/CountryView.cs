@@ -3,7 +3,7 @@
  *  File:        CountryView.cs                                           *
  *  Copyright:   (c) 2020, Pascal Dragos                                  *
  *  E-mail:      dragos.pascal@student.tuiasi.ro                          *
- *  Description: This class represents the country specific view          *
+ *  Description: This class represents the country specific View          *
  *  of the application.                                                   *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
@@ -15,7 +15,7 @@
  *                                                                        *
  **************************************************************************/
 
-using core;
+using Core;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
@@ -29,10 +29,10 @@ using System.Drawing;
 /// <summary>
 /// This module manages map, charts, gauges display on the screen.
 /// </summary>
-namespace view
+namespace View
 { 
     /// <summary>
-    /// Class responsible for creating a view with 
+    /// Class responsible for creating a View with 
     /// statistics about COVID-19 effects on country level, 
     /// using the country info list.
     /// </summary>
@@ -260,7 +260,7 @@ namespace view
         }
 
         /// <summary>
-        /// This method will be called every time a new country is choosed from global view
+        /// This method will be called every time a new country is choosed from global View
         /// </summary>
         /// <param name="country"></param>
         private void UpdateChart(CountryInfoEx country)

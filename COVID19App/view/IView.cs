@@ -3,7 +3,7 @@
  *  File:        IView.cs                                                 *
  *  Copyright:   (c) 2020, Petrica Petru                                  *
  *  E-mail:      petru.petrica@student.tuiasi.ro                          *
- *  Description: This interface is implemented by each view               * 
+ *  Description: This interface is implemented by each View               * 
  *  in the application                                                    *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
@@ -18,7 +18,7 @@
 using System.Windows.Forms;
 
 
-namespace view
+namespace View
 {
     /// <summary>
     /// Interface for uniform access to MapView, GlobalView, CountryView.
@@ -26,7 +26,7 @@ namespace view
     public interface IView
     {
         /// <summary>
-        /// This method will return the control specific to a view, for now
+        /// This method will return the control specific to a View, for now
         /// it should return a TabPage control to be added to our central
         /// TabControl
         /// </summary>

@@ -15,11 +15,11 @@
  **************************************************************************/
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using core;
+using Core;
 using System;
 
 
-namespace test_core
+namespace TestCore
 {
     [TestClass]
     public class TestDate

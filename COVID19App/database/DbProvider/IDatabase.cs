@@ -3,7 +3,7 @@
  *  File:        IDatabase.cs                                             *
  *  Copyright:   (c) 2020, Enachi Vasile                                  *
  *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
- *  Description: An abstract representation of a database subscribed to   *
+ *  Description: An abstract representation of a Database subscribed to   *
  *  a cache for new data.                                                 *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
@@ -16,22 +16,22 @@
  **************************************************************************/
 
 using System.Collections.Generic;
-using core;
+using Core;
 
 /// <summary>
-/// This module is a middleware (proxy) beetween database and highlevel module view.
+/// This module is a middleware (proxy) beetween Database and highlevel module view.
 /// </summary>
-namespace database
+namespace Database
 {
     public interface IDatabase
     {
         /// <summary>
-        /// Insert the list of countryInfo to the database, transferring raw data to IDbManager
+        /// Insert the list of countryInfo to the Database, transferring raw data to IDbManager
         /// </summary>
-        /// <param name="countryInfoList">List of Country Info to be inserted in the database</param>
+        /// <param name="countryInfoList">List of Country Info to be inserted in the Database</param>
         void InsertCountryData(IReadOnlyList<CountryInfo> countryInfoList);
 
-        /// <returns>The most recent Date of the data from the database</returns>
+        /// <returns>The most recent Date of the data from the Database</returns>
         Date GetTheMostRecentDateOfData();
     }
 }

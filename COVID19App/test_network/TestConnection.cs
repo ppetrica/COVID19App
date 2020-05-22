@@ -16,10 +16,10 @@
  **************************************************************************/
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using network;
+using Network;
 
 
-namespace test_network
+namespace TestNetwork
 {
     [TestClass]
     public class TestConnection

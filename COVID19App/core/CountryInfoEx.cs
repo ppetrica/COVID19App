@@ -18,7 +18,7 @@
 using System.Collections.Generic;
 
 
-namespace core
+namespace Core
 {
     /// <summary>
     /// This structure will hold information about the status of

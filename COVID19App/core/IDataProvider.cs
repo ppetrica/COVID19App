@@ -18,7 +18,7 @@
 using System.Collections.Generic;
 
 
-namespace core
+namespace Core
 {
     /// <summary>
     /// Interface implemented by any data provider in program.
@@ -29,7 +29,7 @@ namespace core
         /// <summary>
         /// 
         /// </summary>
-        /// <returns>Statistics about COVID-19 organized by country as a read only list of core.CountryInfo.</returns>
+        /// <returns>Statistics about COVID-19 organized by country as a read only list of Core.CountryInfo.</returns>
         IReadOnlyList<T> GetCountryData();
     }
 }

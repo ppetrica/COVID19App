@@ -3,7 +3,7 @@
  *  File:        SQLiteDataProvider.cs                                    *
  *  Copyright:   (c) 2020, Enachi Vasile                                  *
  *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
- *  Description: The data provider managing data from the database.       *
+ *  Description: The data provider managing data from the Database.       *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
  *  it under the terms of the GNU General Public License as published by  *
@@ -17,22 +17,22 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using core;
+using Core;
 
 
-namespace database
+namespace Database
 {
     /// <summary>
-    /// This class implements DataProvider interface for getting the list of countryInfoEx from the database.
-    /// It also implements insertion and deletion of dayInfo from the database.
-    /// If tables dayinfo, country and region not in the database System.Data.SQLite.SQLiteException is thrown.
+    /// This class implements DataProvider interface for getting the list of countryInfoEx from the Database.
+    /// It also implements insertion and deletion of dayInfo from the Database.
+    /// If tables dayinfo, country and region not in the Database System.Data.SQLite.SQLiteException is thrown.
     /// </summary>
     public class SQLiteDataProvider : IDatabase, IDataProvider<CountryInfoEx>
     {
         private const string DatabaseDefaultPath = @"..\..\..\resources\sql\covid.db";
         private readonly IDbManager _dbManager;
 
-        /// <param name="databasePath">Path to the local database</param>
+        /// <param name="databasePath">Path to the local Database</param>
         public SQLiteDataProvider(string databasePath = DatabaseDefaultPath)
         {
             _dbManager = new SQLiteDbManager();
@@ -40,7 +40,7 @@ namespace database
         }
 
         /// <summary>
-        /// Countries Id are extracted from the database and using them,
+        /// Countries Id are extracted from the Database and using them,
         /// a list of CountryInfoEx is constructed.
         /// </summary>
         /// <returns>A list of CountryInfoEx</returns>
@@ -75,9 +75,9 @@ namespace database
         }
 
         /// <summary>
-        /// Insert the list of countryInfo to the database, transferring raw data to IDbManager
+        /// Insert the list of countryInfo to the Database, transferring raw data to IDbManager
         /// </summary>
-        /// <param name="countryInfoList">List of Country Info to be inserted in the database</param>
+        /// <param name="countryInfoList">List of Country Info to be inserted in the Database</param>
         public void InsertCountryData(IReadOnlyList<CountryInfo> countryInfoList)
         {
             var counter = 0;
@@ -115,14 +115,14 @@ namespace database
         }
 
         /// <summary>
-        /// Clear dayinfo table from the database
+        /// Clear dayinfo table from the Database
         /// </summary>
         public void ClearDayInfoData()
         {
             _dbManager.ClearTable("dayinfo");
         }
 
-        /// <returns>The most recent Date of the data from the database</returns>
+        /// <returns>The most recent Date of the data from the Database</returns>
         public Date GetTheMostRecentDateOfData()
         {
             return Date.Parse(_dbManager.GetTheMostRecentDate());

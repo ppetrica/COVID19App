@@ -63,11 +63,11 @@ namespace View
 
             InitializeBottomLayout();
 
-            _tableLayoutPanel.Controls.Add(_map, 0, 0);
+            _tableLayoutPanel.Controls.Add(_geoMap, 0, 0);
 
-            _tableLayoutPanel.Controls.Add(_bottomTableLayoutPanel);
+            _tableLayoutPanel.Controls.Add(_TableLayoutPanelBottom);
 
-            _page.Controls.Add(_tableLayoutPanel);
+            _tabPage.Controls.Add(_tableLayoutPanel);
         }
 
         /// <summary>
@@ -94,28 +94,28 @@ namespace View
         /// <returns>Generated map</returns>
         public TabPage GetPage()
         {
-            return _page;
+            return _tabPage;
         }
 
         private void InitializeMap(IReadOnlyList<CountryInfoEx> info)
         {
-            _map.Source = _MapFile;
+            _geoMap.Source = _MapFile;
 
-            _map.AnimationsSpeed = new TimeSpan(1000000);
+            _geoMap.AnimationsSpeed = new TimeSpan(1000000);
 
-            _map.Dock = DockStyle.Fill;
+            _geoMap.Dock = DockStyle.Fill;
 
-            _map.DefaultLandFill = Brushes.Gray;
+            _geoMap.DefaultLandFill = Brushes.Gray;
 
-            _map.EnableZoomingAndPanning = true;
-            _map.Hoverable = true;
+            _geoMap.EnableZoomingAndPanning = true;
+            _geoMap.Hoverable = true;
 
             GradientStopCollection collection = new GradientStopCollection();
             collection.Add(new GradientStop(Colors.MediumSeaGreen, 0.0));
             collection.Add(new GradientStop(Colors.Gold, 0.5));
             collection.Add(new GradientStop(Colors.Crimson, 1.0));
 
-            _map.GradientStopCollection = collection;
+            _geoMap.GradientStopCollection = collection;
 
             Dictionary<string, double> scaledValues = new Dictionary<string, double>();
             foreach (CountryInfoEx country in info)
@@ -126,9 +126,9 @@ namespace View
                 scaledValues[country.CountryCode] = activeLog;
             }
 
-            _map.HeatMap = scaledValues;
+            _geoMap.HeatMap = scaledValues;
 
-            _map.LandClick += OnUserClick;
+            _geoMap.LandClick += OnUserClick;
         }
 
         private void InitializeBottomLayout()
@@ -150,22 +150,22 @@ namespace View
             trackbarColumn.Width = 90;
             trackbarColumn.SizeType = SizeType.Percent;
 
-            _bottomTableLayoutPanel.ColumnStyles.Add(trackbarColumn);
-            _bottomTableLayoutPanel.ColumnStyles.Add(dateColumn);
+            _TableLayoutPanelBottom.ColumnStyles.Add(trackbarColumn);
+            _TableLayoutPanelBottom.ColumnStyles.Add(dateColumn);
 
             DayInfo dayInfo = _countries[0].DaysInfo[_countries[0].DaysInfo.Count - 1];
-            _dateBox.Text = $"{dayInfo.Date.Day:00}." + $"{dayInfo.Date.Month:00}." + dayInfo.Date.Year;
+            _labelDate.Text = $"{dayInfo.Date.Day:00}." + $"{dayInfo.Date.Month:00}." + dayInfo.Date.Year;
 
-            _dateBox.Dock = DockStyle.Fill;
+            _labelDate.Dock = DockStyle.Fill;
 
-            _dateBox.Font = new System.Drawing.Font(_dateBox.Font.FontFamily, 14);
+            _labelDate.Font = new System.Drawing.Font(_labelDate.Font.FontFamily, 14);
 
-            _bottomTableLayoutPanel.ColumnCount = 2;
+            _TableLayoutPanelBottom.ColumnCount = 2;
 
-            _bottomTableLayoutPanel.Controls.Add(_trackBar);
-            _bottomTableLayoutPanel.Controls.Add(_dateBox);
+            _TableLayoutPanelBottom.Controls.Add(_trackBar);
+            _TableLayoutPanelBottom.Controls.Add(_labelDate);
 
-            _bottomTableLayoutPanel.Dock = DockStyle.Fill;
+            _TableLayoutPanelBottom.Dock = DockStyle.Fill;
         }
 
         private void OnUserClick(object obj, MapData data)
@@ -185,8 +185,6 @@ namespace View
         {
             Dictionary<string, double> newValues = new Dictionary<string, double>();
             
-            Console.WriteLine(_trackBar.Value);
-            
             DayInfo info = new DayInfo();
             foreach (CountryInfoEx country in _countries)
             {
@@ -204,9 +202,9 @@ namespace View
                 }
             }
 
-            _map.HeatMap = newValues;
+            _geoMap.HeatMap = newValues;
 
-            _dateBox.Text = $"{info.Date.Day:00}." + $"{info.Date.Month:00}." + info.Date.Year;
+            _labelDate.Text = $"{info.Date.Day:00}." + $"{info.Date.Month:00}." + info.Date.Year;
         }
 
         private const string _MapFile = "World.xml";
@@ -215,11 +213,12 @@ namespace View
 
         private List<IMapObserver> _observers = new List<IMapObserver>();
 
-        private TabPage _page = new TabPage("World Map");
+        private TabPage _tabPage = new TabPage("World Map");
         private TableLayoutPanel _tableLayoutPanel = new TableLayoutPanel();
-        private TableLayoutPanel _bottomTableLayoutPanel = new TableLayoutPanel();
-        private GeoMap _map = new GeoMap();
+        private TableLayoutPanel _TableLayoutPanelBottom = new TableLayoutPanel();
+
+        private GeoMap _geoMap = new GeoMap();
         private TrackBar _trackBar = new TrackBar();
-        private Label _dateBox = new Label();
+        private Label _labelDate = new Label();
     }
 }

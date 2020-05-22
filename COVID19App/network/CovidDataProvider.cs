@@ -1,4 +1,21 @@
-﻿using System.Collections.Generic;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        CovidDataProvider.cs                                     *
+ *  Copyright:   (c) 2020, Moisii Marin                                   *
+ *  E-mail:      marin.moisii@student.tuiasi.ro                           *
+ *  Description: This class is responsible for providing the application  *
+ *  with data from the network API.                                       *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+using System.Collections.Generic;
 using core;
 using System;
 using Newtonsoft.Json;

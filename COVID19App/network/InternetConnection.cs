@@ -1,4 +1,21 @@
-﻿namespace network
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        CovidDataProvider.cs                                     *
+ *  Copyright:   (c) 2020, Moisii Marin                                   *
+ *  E-mail:      marin.moisii@student.tuiasi.ro                           *
+ *  Description: This module is used to test whether the client has an    *
+ *  Internet connection available.                                        *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+namespace network
 {
     /// <summary>
     /// This class check in there is Internet connection.

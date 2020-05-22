@@ -20,6 +20,7 @@ using Database;
 using Core;
 using TestCore;
 
+
 namespace TestDatabase
 {
     [TestClass]
@@ -69,6 +70,5 @@ namespace TestDatabase
             //Test extraction the most recent date
             Assert.AreEqual(new Date(1983, 11, 30), provider.GetTheMostRecentDateOfData());
         }
-        
     }
 }

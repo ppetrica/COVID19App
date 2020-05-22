@@ -21,7 +21,8 @@ using Database;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestCore;
 
-namespace test_cache
+
+namespace TestCache
 {
     [TestClass]
     public class TestDatabaseCache

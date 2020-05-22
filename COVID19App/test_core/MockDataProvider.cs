@@ -18,6 +18,7 @@
 using System.Collections.Generic;
 using Core;
 
+
 namespace TestCore
 {
     public class MockDataProvider : IDataProvider<CountryInfo>
@@ -57,6 +58,7 @@ namespace TestCore
                 new DayInfo(new Date(1983, 11, 30), 80, 10, 5)
             };
             mock.Add(new CountryInfo("China", list));
+
             return mock;
         }
     }

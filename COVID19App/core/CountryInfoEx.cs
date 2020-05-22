@@ -55,9 +55,12 @@ namespace Core
         public int Recovered => _mostRecent.Recovered;
        
         public readonly string CountryCode;
+
+        public readonly long Population;
+        
+        public readonly string Continent;
+
         private readonly CountryInfo _info;
         private readonly DayInfo _mostRecent;
-        public readonly long Population;
-        public readonly string Continent;
     }
 }

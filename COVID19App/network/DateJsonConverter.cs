@@ -34,6 +34,7 @@ namespace Network
 
         public override void WriteJson(JsonWriter writer, Date value, JsonSerializer serializer)
         {
+            // This functionality isn't needed anywhere in the application
             throw new NotImplementedException();
         }
     }

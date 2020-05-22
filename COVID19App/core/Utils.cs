@@ -28,12 +28,6 @@ namespace Core
     public class Utils
     {
         /// <summary>
-        /// Array that contains the days per month for a non-leap year
-        /// </summary>
-        private static readonly int[] _daysPerMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
-
-        /// <summary>
         /// Finds the maximum element in an enumerable / collection.
         /// </summary>
         /// <typeparam name="T">Type of element inside enumerable.</typeparam>
@@ -123,5 +117,10 @@ namespace Core
         {
             return (year % 400 == 0 || year % 4 == 0 && year % 100 != 0);
         }
+
+        /// <summary>
+        /// Array that contains the days per month for a non-leap year
+        /// </summary>
+        private static readonly int[] _daysPerMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     }
 }

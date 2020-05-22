@@ -47,7 +47,7 @@ namespace Network
         public IReadOnlyList<CountryInfo> GetCountryData()
         {
             List<CountryInfo> countryData = new List<CountryInfo>();
-            string responseJson = _webClient.DownloadString(Url);
+            string responseJson = _webClient.DownloadString(APIUrl);
 
             // covid info api provides data as a dictionary of (country name : array of daily statistics)
             var covidInfo = JsonConvert.DeserializeObject<Dictionary<string, List<DayInfo>>>(responseJson, new DateJsonConverter());
@@ -77,7 +77,7 @@ namespace Network
             }
         }
         
-        public const string Url = "https://pomber.github.io/covid19/timeseries.json?fbclid=IwAR2FznKc4nXVzWdyZMKc7X58psda0y3DzTMet9u_FU8BtEfkB6n3H9uxhDA";
+        public const string APIUrl = "https://pomber.github.io/covid19/timeseries.json?fbclid=IwAR2FznKc4nXVzWdyZMKc7X58psda0y3DzTMet9u_FU8BtEfkB6n3H9uxhDA";
 
         private readonly WebClientEx _webClient;
     }

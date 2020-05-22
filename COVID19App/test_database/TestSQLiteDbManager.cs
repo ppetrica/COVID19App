@@ -26,8 +26,6 @@ namespace TestDatabase
     [TestClass]
     public class TestSQLiteDbManager
     {
-        private const string DatabaseTestPath = @"..\..\resources\covid.db";
-
         [TestMethod]
         public void TestSqLiteDbManager()
         {
@@ -62,6 +60,7 @@ namespace TestDatabase
                 Tuple.Create("2020-4-6", 410000, 13000, 51000, 3),
                 Tuple.Create("2020-4-7", 420000, 14000, 52000, 3)
             };
+
             foreach (var (item1, item2, item3, item4, item5) in usaInfo)
             {
                 sqLiteDbManager.InsertDayInfo(item1, item2, item3, item4, item5);
@@ -71,7 +70,7 @@ namespace TestDatabase
             var usaInfoFromDb = sqLiteDbManager.GetCovidInfoByCountryId(3);
             for (var i = 0; i < usaInfoFromDb.Count; i++)
             {
-                Assert.AreEqual(true, usaInfoFromDb[i].Equals(SubTuple5To4<string, int, int, int, int>(usaInfo[i])));
+                Assert.AreEqual(true, usaInfoFromDb[i].Equals(SubTuple5To4(usaInfo[i])));
             }
 
             //Test get region name
@@ -95,8 +94,7 @@ namespace TestDatabase
         /// </summary>
         /// <param name="tuple">Input 5-tuple</param>
         /// <returns>A 3-tuple consisting of the first 3 tuples of the input</returns>
-        public static Tuple<T1, T2, T3, T4> SubTuple5To4<T1, T2, T3, T4, T5>(Tuple<T1, T2, T3, T4, T5> tuple) => Tuple.Create(tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4);
-
+        public static Tuple<T1, T2, T3, T4> SubTuple5To4<T1, T2, T3, T4, T5>(Tuple<T1, T2, T3, T4, T5> tuple) 
+            => Tuple.Create(tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4);
     }
-
 }

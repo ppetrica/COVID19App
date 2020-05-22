@@ -15,7 +15,6 @@
  *                                                                        *
  **************************************************************************/
 
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -35,8 +34,6 @@ namespace Cache
     /// </summary>
     public class DatabaseCache : AbstractDatabaseCache
     {
-        private Date _mostRecent;
-
         public List<CountryInfo> CountryInfoList
         {
             get => _countryInfoList;
@@ -101,5 +98,7 @@ namespace Cache
                 //Console.WriteLine("Internet Connection Problem");
             };
         }
+
+        private Date _mostRecent;
     }
 }

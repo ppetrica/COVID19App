@@ -20,12 +20,11 @@ using Database;
 using System.Collections.Generic;
 using System.Data;
 
-namespace test_cache
+
+namespace TestCache
 {
     class MockDatabaseProvider : IDatabase, IDataProvider<CountryInfoEx>
     {
-        List<CountryInfo> rawDaysInfoList = new List<CountryInfo>();
-
         public Date GetTheMostRecentDateOfData()
         {
             if (rawDaysInfoList.Count == 0)
@@ -61,5 +60,7 @@ namespace test_cache
             }
             return countryData;
         }
+
+        List<CountryInfo> rawDaysInfoList = new List<CountryInfo>();
     }
 }

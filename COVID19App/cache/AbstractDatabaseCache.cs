@@ -19,6 +19,7 @@ using System.Data;
 using Core;
 using Database;
 
+
 /// <summary>
 /// This module manages relational Database.
 /// </summary>
@@ -29,9 +30,6 @@ namespace Cache
     /// </summary>
     public abstract class AbstractDatabaseCache
     {
-        private List<IDatabase> _providers = new List<IDatabase>();
-        protected List<CountryInfo> _countryInfoList = new List<CountryInfo>();
-
         public void Attach(IDatabase provider)
         {
             _providers.Add(provider);
@@ -63,7 +61,7 @@ namespace Cache
                 }
                 catch (ObjectNotFoundException)
                 {
-
+                    // ignored
                 }
             }
 
@@ -71,7 +69,12 @@ namespace Cache
             {
                 throw new ObjectNotFoundException();
             }
+
             return Utils.MaxElement(dateList, (date1, date2) => date1 > date2);
         }
+
+
+        private List<IDatabase> _providers = new List<IDatabase>();
+        protected List<CountryInfo> _countryInfoList = new List<CountryInfo>();
     }
 }

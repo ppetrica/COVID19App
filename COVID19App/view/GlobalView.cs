@@ -173,6 +173,7 @@ namespace View
                 Title = "Confirmed infected people", 
                 LabelFormatter = value => ((long)value).ToString("N0")
             });
+
             _cartesianChartRegions.LegendLocation = LegendLocation.Right;
 
             // build the solid gauge for confirmed infected people rate
@@ -227,10 +228,12 @@ namespace View
             _layoutPanel.Dock = DockStyle.Fill;
             _layoutPanel.RowCount = 3;
             _layoutPanel.ColumnCount = 3;
+
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 60));
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 30));
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+
             _layoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
             _layoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
             _layoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));

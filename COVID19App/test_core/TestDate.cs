@@ -50,7 +50,5 @@ namespace TestCore
             Assert.ThrowsException<ArgumentException>(() => Date.Parse("2002-4-31"));
             Assert.ThrowsException<ArgumentException>(() => Date.Parse("2002-6-31"));
         }
-
-        
     }
 }

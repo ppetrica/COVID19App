@@ -30,7 +30,7 @@ namespace Network
     {
         public WebClientEx(int timeout)
         {
-            _timeout = timeout;
+            Timeout = timeout;
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Network
         protected override WebRequest GetWebRequest(Uri address)
         {
             var webRequest = base.GetWebRequest(address);
-            webRequest.Timeout = _timeout;
+            webRequest.Timeout = Timeout;
             return webRequest;
         }
 
@@ -48,12 +48,6 @@ namespace Network
         /// Also the value Infinite (-1) can be used to indicate that the
         /// web request doesn't time out.
         /// </summary>
-        public int Timeout
-        {
-            get => _timeout;
-            set => _timeout = value;
-        }
-
-        private int _timeout;
+        public int Timeout { get; set; }
     }
 }

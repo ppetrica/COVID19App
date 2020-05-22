@@ -29,9 +29,6 @@ namespace Database
     /// </summary>
     public class SQLiteDataProvider : IDatabase, IDataProvider<CountryInfoEx>
     {
-        private const string DatabaseDefaultPath = @"..\..\..\resources\sql\covid.db";
-        private readonly IDbManager _dbManager;
-
         /// <param name="databasePath">Path to the local Database</param>
         public SQLiteDataProvider(string databasePath = DatabaseDefaultPath)
         {
@@ -127,5 +124,9 @@ namespace Database
         {
             return Date.Parse(_dbManager.GetTheMostRecentDate());
         }
+
+
+        private const string DatabaseDefaultPath = @"..\..\..\resources\sql\covid.db";
+        private readonly IDbManager _dbManager;
     }
 }

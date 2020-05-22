@@ -31,8 +31,6 @@ namespace Database
     /// </summary>
     public class SQLiteDbManager : IDbManager
     {
-        private SQLiteConnection _dbConnection;
-        private SQLiteDataReader _dataReader;
         /// <summary>
         /// _dbConnection is the SQLiteConnection parameter for the Database specified
         /// _dataReader is the SQLiteDataReader parameter which holds the result of a query
@@ -415,5 +413,9 @@ namespace Database
                 _dbConnection.Close();
             }
         }
+
+
+        private SQLiteConnection _dbConnection;
+        private SQLiteDataReader _dataReader;
     }
 }

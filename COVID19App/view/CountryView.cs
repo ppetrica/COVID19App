@@ -46,6 +46,7 @@ namespace View
         {
             const long animationSpeedGraph = 0;
             const long animationSpeedGauge = 5000000;
+
             IReadOnlyList<CountryInfoEx> countries = info;
 
             // information used for normalize 
@@ -71,12 +72,14 @@ namespace View
                 Values = GetRegionChartValues(new long[1], _startDate),
                 LineSmoothness = 0
             };
+
             _stackedAreaDead = new StackedAreaSeries
             {
                 Title = "Deaths",
                 Values = GetRegionChartValues(new long[1], _startDate),
                 LineSmoothness = 0
             };
+            
             _stackedAreaConfirmed = new StackedAreaSeries
             {
                 Title = "Active",
@@ -108,6 +111,7 @@ namespace View
                 Title = "Number of people",
                 LabelFormatter = value => ((long)value).ToString("N0")
             });
+            
             _cartesianChartRegions.LegendLocation = LegendLocation.Right;
 
             // build the solid gauge for confirmed infected people rate
@@ -162,10 +166,12 @@ namespace View
             _tableLayoutPanel.Dock = DockStyle.Fill;
             _tableLayoutPanel.RowCount = 3;
             _tableLayoutPanel.ColumnCount = 3;
+            
             _tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
             _tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 60));
             _tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 30));
             _tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+            
             _tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
             _tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
             _tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
@@ -184,6 +190,7 @@ namespace View
             // row 1
             _tableLayoutPanel.Controls.Add(_cartesianChartRegions, 0, 1);
             _tableLayoutPanel.SetColumnSpan(_cartesianChartRegions, 3);
+            
             _cartesianChartRegions.Dock = DockStyle.Fill;
 
             // row 2 
@@ -302,6 +309,7 @@ namespace View
                 else
                     return $"    {value}\n infected";
             };
+            
             _solidGaugeRecoveryRate.LabelFormatter = value =>
             {
                 value = Math.Exp(value);
@@ -313,6 +321,7 @@ namespace View
                 else
                     return $"     {value}\nrecovered";
             };
+            
             _solidGaugeDeathRate.LabelFormatter = value =>
             {
                 value = Math.Exp(value);
@@ -331,9 +340,9 @@ namespace View
         private readonly int NumberOfDays; // infection rate evolution is followed on last {NUMBER_OF_DAYS} days
         private DateTime _startDate;
 
-        long[] _confirmed;
-        long[] _deaths;
-        long[] _recovered;
+        private long[] _confirmed;
+        private long[] _deaths;
+        private long[] _recovered;
 
         private TableLayoutPanel _tableLayoutPanel = new TableLayoutPanel();
         private TabPage _tabPage = new TabPage("Country statistics");

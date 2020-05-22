@@ -15,13 +15,12 @@
  **************************************************************************/
 
 using core;
-using database;
 using view;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using network;
 using test_core;
+
 
 namespace test_view
 {

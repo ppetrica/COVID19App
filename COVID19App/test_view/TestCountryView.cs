@@ -22,7 +22,7 @@ using System.Windows.Forms;
 using TestCore;
 
 
-namespace TestVuew
+namespace TestView
 {
     [TestClass]
     public class TestCountryView

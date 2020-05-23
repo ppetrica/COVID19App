@@ -47,17 +47,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\core\core.csproj">
+    <ProjectReference Include="..\core\Core.csproj">
       <Project>{9eb85b89-d1c5-4582-af95-8e5cca05db19}</Project>
-      <Name>core</Name>
+      <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\database\database.csproj">
+    <ProjectReference Include="..\database\Database.csproj">
       <Project>{eb16e1b6-ebb3-46c2-a6d0-a246995912a7}</Project>
-      <Name>database</Name>
+      <Name>Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\network\network.csproj">
+    <ProjectReference Include="..\network\Network.csproj">
       <Project>{1c8a65a1-88c2-4a79-aa9e-9fa2d3174bff}</Project>
-      <Name>network</Name>
+      <Name>Network</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

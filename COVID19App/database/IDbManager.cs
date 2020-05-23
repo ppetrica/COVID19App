@@ -1,18 +1,34 @@
-﻿using System;
+﻿/**************************************************************************
+ *                                                                        *
+ *  File:        IDbManager.cs                                            *
+ *  Copyright:   (c) 2020, Enachi Vasile                                  *
+ *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
+ *  Description: An interface for implementing Database functionality.    *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+using System;
 using System.Collections.Generic;
 
 
-namespace database
+namespace Database
 {
     /// <summary>
-    /// Interface with sql methods specific for our database.
+    /// Interface with sql methods specific for our Database.
     /// </summary>
     public interface IDbManager
     {
         /// <summary>
-        /// Set the connection with the specified database
+        /// Set the connection with the specified Database
         /// </summary>
-        /// <param name="databasePath">Path to the local .db database</param>
+        /// <param name="databasePath">Path to the local .db Database</param>
         void SetDatabaseConnection(string databasePath);
 
         /// <summary>
@@ -22,7 +38,7 @@ namespace database
         void ClearTable(string tableName);
 
         /// <summary>
-        /// Insert a country on the local database
+        /// Insert a country on the local Database
         /// </summary>
         /// <param name="name">Name of the country</param>
         /// <param name="code">Unique Code Id assigned to this country</param>
@@ -33,7 +49,7 @@ namespace database
         void InsertCountry(string name, ushort code, string alpha, byte regionId, long population);
 
         /// <summary>
-        /// Insert a region on the local database
+        /// Insert a region on the local Database
         /// </summary>
         /// <param name="regionId">Id of the continent</param>
         /// <param name="regionName">Name of the continent</param>
@@ -91,7 +107,7 @@ namespace database
         string GetRegionNameByCountryId(int countryId);
 
         /// <summary>
-        /// Getting the most current date of the data from the database
+        /// Getting the most current date of the data from the Database
         /// </summary>
         /// <returns>The day in format string "YYYY-MM-DD"</returns>
         string GetTheMostRecentDate();

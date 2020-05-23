@@ -1,23 +1,38 @@
-﻿using System;
+﻿/**************************************************************************
+ *                                                                        *
+ *  File:        AbstractDatabaseCache.cs                                 *
+ *  Copyright:   (c) 2020, Enachi Vasile                                  *
+ *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
+ *  Description: Implementation of the IDbManager interface talking to    *
+ *  our sqlite Database.                                                  *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 
 
-namespace database
+namespace Database
 {
     /// <summary>
-    /// SqlDataBaseManager has the role of ensuring the connection to the local .db database.
+    /// SqlDataBaseManager has the role of ensuring the connection to the local .db Database.
     /// It has the CRUD functionality.
     /// In order to use it, first set the databaseConnection.
-    /// If tables dayinfo, country and region not in the database System.Data.SQLite.SQLiteException is thrown.
+    /// If tables dayinfo, country and region not in the Database System.Data.SQLite.SQLiteException is thrown.
     /// </summary>
     public class SQLiteDbManager : IDbManager
     {
-        private SQLiteConnection _dbConnection;
-        private SQLiteDataReader _dataReader;
         /// <summary>
-        /// _dbConnection is the SQLiteConnection parameter for the database specified
+        /// _dbConnection is the SQLiteConnection parameter for the Database specified
         /// _dataReader is the SQLiteDataReader parameter which holds the result of a query
         /// </summary>
         public SQLiteDbManager()
@@ -33,7 +48,7 @@ namespace database
         }
 
         /// <summary>
-        /// Clear data from the table from the database.
+        /// Clear data from the table from the Database.
         /// </summary>
         /// <param name="tableName">Table Name to be cleared</param>
         /// <returns>True if the table is cleared successfully else return False</returns>
@@ -79,7 +94,7 @@ namespace database
         }
 
         /// <summary>
-        /// Inserting a continent in the region table from the database.
+        /// Inserting a continent in the region table from the Database.
         /// </summary>
         /// <param name="regionId">The UNIQUE region id of the continent</param>
         /// <param name="regionName">The continent name</param>
@@ -101,7 +116,7 @@ namespace database
         }
 
         /// <summary>
-        /// Inserting a Day Info about COVID-19 in thedayinfo table from the database.
+        /// Inserting a Day Info about COVID-19 in thedayinfo table from the Database.
         /// </summary>
         /// <param name="updateDate">The date in the format "YYYY-MM-DD"</param>
         /// <param name="confirmed">The number of confirmed cases of COVID-19</param>
@@ -132,7 +147,7 @@ namespace database
         }
 
         /// <summary>
-        /// Inserting a Day Infos about COVID-19 in thedayinfo table from the database.
+        /// Inserting a Day Infos about COVID-19 in thedayinfo table from the Database.
         /// </summary>
         /// <param name="updateDate">The date in the format "YYYY-MM-DD"</param>
         /// <param name="confirmed">The number of confirmed cases of COVID-19</param>
@@ -191,7 +206,7 @@ namespace database
         }
 
         /// <param name="id">The id of the country</param>
-        /// <returns>The country name of the specified id if it exists in the database else returns NULL</returns>
+        /// <returns>The country name of the specified id if it exists in the Database else returns NULL</returns>
         public string GetRegionNameById(int id)
         {
             _dbConnection.Open();
@@ -207,7 +222,7 @@ namespace database
                 }
                 else
                 {
-                    throw new ObjectNotFoundException("Region Id specified not found in the database");
+                    throw new ObjectNotFoundException("Region Id specified not found in the Database");
                 }
             }
             finally
@@ -218,11 +233,11 @@ namespace database
         }
 
         /// <summary>
-        /// Getting the id of the country  from the country table in the database
-        /// Throws ObjectNotFoundException if country name is not in the database
+        /// Getting the id of the country  from the country table in the Database
+        /// Throws ObjectNotFoundException if country name is not in the Database
         /// </summary>
         /// <param name="countryName">The country name</param>
-        /// <returns>The id of the country if it exists in the database else returns -1</returns>
+        /// <returns>The id of the country if it exists in the Database else returns -1</returns>
         public int GetCountryIdByName(string countryName)
         {
             _dbConnection.Open();
@@ -237,7 +252,7 @@ namespace database
                 }
                 else
                 {
-                    throw new ObjectNotFoundException("Country Name specified not found in the database");
+                    throw new ObjectNotFoundException("Country Name specified not found in the Database");
                 }
             }
             finally
@@ -248,7 +263,7 @@ namespace database
         }
 
         /// <summary>
-        /// Getting the country info from the country table in the database
+        /// Getting the country info from the country table in the Database
         /// </summary>
         /// <param name="countryId">The country Id</param>
         /// <returns>A tuple which hold the name, the alphanumeric code of the country the id of the continent where this country is located and the population</returns>
@@ -266,7 +281,7 @@ namespace database
                 }
                 else
                 {
-                    throw new ObjectNotFoundException("Country Id specified not found in the database");
+                    throw new ObjectNotFoundException("Country Id specified not found in the Database");
                 }
             }
             finally
@@ -277,7 +292,7 @@ namespace database
         }
 
         /// <summary>
-        /// Getting the information of COVID-19 from the dayinfo table in the database
+        /// Getting the information of COVID-19 from the dayinfo table in the Database
         /// </summary>
         /// <param name="countryId">The country id</param>
         /// <returns>List of tuples which hold the day in format string "YYYY-MM-DD", the number of confirmed cases,
@@ -303,7 +318,7 @@ namespace database
                 }
                 else
                 {
-                    throw new ObjectNotFoundException("Country Info for id specified not found in the database");
+                    throw new ObjectNotFoundException("Country Info for id specified not found in the Database");
                 }
             }
             finally
@@ -358,7 +373,7 @@ namespace database
                 }
                 else
                 {
-                    throw new ObjectNotFoundException("Country not found in the database");
+                    throw new ObjectNotFoundException("Country not found in the Database");
                 }
             }
             finally
@@ -369,8 +384,8 @@ namespace database
         }
 
         /// <summary>
-        /// Getting the most current date of the data from the database
-        /// Throws ObjectNotFoundException if there is no data in the database
+        /// Getting the most current date of the data from the Database
+        /// Throws ObjectNotFoundException if there is no data in the Database
         /// </summary>
         /// <returns>A tuple of 3 integer: year, month and day</returns>
         public string GetTheMostRecentDate()
@@ -389,7 +404,7 @@ namespace database
                 }
                 else
                 {
-                    throw new ObjectNotFoundException("Data not found in the database");
+                    throw new ObjectNotFoundException("Data not found in the Database");
                 }
             }
             finally
@@ -398,5 +413,9 @@ namespace database
                 _dbConnection.Close();
             }
         }
+
+
+        private SQLiteConnection _dbConnection;
+        private SQLiteDataReader _dataReader;
     }
 }

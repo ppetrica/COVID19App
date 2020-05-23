@@ -1,10 +1,26 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        TestUtils.cs                                             *
+ *  Copyright:   (c) 2020, Petrica Petru                                  *
+ *  E-mail:      petru.petrica@student.tuiasi.ro                          *
+ *  Description: This class is used to test the utility functions         *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using core;
+using Core;
 using System;
 
 
-namespace test_core
+namespace TestCore
 {
     [TestClass]
     public class TestUtils

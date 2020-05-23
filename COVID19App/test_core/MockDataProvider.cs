@@ -1,7 +1,25 @@
-﻿using System.Collections.Generic;
-using core;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        MockDataProvider.cs                                      *
+ *  Copyright:   (c) 2020, Enachi Vasile                                  *
+ *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
+ *  Description: This class is used to provide the tests with mock        *
+ *  network data.                                                         *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
 
-namespace test_core
+using System.Collections.Generic;
+using Core;
+
+
+namespace TestCore
 {
     public class MockDataProvider : IDataProvider<CountryInfo>
     {
@@ -40,6 +58,7 @@ namespace test_core
                 new DayInfo(new Date(1983, 11, 30), 80, 10, 5)
             };
             mock.Add(new CountryInfo("China", list));
+
             return mock;
         }
     }

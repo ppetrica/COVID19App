@@ -1,15 +1,30 @@
-﻿
-using core;
-using database;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        MockDatabaseProvider.cs                                  *
+ *  Copyright:   (c) 2020, Enachi Vasile                                  *
+ *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
+ *  Description: This class is used to mock a Database for the Cache      *
+ *  module                                                                *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+using Core;
+using Database;
 using System.Collections.Generic;
 using System.Data;
 
-namespace test_cache
+
+namespace TestCache
 {
     class MockDatabaseProvider : IDatabase, IDataProvider<CountryInfoEx>
     {
-        List<CountryInfo> rawDaysInfoList = new List<CountryInfo>();
-
         public Date GetTheMostRecentDateOfData()
         {
             if (rawDaysInfoList.Count == 0)
@@ -45,5 +60,7 @@ namespace test_cache
             }
             return countryData;
         }
+
+        List<CountryInfo> rawDaysInfoList = new List<CountryInfo>();
     }
 }

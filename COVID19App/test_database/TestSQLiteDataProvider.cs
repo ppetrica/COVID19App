@@ -1,10 +1,27 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using database;
-using core;
-using test_core;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        TestSQLiteDataProvider.cs                                *
+ *  Copyright:   (c) 2020, Enachi Vasile                                  *
+ *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
+ *  Description: This class is used to test the sqlite provider module    *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
 
-namespace test_database
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Database;
+using Core;
+using TestCore;
+
+
+namespace TestDatabase
 {
     [TestClass]
     public class TestSQLiteDataProvider
@@ -53,6 +70,5 @@ namespace test_database
             //Test extraction the most recent date
             Assert.AreEqual(new Date(1983, 11, 30), provider.GetTheMostRecentDateOfData());
         }
-        
     }
 }

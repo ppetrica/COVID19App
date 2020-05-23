@@ -1,11 +1,28 @@
-﻿using System.Linq;
-using cache;
-using core;
-using database;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using test_core;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        TestDatabaseCache.cs                                     *
+ *  Copyright:   (c) 2020, Enachi Vasile                                  *
+ *  E-mail:      vasile.enachi@student.tuiasi.ro                          *
+ *  Description: This class is used to test the Cache module              *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
 
-namespace test_cache
+using System.Linq;
+using Cache;
+using Core;
+using Database;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TestCore;
+
+
+namespace TestCache
 {
     [TestClass]
     public class TestDatabaseCache

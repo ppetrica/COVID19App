@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 using System.Collections.Generic;
-using view;
+using View;
 
 
 namespace COVID19App

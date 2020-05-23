@@ -45,16 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbManager\IDbManager.cs" />
-    <Compile Include="DbProvider\IDatabase.cs" />
+    <Compile Include="IDbManager.cs" />
+    <Compile Include="IDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DbProvider\SQLiteDataProvider.cs" />
-    <Compile Include="DbManager\SQLiteDbManager.cs" />
+    <Compile Include="SQLiteDataProvider.cs" />
+    <Compile Include="SQLiteDbManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\core\core.csproj">
+    <ProjectReference Include="..\core\Core.csproj">
       <Project>{9eb85b89-d1c5-4582-af95-8e5cca05db19}</Project>
-      <Name>core</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

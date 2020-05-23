@@ -1,4 +1,21 @@
-﻿using core;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        GlobalView.cs                                            *
+ *  Copyright:   (c) 2020, Moisii Marin                                   *
+ *  E-mail:      marin.moisii@student.tuiasi.ro                           *
+ *  Description: This class represents the global data View from the      *
+ *  application                                                           *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+using Core;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
@@ -10,10 +27,10 @@ using System.Windows.Media;
 using System.Drawing;
 
 
-namespace view
+namespace View
 {
     /// <summary>
-    /// Class responsible for creating a view with 
+    /// Class responsible for creating a View with 
     /// statistics about COVID-19 effects on global level, 
     /// using the country info list.
     /// </summary>
@@ -29,6 +46,7 @@ namespace view
     
             DateTime startDate = _countries[0].DaysInfo[0].Date.ToDateTime();
             NumberOfDays = _countries[0].DaysInfo.Count;
+
             long[] confirmedEurope = new long[NumberOfDays];
             long[] confirmedAmerica = new long[NumberOfDays];
             long[] confirmedAfrica = new long[NumberOfDays];
@@ -105,7 +123,7 @@ namespace view
             }
 
             // build the chart with numbers of infected people on every region
-            _chartRegions.Series = new SeriesCollection
+            _cartesianChartRegions.Series = new SeriesCollection
             {
                 new StackedAreaSeries
                 {
@@ -146,24 +164,25 @@ namespace view
                 },
             };
 
-            _chartRegions.AxisX.Add(new Axis
+            _cartesianChartRegions.AxisX.Add(new Axis
             {
                 LabelFormatter = value => new DateTime((long)value).ToString("dd-MMM")
             });
-            _chartRegions.AxisY.Add(new Axis
+            _cartesianChartRegions.AxisY.Add(new Axis
             {
                 Title = "Confirmed infected people", 
                 LabelFormatter = value => ((long)value).ToString("N0")
             });
-            _chartRegions.LegendLocation = LegendLocation.Right;
+
+            _cartesianChartRegions.LegendLocation = LegendLocation.Right;
 
             // build the solid gauge for confirmed infected people rate
-            _gaugeInfectionRate.From = 0;
-            _gaugeInfectionRate.To = 100;
-            _gaugeInfectionRate.Value = 100.0 * globalConfirmed / globalPopulation;
-            _gaugeInfectionRate.Base.LabelsVisibility = Visibility.Hidden;
-            _gaugeInfectionRate.LabelFormatter = value => $"  {value:F2}%\ninfected";
-            _gaugeInfectionRate.Base.GaugeActiveFill = new LinearGradientBrush
+            _solidGaugeInfectioRate.From = 0;
+            _solidGaugeInfectioRate.To = 100;
+            _solidGaugeInfectioRate.Value = 100.0 * globalConfirmed / globalPopulation;
+            _solidGaugeInfectioRate.Base.LabelsVisibility = Visibility.Hidden;
+            _solidGaugeInfectioRate.LabelFormatter = value => $"  {value:F2}%\ninfected";
+            _solidGaugeInfectioRate.Base.GaugeActiveFill = new LinearGradientBrush
             {
                 GradientStops = new GradientStopCollection
                 {
@@ -174,12 +193,12 @@ namespace view
             };
 
             // build the solid gauge for death rate
-            _gaugeDeathRate.From = 0;
-            _gaugeDeathRate.To = 100;
-            _gaugeDeathRate.Value = 100.0 * globalDeaths / globalConfirmed;
-            _gaugeDeathRate.Base.LabelsVisibility = Visibility.Hidden;
-            _gaugeDeathRate.LabelFormatter = value => $" {value:F1}%\ndead";
-            _gaugeDeathRate.Base.GaugeActiveFill = new LinearGradientBrush
+            _solidGaugeDeathRate.From = 0;
+            _solidGaugeDeathRate.To = 100;
+            _solidGaugeDeathRate.Value = 100.0 * globalDeaths / globalConfirmed;
+            _solidGaugeDeathRate.Base.LabelsVisibility = Visibility.Hidden;
+            _solidGaugeDeathRate.LabelFormatter = value => $" {value:F1}%\ndead";
+            _solidGaugeDeathRate.Base.GaugeActiveFill = new LinearGradientBrush
             {
                 GradientStops = new GradientStopCollection
                 {
@@ -190,12 +209,12 @@ namespace view
             };
 
             // build the solid gauge for recovery rate
-            _gaugeRecoveryRate.From = 0;
-            _gaugeRecoveryRate.To = 100;
-            _gaugeRecoveryRate.Value = 100.0 * globalRecovered / globalConfirmed;
-            _gaugeRecoveryRate.Base.LabelsVisibility = Visibility.Hidden;
-            _gaugeRecoveryRate.LabelFormatter = value => $"    {value:F1}%\nrecovered";
-            _gaugeRecoveryRate.Base.GaugeActiveFill = new LinearGradientBrush
+            _solidGaugeRecoveryRate.From = 0;
+            _solidGaugeRecoveryRate.To = 100;
+            _solidGaugeRecoveryRate.Value = 100.0 * globalRecovered / globalConfirmed;
+            _solidGaugeRecoveryRate.Base.LabelsVisibility = Visibility.Hidden;
+            _solidGaugeRecoveryRate.LabelFormatter = value => $"    {value:F1}%\nrecovered";
+            _solidGaugeRecoveryRate.Base.GaugeActiveFill = new LinearGradientBrush
             {
                 GradientStops = new GradientStopCollection
                 {
@@ -209,10 +228,12 @@ namespace view
             _layoutPanel.Dock = DockStyle.Fill;
             _layoutPanel.RowCount = 3;
             _layoutPanel.ColumnCount = 3;
+
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 60));
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 30));
             _layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+
             _layoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
             _layoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
             _layoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
@@ -221,19 +242,19 @@ namespace view
             // row 0 is empty, it exits for alignment
 
             // row 1
-            _layoutPanel.Controls.Add(_chartRegions, 0, 1);
-            _layoutPanel.SetColumnSpan(_chartRegions, 3);
-            _chartRegions.Dock = DockStyle.Fill;
+            _layoutPanel.Controls.Add(_cartesianChartRegions, 0, 1);
+            _layoutPanel.SetColumnSpan(_cartesianChartRegions, 3);
+            _cartesianChartRegions.Dock = DockStyle.Fill;
 
             // row 2 
-            _layoutPanel.Controls.Add(_gaugeInfectionRate, 0, 2);
-            _gaugeInfectionRate.Anchor = AnchorStyles.None;
+            _layoutPanel.Controls.Add(_solidGaugeInfectioRate, 0, 2);
+            _solidGaugeInfectioRate.Anchor = AnchorStyles.None;
             
-            _layoutPanel.Controls.Add(_gaugeDeathRate, 1, 2);
-            _gaugeDeathRate.Anchor = AnchorStyles.None;
+            _layoutPanel.Controls.Add(_solidGaugeDeathRate, 1, 2);
+            _solidGaugeDeathRate.Anchor = AnchorStyles.None;
 
-            _layoutPanel.Controls.Add(_gaugeRecoveryRate, 2, 2);
-            _gaugeRecoveryRate.Anchor = AnchorStyles.None;
+            _layoutPanel.Controls.Add(_solidGaugeRecoveryRate, 2, 2);
+            _solidGaugeRecoveryRate.Anchor = AnchorStyles.None;
 
             // row 3
             Font font = new Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
@@ -261,8 +282,8 @@ namespace view
                 Anchor = AnchorStyles.None
             }, 2, 3);
 
-            _page.Padding = new Padding(30);
-            _page.Controls.Add(_layoutPanel);
+            _tabPage.Padding = new Padding(30);
+            _tabPage.Controls.Add(_layoutPanel);
         }
 
         /// <summary>
@@ -271,7 +292,7 @@ namespace view
         /// <returns>Generated tab page</returns>
         public TabPage GetPage()
         {
-            return _page;
+            return _tabPage;
         }
 
         private ChartValues<DateTimePoint> GetRegionChartValues(long[] region, DateTime startDate)
@@ -288,11 +309,15 @@ namespace view
         readonly int NumberOfDays; // infection rate evolution is followed on last {numberOfDays} days
 
         private IReadOnlyList<CountryInfoEx> _countries;
-        private LiveCharts.WinForms.CartesianChart _chartRegions = new LiveCharts.WinForms.CartesianChart();
-        private LiveCharts.WinForms.SolidGauge _gaugeInfectionRate = new LiveCharts.WinForms.SolidGauge();
-        private LiveCharts.WinForms.SolidGauge _gaugeDeathRate = new LiveCharts.WinForms.SolidGauge();
-        private LiveCharts.WinForms.SolidGauge _gaugeRecoveryRate = new LiveCharts.WinForms.SolidGauge();
+        
+        private LiveCharts.WinForms.CartesianChart _cartesianChartRegions = new LiveCharts.WinForms.CartesianChart();
+        
+        private LiveCharts.WinForms.SolidGauge _solidGaugeInfectioRate = new LiveCharts.WinForms.SolidGauge();
+        private LiveCharts.WinForms.SolidGauge _solidGaugeDeathRate = new LiveCharts.WinForms.SolidGauge();
+        private LiveCharts.WinForms.SolidGauge _solidGaugeRecoveryRate = new LiveCharts.WinForms.SolidGauge();
+
         private TableLayoutPanel _layoutPanel = new TableLayoutPanel();
-        private TabPage _page = new TabPage("Global statistics");
+        
+        private TabPage _tabPage = new TabPage("Global statistics");
     }
 }

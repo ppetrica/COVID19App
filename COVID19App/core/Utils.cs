@@ -1,21 +1,32 @@
-﻿using System;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        Utils.cs                                                 *
+ *  Copyright:   (c) 2020, Petrica Petru                                  *
+ *  E-mail:      petru.petrica@student.tuiasi.ro                          *
+ *  Description: This class holds utility functions used throughout       *
+ *  application                                                           *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 
-namespace core
+namespace Core
 {
     /// <summary>
     /// This classs provides public static functions needed in more modules (snippets).
     /// </summary>
     public class Utils
     {
-        /// <summary>
-        /// Array that contains the days per month for a non-leap year
-        /// </summary>
-        private static readonly int[] _daysPerMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
-
         /// <summary>
         /// Finds the maximum element in an enumerable / collection.
         /// </summary>
@@ -106,5 +117,10 @@ namespace core
         {
             return (year % 400 == 0 || year % 4 == 0 && year % 100 != 0);
         }
+
+        /// <summary>
+        /// Array that contains the days per month for a non-leap year
+        /// </summary>
+        private static readonly int[] _daysPerMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     }
 }

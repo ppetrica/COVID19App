@@ -1,7 +1,24 @@
-﻿using System.Collections.Generic;
+﻿/*************************************************************************
+ *                                                                        *
+ *  File:        CountryInfoEx.cs                                         *
+ *  Copyright:   (c) 2020, Petrica Petru                                  *
+ *  E-mail:      petru.petrica@student.tuiasi.ro                          *
+ *  Description: This class is used to represent country data             *
+ *  as extracted from the database.                                       *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+
+using System.Collections.Generic;
 
 
-namespace core
+namespace Core
 {
     /// <summary>
     /// This structure will hold information about the status of
@@ -38,9 +55,12 @@ namespace core
         public int Recovered => _mostRecent.Recovered;
        
         public readonly string CountryCode;
+
+        public readonly long Population;
+        
+        public readonly string Continent;
+
         private readonly CountryInfo _info;
         private readonly DayInfo _mostRecent;
-        public readonly long Population;
-        public readonly string Continent;
     }
 }

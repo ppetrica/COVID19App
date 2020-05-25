@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Database
 {
     /// <summary>
-    /// Interface with sql methods specific for our Database.
+    /// This interface is low level database abastraction, having 1 to 1 instructions.
     /// </summary>
     public interface IDbManager
     {

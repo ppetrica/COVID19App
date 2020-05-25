@@ -22,7 +22,7 @@ using View;
 using TestCore;
 
 
-namespace TestVuew
+namespace TestView
 {
     [TestClass]
     public class TestMapView

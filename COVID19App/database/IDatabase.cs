@@ -24,6 +24,9 @@ using Core;
 /// </summary>
 namespace Database
 {
+    /// <summary>
+    /// This interface is high level database abastraction.
+    /// </summary>
     public interface IDatabase
     {
         /// <summary>

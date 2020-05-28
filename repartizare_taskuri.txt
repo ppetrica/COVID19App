@@ -1,0 +1,27 @@
+[Enachi Vasile]
+- Creare modulul de database pentru operații de extragere, inserare, ștergere date.
+- Crearea modulul de cache pentru verificarea actualității datelor.
+- Adăugarea funcțiilor de validare a datei și filtrare a proprietății dayInfo din CountryInfo.
+- Clasele de test pentru modulele/utilitățile specificate mai sus.
+- Generare diagrame de clase, activități, namespace-uri, secvență și use-case.
+
+[Pascal Dragos]
+- Proiectarea si crearea bazei de date
+- Parsarea fisierelor json cu informatii despre tari si generarea scripturilor sql de populare a tabelelor
+- Crearea Country View-ului cu informatii despre o tara specificata in eventul de OnClick pe MapView
+- Scrierea Help-ului asociat aplicatiei
+- Ideea initiala pentru tematica aplicatiei
+
+[Moisii Marin]
+- Implementarea modulului "Network": verificare conexiune internet
+- Descarcarea datelor in format JSON printr-un API request, parsarea datelor in structuri interne
+- Implementarea Global View: prezentare informatii despre efectele virusului COVID-19 la nivel mondial
+- Implementarea testarii unitatilor pentru modulul Network si view-ul global
+- Scrierea documentului SRS
+
+[Petrica Petru]
+- Arhitectura proiectului si impartirea task-urilor in echipa.
+- Organizarea proiectului, modul de colaborare, intalnirile pentru proiect, etc.
+- Implementarea claselor utilizate in toate modulele si functiile utiliatare aferente
+- Implementarea map view-ului / observer pattern
+- Review la tot codul care intra in proiect, sugestii, propuneri, corectii etc.

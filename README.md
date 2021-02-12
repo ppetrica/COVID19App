@@ -48,7 +48,7 @@ You can click on any country for more information. When you do that, the country
 
 This view (tab) is chart which graphically indicates a general situation about total cases confirmed grouped by continent.
 
- ######The Chart
+ ###### The Chart
 
 The chart shows total cases confirmed, group by continent.
 On the X-axis is time, starting from 22.01.2020 until the most recent day in the database (most of the times, this will be today date).
@@ -115,3 +115,6 @@ On the Y-axis is number of people affected by virus. By adding death, active and
 ![Use-Case Diagram](https://github.com/ppetrica/ProiectIP/blob/master/Documentation/diagrams/images/COVID-UseCase-Diagram.png)
 
 
+## Notes
+
+1. Run the script `renew.bat` located in `scripts` in order to create the database.
